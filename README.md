@@ -5,6 +5,13 @@ Flyff Combat Bot is a free, advanced, and automatic bot for Flyff Universe.
 The bot has been tested on Windows 10 and 11 x64.
 
 
+
+**Demo of the bot in action**
+
+https://github.com/vektorprime/flyff_combat_bot/assets/9269666/b329d3fb-c3b9-4a1b-9af0-8c24811f5313
+
+
+
 Features:
 * Doesn't trigger captcha
 * Giant avoiding
@@ -18,19 +25,29 @@ Running the bot takes over some mouse and keyboard actions, so you can't run mor
 
 
 
+**BASIC HOW TO START**
 
-**HOW TO START**
 
-1. Download the release 
-    - https://github.com/vektorprime/flyff_combat_bot/releases
-2. Download and install Visual C++ redistributable files from Microsoft 
+1. Download and install Visual C++ redistributable files from Microsoft 
     - https://aka.ms/vs/17/release/vc_redist.x64.exe
-3. Launch Flyff Universe in Chrome and keep the window up (don't minimize)
+2. Download the bot
+    - [https://github.com/vektorprime/flyff_combat_bot/releases](https://github.com/vektorprime/flyff_combat_bot/releases/download/v1.0.0/Flyff_Combat_1_0_0_WIN.zip)
+3. Create a folder somewhere and unzip all of the contents into that folder
+4. Launch Flyff Universe in Chrome and keep the window up (don't minimize)
      - If you minimize the window the bot won't find it, and the bot will close instantly
-4. Launch flyff_combat_bot.exe
+5. Launch flyff_combat_bot.exe
     - If it closes instantly, it can't find the Chrome window with Flyff Universe running
-5. Select your mode (fight or heal)
-6. The default settings supp
+6. Select your mode (fight or heal)
+7. Fill out your player name under Setup Players, ommit any titles or guild name.
+8. The default settings assume you have a healer with you, uncheck "Enable monitor and defend healer" if you do not. Otherwise, the bot will crash.
+9. The Self Buffs section assumes all they are in the F2 skill bar (second skill bar)
+10. You MUST have the "Attack selected target" action set as the #6 skill in the F1 (first) skillbar like below.
+
+![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/df466c0c-e85d-47bc-bd18-d595f4ccbc71)
+    - If you don't know where that is, press "o" on your keyboard to open the Motion menu and find it here.
+
+![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/bb1a375e-3201-4fab-9b45-9201b1c0ca74)
+
 
 
 **In-game requirements**
