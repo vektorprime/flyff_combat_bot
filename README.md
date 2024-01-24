@@ -23,7 +23,7 @@ Running the bot takes over some mouse and keyboard actions, so you can't run mor
 
 **CONFIG**
 
-The bot can be configured from both the config file and the GUI. The config file is called flyffcombat.cfg
+The bot can be configured from both the config file and the GUI. The config file is called flyffcombat.cfg, and it's in the root directory with the bot executable.
 The GUI always loads from the config file. Changes in the GUI are currently not saved back in the config file.
 
 ![Config file](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/2031fed0-da45-4320-bca9-8fa18ac7da03)
