@@ -67,7 +67,9 @@ The character preview screen that
 
 **Giant Avoiding**
 Giant avoiding is done by finding the giant on the map. This requires the following map/navigator settings.
+
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/a61af687-1e25-4faa-b17a-06830321dc2f)
+
 I had to use the above method because distinguishing giants from normal monsters via memory was difficult. 
 
 Pets should be out BEFORE you start the bot.
