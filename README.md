@@ -42,14 +42,14 @@ Running the bot takes over some mouse and keyboard actions, so you can't run mor
 8. The default settings assume you have a healer with you, uncheck "Enable monitor and defend healer" if you do not. Otherwise, the bot will crash.
 9. The Self Buffs section assumes all they are in the F2 skill bar (second skill bar)
 10. You MUST have the "Attack selected target" action set as the #6 skill in the F1 (first) skillbar like below.
-
-![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/df466c0c-e85d-47bc-bd18-d595f4ccbc71)
-
     - If you don't know where that is, press "o" on your keyboard to open the Motion menu and find it here.
 
+![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/df466c0c-e85d-47bc-bd18-d595f4ccbc71)
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/bb1a375e-3201-4fab-9b45-9201b1c0ca74)
 
-11. 
+11. Click start on the bot GUI.
+
+If you ever need to close the bot, you can click stop in the GUI. You can also close the windows console window which runs the bot. I usually just alt F4 on that.
 
 **In-game requirements**
 
