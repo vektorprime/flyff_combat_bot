@@ -2,6 +2,9 @@
 
 Flyff Combat Bot is a free, advanced, and automatic bot for Flyff Universe running on Chrome.
 
+Technical overview of bot:
+The bot utilizes both image matching, text recognition (OCR), and memory reading to operate.
+
 Features:
 * Doesn't trigger captcha
 * Giant avoiding
@@ -9,6 +12,7 @@ Features:
 * Automatically finds monsters regardless of distance
 
 
+Restrictions:
 Running the bot takes over some mouse and keyboard actions, so you can't run more than one instance per PC.
 
 
