@@ -15,12 +15,14 @@ https://github.com/vektorprime/flyff_combat_bot/assets/9269666/b329d3fb-c3b9-4a1
 
 
 Features:
-* Doesn't trigger captcha
-* Giant avoiding
-* Healer or fighter mode
-* Fighter always prioritizes monsters attacking healer
-* Automatically finds monsters regardless of distance
 
+* Healer or fighter mode
+* Monitor hp/mp/fp and use potions to restore
+* Tracks all monsters nearby and prioritizes the ones closest to the player
+* Fighter always prioritizes monsters attacking healer, then monsters attacking the fighter, then monsters that are not in combat
+* Doesn't trigger captcha
+* Restores operation if game disconects
+* Giant avoiding
 
 Restrictions:
 Running the bot takes over some mouse and keyboard actions, so you can't run more than one instance per PC.
