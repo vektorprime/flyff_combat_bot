@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="config_reader.cpp" />
+    <ClCompile Include="debug_image_matching.cpp" />
+    <ClCompile Include="heal_and_buff.cpp" />
+    <ClCompile Include="image_matching.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="map_image_matching.cpp" />
+    <ClCompile Include="memory_reader.cpp" />
+    <ClCompile Include="mouse_and_keyboard.cpp" />
+    <ClCompile Include="ocr_matching.cpp" />
+    <ClCompile Include="position.cpp" />
+    <ClCompile Include="game_window.cpp" />
+    <ClCompile Include="trigger_time.cpp" />
+    <ClCompile Include="imgui\backends\imgui_impl_dx12.cpp" />
+    <ClCompile Include="imgui\backends\imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui\imgui.cpp" />
+    <ClCompile Include="imgui\imgui_demo.cpp" />
+    <ClCompile Include="imgui\imgui_draw.cpp" />
+    <ClCompile Include="imgui\misc\cpp\imgui_stdlib.cpp" />
+    <ClCompile Include="imgui\imgui_tables.cpp" />
+    <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="log.cpp" />
+    <ClCompile Include="utils.cpp" />
+    <ClCompile Include="memory.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="config_reader.h" />
+    <ClInclude Include="debug_image_matching.h" />
+    <ClInclude Include="heal_and_buff.h" />
+    <ClInclude Include="image_matching.h" />
+    <ClInclude Include="map_image_matching.h" />
+    <ClInclude Include="memory_reader.h" />
+    <ClInclude Include="mouse_and_keyboard.h" />
+    <ClInclude Include="ocr_matching.h" />
+    <ClInclude Include="position.h" />
+    <ClInclude Include="game_window.h" />
+    <ClInclude Include="trigger_time.h" />
+    <ClInclude Include="imgui\backends\imgui_impl_dx12.h" />
+    <ClInclude Include="imgui\backends\imgui_impl_win32.h" />
+    <ClInclude Include="imgui\imconfig.h" />
+    <ClInclude Include="imgui\imgui.h" />
+    <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="imgui\misc\cpp\imgui_stdlib.h" />
+    <ClInclude Include="imgui\imstb_rectpack.h" />
+    <ClInclude Include="imgui\imstb_textedit.h" />
+    <ClInclude Include="imgui\imstb_truetype.h" />
+    <ClInclude Include="log.h" />
+    <ClInclude Include="utils.h" />
+    <ClInclude Include="memory.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imgui\misc\debuggers\imgui.natstepfilter" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="imgui\misc\debuggers\imgui.natvis" />
+  </ItemGroup>
+</Project>
