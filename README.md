@@ -42,9 +42,14 @@ The default logging level is "Error." Error means the bot will stop and crash. V
 
 ![GUI-LOGGING](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/57b045b3-5e43-4a5b-ab4d-e0f67b429097)
 
+
 **Compile The Bot**
 
 C++ 20
+
 Visual studio 2022 v143 toolset
+
 OpenCV 4.7
+
 The bot utilizes Tessarct for OCR of red text. 
+
