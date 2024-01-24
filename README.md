@@ -13,7 +13,9 @@ Running the bot takes over some mouse and keyboard actions, so you can't run mor
 
 
 
+
 **REQUIREMENTS**
+
 Download the release 
 
 https://github.com/vektorprime/flyff_combat_bot/releases
