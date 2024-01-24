@@ -9,6 +9,7 @@ Features:
 * Doesn't trigger captcha
 * Giant avoiding
 * Healer or fighter mode
+* Fighter always prioritizes monsters attacking healer
 * Automatically finds monsters regardless of distance
 
 
