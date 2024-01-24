@@ -1,6 +1,6 @@
 # Flyff_Combat_Bot
 
-Flyff Combat Bot is a free bot for Flyff Universe running on Chrome.
+Flyff Combat Bot is a free, advanced, and automatic bot for Flyff Universe running on Chrome.
 
 Features:
 * Doesn't trigger captcha
@@ -15,9 +15,11 @@ Running the bot takes over some mouse and keyboard actions, so you can't run mor
 
 **REQUIREMENTS**
 Download the release 
+
 https://github.com/vektorprime/flyff_combat_bot/releases
 
 Download and install Visual C++ redistributable files from Microsoft
+
 https://aka.ms/vs/17/release/vc_redist.x64.exe
 
 
