@@ -187,7 +187,6 @@
     <ClCompile Include="memory_reader.cpp" />
     <ClCompile Include="mouse_and_keyboard.cpp" />
     <ClCompile Include="ocr_matching.cpp" />
-    <ClCompile Include="position.cpp" />
     <ClCompile Include="game_window.cpp" />
     <ClCompile Include="trigger_time.cpp" />
     <ClCompile Include="utils.cpp" />
@@ -215,7 +214,6 @@
     <ClInclude Include="memory_reader.h" />
     <ClInclude Include="mouse_and_keyboard.h" />
     <ClInclude Include="ocr_matching.h" />
-    <ClInclude Include="position.h" />
     <ClInclude Include="game_window.h" />
     <ClInclude Include="trigger_time.h" />
     <ClInclude Include="utils.h" />
