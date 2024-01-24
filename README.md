@@ -24,3 +24,10 @@ Here's an image that explains which config file sections correlate to which GUI 
 **Healer GUI Config Sections**
 ![HEALER-GUI-CONFIG-FILE-EXPLANATION](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/2187ddb8-5042-43ec-8c4c-f16ae4f2d65d)
 
+**Logging**
+A log file called flyffcombat.log is created automatically on startup. The log is appended to on every run.
+2 new lines are added to differentiate the runs
+_"Log file started 
+config loaded"_
+The default logging level is "Error." Error means the bot will stop and crash. Verbose is for troubleshooting certain actions.
+![GUI-LOGGING](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/57b045b3-5e43-4a5b-ab4d-e0f67b429097)
