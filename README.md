@@ -1,6 +1,6 @@
 # Flyff_Combat_Bot
 
-Flyff Combat Bot is a free, advanced, and automatic bot for Flyff Universe.
+Flyff Combat Bot is a free, advanced, and fully automatic bot for Flyff Universe.
 
 The bot has been tested on Windows 10 and 11 x64.
 
@@ -48,7 +48,7 @@ Running the bot takes over some mouse and keyboard actions, so you can't run mor
 
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/bb1a375e-3201-4fab-9b45-9201b1c0ca74)
 
-
+11. 
 
 **In-game requirements**
 
