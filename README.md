@@ -44,6 +44,7 @@ Running the bot takes over some mouse and keyboard actions, so you can't run mor
 10. You MUST have the "Attack selected target" action set as the #6 skill in the F1 (first) skillbar like below.
 
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/df466c0c-e85d-47bc-bd18-d595f4ccbc71)
+
     - If you don't know where that is, press "o" on your keyboard to open the Motion menu and find it here.
 
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/bb1a375e-3201-4fab-9b45-9201b1c0ca74)
