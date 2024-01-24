@@ -14,9 +14,10 @@ Running the bot takes over some mouse and keyboard actions, so you can't run mor
 
 
 **REQUIREMENTS**
+Download the release 
+https://github.com/vektorprime/flyff_combat_bot/releases
 
-Visual C++ redistributable files
-
+Download and install Visual C++ redistributable files from Microsoft
 https://aka.ms/vs/17/release/vc_redist.x64.exe
 
 
