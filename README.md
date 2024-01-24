@@ -14,16 +14,18 @@ Running the bot takes over some mouse and keyboard actions, so you can't run mor
 
 
 
-**REQUIREMENTS**
+**HOW TO START**
 
-Download the release 
+1. Download the release 
 
-https://github.com/vektorprime/flyff_combat_bot/releases
+  https://github.com/vektorprime/flyff_combat_bot/releases
 
-Download and install Visual C++ redistributable files from Microsoft
+2. Download and install Visual C++ redistributable files from Microsoft
 
-https://aka.ms/vs/17/release/vc_redist.x64.exe
+  https://aka.ms/vs/17/release/vc_redist.x64.exe
 
+3. Launch Flyff Universe in Chrome
+4. Start the bot
 
 **CONFIG**
 
