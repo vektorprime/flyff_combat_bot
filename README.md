@@ -4,6 +4,8 @@ Flyff Combat Bot is a free bot for Flyff Universe running on Chrome.
 
 The bot features a fighter and healer mode. Running the bot takes over some mouse and keyboard actions, so you can't run more than one instance per PC.
 
+if you want to compile this from source, go to the bottom of the page.
+
 **REQUIREMENTS**
 
 Visual C++ redistributable files
@@ -39,3 +41,6 @@ config loaded"_
 The default logging level is "Error." Error means the bot will stop and crash. Verbose is for troubleshooting certain actions.
 
 ![GUI-LOGGING](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/57b045b3-5e43-4a5b-ab4d-e0f67b429097)
+
+**Compile The Bot**
+The bot utilizes Tessarct for OCR of red text. It also heavily utilizes OpenCV for certain image matching and logic.
