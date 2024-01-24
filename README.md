@@ -45,6 +45,7 @@ Running the bot takes over some mouse and keyboard actions, so you can't run mor
     - If you don't know where that is, press "o" on your keyboard to open the Motion menu and find it here.
 
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/df466c0c-e85d-47bc-bd18-d595f4ccbc71)
+
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/bb1a375e-3201-4fab-9b45-9201b1c0ca74)
 
 11. Click start on the bot GUI.
