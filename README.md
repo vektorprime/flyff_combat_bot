@@ -7,6 +7,7 @@ The bot features a fighter and healer mode. Running the bot takes over some mous
 **REQUIREMENTS**
 
 Visual C++ redistributable files
+
 https://aka.ms/vs/17/release/vc_redist.x64.exe
 
 
