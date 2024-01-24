@@ -111,6 +111,8 @@ I had to use the above method because distinguishing giants from normal monsters
 
 Pick-up pets should be out BEFORE you start the bot.
 
+**EVERYTHING BELOW THIS LINE IS TECHNICAL DETAILS FOR ANYONE INTERESTED IN THE SOURCE CODE AND COMPILING**
+
 
 Technical overview of bot:
 The bot utilizes both image matching, text recognition (OCR), and memory reading to operate.
@@ -120,7 +122,7 @@ The bot utilizes both image matching, text recognition (OCR), and memory reading
 The below information is for anyone who wants to compile the bot and modify it.
 
 * C++ 20
-* Visual studio 2022 v143 toolset
-* OpenCV 4.7
-* The bot utilizes Tessarct for OCR of red text. 
+* Visual studio 2022 v143 toolset (others will probably work too)
+* OpenCV 4.7 or latest version from VCPKG
+* Latest version of Tesseract from VCPKG
 
