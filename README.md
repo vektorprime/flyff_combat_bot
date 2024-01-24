@@ -18,7 +18,9 @@ Here's an image that explains which config file sections correlate to which GUI 
 
 
 **Fighter GUI Config Sections**
-![FIGHTER-GUI-CONFIG-FILE-EXPLANATION](https://raw.githubusercontent.com/vektorprime/flyff_combat_bot/master/faq_images/flyff-combat-bot-config-file-gui-items.png)
+![FIGHTER-GUI-CONFIG-FILE-EXPLANATION](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/44f8e5c0-caca-42ae-b806-87c7dc332aaf)
+
 
 **Healer GUI Config Sections**
-![HEALER-GUI-CONFIG-FILE-EXPLANATION](https://raw.githubusercontent.com/vektorprime/flyff_combat_bot/master/faq_images/flyff-combat-bot-config-file-gui-items-2.png)
+![HEALER-GUI-CONFIG-FILE-EXPLANATION](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/2187ddb8-5042-43ec-8c4c-f16ae4f2d65d)
+
