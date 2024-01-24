@@ -8,4 +8,8 @@ CONFIG
 The bot can be configured from both flyffconfig.cfg and the GUI. The GUI always loads from the config file. Changes in the GUI are currently not saved back in the config file.
 Here's an image that explains which config file sections correlate to which GUI items.
 
-![GUI-CONFIG-FILE-EXPLANATION](https://raw.githubusercontent.com/vektorprime/flyff_combat_bot/master/faq_images/flyff-combat-bot-config-file-gui-items.png)
+Fighter GUI Config Sections
+![FIGHTER-GUI-CONFIG-FILE-EXPLANATION](https://raw.githubusercontent.com/vektorprime/flyff_combat_bot/master/faq_images/flyff-combat-bot-config-file-gui-items.png)
+
+Healer GUI Config Sections
+![HEALER-GUI-CONFIG-FILE-EXPLANATION](https://raw.githubusercontent.com/vektorprime/flyff_combat_bot/master/faq_images/flyff-combat-bot-config-file-gui-items-2.png)
