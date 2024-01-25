@@ -100,7 +100,7 @@ namespace flyff
 	class player
 	{
 		public:
-			std::string name = "";
+			std::string name;
 			int target = 0;
 			LPVOID target_pattern_address = nullptr;
 			LPVOID target_address = nullptr;
