@@ -9,36 +9,33 @@
 
 cv::Mat debug_map(flyff::window &win, const int xoffset, const int yoffset)
 {
-	cv::Mat img{};
-	cv::Mat img2{};
-	RECT supportwindowrect_size{};
 	HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 	if (!supportwindow_size)
 	{
 		supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Chromium");
 	}
+	RECT supportwindowrect_size{};
 	GetWindowRect(supportwindow_size, &supportwindowrect_size);
 	int windowxcord = static_cast<int>(supportwindowrect_size.right - xoffset);
 	int windowycord = yoffset;
 	int windowwidth = 30;
 	int windowheight = 30;
 	x_y_cords cords = check_x_y_cords(windowxcord, windowycord, windowwidth, windowheight, supportwindowrect_size);
-	img = win.get_mat();
-	img2 = img(cv::Rect(cords.windowxcord, cords.windowycord, cords.windowwidth, cords.windowheight));
+	cv::Mat img = win.get_mat();
+	cv::Mat img2 = img(cv::Rect(cords.windowxcord, cords.windowycord, cords.windowwidth, cords.windowheight));
 	cv::cvtColor(img2, img2, cv::COLOR_BGRA2BGR);
 	return img2;
 }
 
 cv::Mat debug_window(flyff::window &win, const double xoffset, const double yoffset, int windowwidth, int windowheight)
 {
-	cv::Mat img{};
-	cv::Mat img2{};
-	RECT supportwindowrect_size{};
+
 	HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 	if (!supportwindow_size)
 	{
 		supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Chromium");
 	}
+	RECT supportwindowrect_size{};
 	GetWindowRect(supportwindow_size, &supportwindowrect_size);
 	int windowxcord = static_cast<int>(supportwindowrect_size.right - xoffset);
 	int windowycord = yoffset;
@@ -46,29 +43,29 @@ cv::Mat debug_window(flyff::window &win, const double xoffset, const double yoff
 		windowwidth = supportwindowrect_size.right - windowxcord;
 	if (windowycord + windowheight > supportwindowrect_size.bottom)
 		windowheight = supportwindowrect_size.bottom - windowycord;
-	img = win.get_mat();
-	img2 = img(cv::Rect(windowxcord, windowycord, windowwidth, windowheight));
+	cv::Mat img = win.get_mat();
+	cv::Mat img2 = img(cv::Rect(windowxcord, windowycord, windowwidth, windowheight));
 	cv::cvtColor(img2, img2, cv::COLOR_BGRA2BGR);
 	return img2;
 }
 
 cv::Mat debug_hp_mp_fp(flyff::window &win, const double x, const double y, const double width, const double height)
 {
-	cv::Mat img{};
-	cv::Mat img2{};
-	RECT supportwindowrect_size{};
+
+
 	HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 	if (!supportwindow_size)
 	{
 		supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Chromium");
 	}
+	RECT supportwindowrect_size{};
 	GetWindowRect(supportwindow_size, &supportwindowrect_size);
 	int xoffset = static_cast<int>(supportwindowrect_size.right * x);
 	int yoffset = static_cast<int>(supportwindowrect_size.bottom * y);
 	int windowwidth = static_cast<int>(supportwindowrect_size.right * width);
 	int windowheight = static_cast<int>(supportwindowrect_size.right * height);
-	img = win.get_mat();
-	img2 = img(cv::Rect(xoffset, yoffset, windowwidth, windowheight));
+	cv::Mat img = win.get_mat();
+	cv::Mat img2 = img(cv::Rect(xoffset, yoffset, windowwidth, windowheight));
 	cv::cvtColor(img2, img2, cv::COLOR_BGRA2BGR);
 
 
@@ -98,22 +95,22 @@ cv::Mat debug_hp_mp_fp(flyff::window &win, const double x, const double y, const
 
 cv::Mat debug_alert_text(flyff::window &win, const double x, const double y, const double width, const double height)
 {
-	cv::Mat img{};
-	cv::Mat img2{};
-	RECT supportwindowrect_size{};
+
+
 	HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 	if (!supportwindow_size)
 	{
 		supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Chromium");
 	}
+	RECT supportwindowrect_size{};
 	GetWindowRect(supportwindow_size, &supportwindowrect_size);
 	int windowxcord = static_cast<int>(supportwindowrect_size.right * x);
 	int windowycord = static_cast<int>(supportwindowrect_size.bottom * y);
 	int windowwidth = static_cast<int>(supportwindowrect_size.right * width);
 	int windowheight = static_cast<int>(supportwindowrect_size.right * height);
 	x_y_cords cords = check_x_y_cords(windowxcord, windowycord, windowwidth, windowheight, supportwindowrect_size);
-	img = win.get_mat();
-	img2 = img(cv::Rect(cords.windowxcord, cords.windowycord, cords.windowwidth, cords.windowheight));
+	cv::Mat img = win.get_mat();
+	cv::Mat img2 = img(cv::Rect(cords.windowxcord, cords.windowycord, cords.windowwidth, cords.windowheight));
 	cv::cvtColor(img2, img2, cv::COLOR_BGRA2BGR);
 
 	cv::Mat monster_taken_templ = cv::imread("images\\monstertaken.png");
@@ -131,22 +128,22 @@ cv::Mat debug_alert_text(flyff::window &win, const double x, const double y, con
 
 cv::Mat debug_combat(flyff::window &win, const double x, const double y, const double width, const double height)
 {
-	cv::Mat img{};
-	cv::Mat img2{};
-	RECT supportwindowrect_size{};
+
+
 	HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 	if (!supportwindow_size)
 	{
 		supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Chromium");
 	}
+	RECT supportwindowrect_size{};
 	GetWindowRect(supportwindow_size, &supportwindowrect_size);
 	int windowxcord = static_cast<int>(supportwindowrect_size.right * x);
 	int windowycord = static_cast<int>(supportwindowrect_size.bottom * y);
 	int windowwidth = static_cast<int>(supportwindowrect_size.right * width);
 	int windowheight = static_cast<int>(supportwindowrect_size.right * height);
 	x_y_cords cords = check_x_y_cords(windowxcord, windowycord, windowwidth, windowheight, supportwindowrect_size);
-	img = win.get_mat();
-	img2 = img2(cv::Rect(cords.windowxcord, cords.windowycord, cords.windowwidth, cords.windowheight));
+	cv::Mat	img = win.get_mat();
+	cv::Mat img2 = img2(cv::Rect(cords.windowxcord, cords.windowycord, cords.windowwidth, cords.windowheight));
 	cv::cvtColor(img2, img2, cv::COLOR_BGRA2BGR);
 
 

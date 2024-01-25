@@ -835,6 +835,8 @@ int main()
 
 		if (bot_running)
 		{
+
+
 			if (current_log_level == 1)
 			{
 				log_file.set_verbose_log_level();

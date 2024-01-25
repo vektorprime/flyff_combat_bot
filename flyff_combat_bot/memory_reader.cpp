@@ -23,8 +23,6 @@ HANDLE get_process_handle(const DWORD processID)
 {
 	HANDLE processHandle{};
 
-	if (processHandle == NULL)
-	{
 		//get the proc
 		processHandle = OpenProcess(PROCESS_ALL_ACCESS, true, processID);
 		if (!processHandle)
@@ -34,7 +32,7 @@ HANDLE get_process_handle(const DWORD processID)
 		}
 		std::cout << "Got the process Handle " << processHandle << std::endl;
 		return processHandle;
-	}
+
 }
 
 void allocate_memory_buffer(size_t bytesToRead, LPVOID &queryBaseAddress, LPVOID &bufferRead)

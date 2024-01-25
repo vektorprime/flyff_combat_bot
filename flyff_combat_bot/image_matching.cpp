@@ -526,7 +526,7 @@ int find_nav_angle(flyff::window &win)
 
 
 
-
+//make sure disconnect_message is always by ref
 bool check_if_disconnected(flyff::window &win, const disconnect_message &message, flyff::time &disconnected_time, flyff::match_result &disconnected_result)
 {
 	double disconnected_cutoffpoint = 0.0003;
