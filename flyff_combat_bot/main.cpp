@@ -48,7 +48,6 @@
 //custom headers
 #include "trigger_time.h"
 #include "game_window.h"
-#include "position.h"
 #include "memory_reader.h"
 #include "mouse_and_keyboard.h"
 #include "image_matching.h"
@@ -75,7 +74,7 @@ struct FrameContext
 
 // Data
 static int const                    NUM_FRAMES_IN_FLIGHT = 3;
-static FrameContext                 g_frameContext[NUM_FRAMES_IN_FLIGHT] = {};
+static FrameContext                 g_frameContext[NUM_FRAMES_IN_FLIGHT]{};
 static UINT                         g_frameIndex = 0;
 
 static int const                    NUM_BACK_BUFFERS = 3;
@@ -89,8 +88,8 @@ static HANDLE                       g_fenceEvent = nullptr;
 static UINT64                       g_fenceLastSignaledValue = 0;
 static IDXGISwapChain3 *g_pSwapChain = nullptr;
 static HANDLE                       g_hSwapChainWaitableObject = nullptr;
-static ID3D12Resource *g_mainRenderTargetResource[NUM_BACK_BUFFERS] = {};
-static D3D12_CPU_DESCRIPTOR_HANDLE  g_mainRenderTargetDescriptor[NUM_BACK_BUFFERS] = {};
+static ID3D12Resource *g_mainRenderTargetResource[NUM_BACK_BUFFERS]{};
+static D3D12_CPU_DESCRIPTOR_HANDLE  g_mainRenderTargetDescriptor[NUM_BACK_BUFFERS]{};
 
 // Forward declarations of helper functions
 bool CreateDeviceD3D(HWND hWnd);
@@ -105,14 +104,17 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 void cleanup_gui(HWND &hwnd, LPCWSTR &lpClassName, HINSTANCE &hInstanc);
 
 
-cv::Mat game_window;
-cv::Mat img; cv::Mat img2; cv::Mat monstertempl; cv::Mat monstertempl2;
+cv::Mat game_window{};
+cv::Mat img{}; 
+cv::Mat img2{};
+cv::Mat monstertempl{};
+cv::Mat monstertempl2{};
 
 
 // set debug to true to display image window, rect, and turn off clicking + turning.
 bool debug_bot = false;
 
-flyff::match_result disconnected_result;
+flyff::match_result disconnected_result{};
 
 
 const std::array<unsigned char, 104> monster_on_map_byte_pattern_4 =
@@ -149,8 +151,11 @@ int last_monster_attempted = 0;
 std::vector<int> monsters_killed{};
 bool monster_killed_found = false;
 
-cv::Mat healer_img, heal_result;
-cv::Point heal_minLoc; cv::Point heal_maxLoc; cv::Point heal_matchLoc;
+cv::Mat healer_img{};
+cv::Mat heal_result{};
+cv::Point heal_minLoc{};
+cv::Point heal_maxLoc{};
+cv::Point heal_matchLoc{};
 LONG heal_xloc = 0;
 LONG heal_yloc = 0;
 
@@ -159,7 +164,7 @@ int main()
 {
 
 
-	flyff::window win;
+	flyff::window win{};
 	win.get_mat();
 
 	cv::Mat dead_templ = cv::imread("images\\dead.png");
@@ -227,35 +232,35 @@ int main()
 	cv::cvtColor(fighter_templ, fighter_templ, cv::COLOR_BGRA2BGR);
 
 	double monitor_hp_mp_fp_cutoffpoint = 0.02;
-	flyff::match_result heal_target_in_range_result;
+	flyff::match_result heal_target_in_range_result{};
 
-	flyff::time navigator_icon_time;
+	flyff::time navigator_icon_time{};
 	navigator_icon_time.set_interval(15);
 
-	flyff::time char_screen_icon_time;
+	flyff::time char_screen_icon_time{};
 	char_screen_icon_time.set_interval(15);
 
-	flyff::time monster_search_time;
+	flyff::time monster_search_time{};
 	monster_search_time.set_interval(20);
 
-	flyff::time clear_monsters_killed_time;
+	flyff::time clear_monsters_killed_time{};
 	clear_monsters_killed_time.set_interval(30);
 
-	flyff::time action_blocked_time;
+	flyff::time action_blocked_time{};
 	action_blocked_time.set_interval(8);
 
-	flyff::time dead_check_time;
+	flyff::time dead_check_time{};
 	dead_check_time.set_interval(10);
 
-	flyff::time combat_time;
+	flyff::time combat_time{};
 	combat_time.set_interval(30);
 	bool last_combat_status = false;
 
-	flyff::time dmg_last_taken_time;
+	flyff::time dmg_last_taken_time{};
 	dmg_last_taken_time.set_interval(2);
 
-	flyff::time position_time, disconnected_time, captcha_check_time, rebuff_time, geb_rebuff_time, prev_rebuff_time;
-	flyff::time find_heal_skill_time, attack_time, combat_end_phase_time, giant_on_map_time, heal_hp_mp_fp_time;
+	flyff::time position_time, disconnected_time, captcha_check_time, rebuff_time, geb_rebuff_time, prev_rebuff_time{};
+	flyff::time find_heal_skill_time, attack_time, combat_end_phase_time, giant_on_map_time, heal_hp_mp_fp_time{};
 	position_time.set_interval(80);
 	disconnected_time.set_interval(30);
 
@@ -266,7 +271,7 @@ int main()
 	captcha_check_time.set_interval(30);
 	captcha_check_time.set_start_time();
 
-	flyff::time reset_screen_position_time;
+	flyff::time reset_screen_position_time{};
 	reset_screen_position_time.set_interval(600);
 	captcha_check_time.set_start_time();
 
@@ -277,35 +282,35 @@ int main()
 
 	bool mon_targetting_player = false;
 
-	flyff::match_result monster_result;
-	flyff::match_result aggro_monster_result;
-	flyff::match_result giant_monster_result;
-	flyff::match_result violet_monster_result;
+	flyff::match_result monster_result{};
+	flyff::match_result aggro_monster_result{};
+	flyff::match_result giant_monster_result{};
+	flyff::match_result violet_monster_result{};
 
-	flyff::match_result dead_result;
+	flyff::match_result dead_result{};
 
-	flyff::match_result aggro_attacked_result;
-	flyff::match_result combat_result;
-	flyff::match_result actblocked_result;
+	flyff::match_result aggro_attacked_result{};
+	flyff::match_result combat_result{};
+	flyff::match_result actblocked_result{};
 
-	flyff::match_result giant_top_result;
-	flyff::match_result violet_top_result;
+	flyff::match_result giant_top_result{};
+	flyff::match_result violet_top_result{};
 
-	flyff::match_result curattack_result;
-	flyff::match_result monster_taken_result;
+	flyff::match_result curattack_result{};
+	flyff::match_result monster_taken_result{};
 
-	flyff::match_result giant_on_map_result_top_left;
-	flyff::match_result giant_on_map_result_top_right;
-	flyff::match_result giant_on_map_result_bottom_left;
-	flyff::match_result giant_on_map_result_bottom_right;
-	flyff::match_result monster_target_result;
+	flyff::match_result giant_on_map_result_top_left{};
+	flyff::match_result giant_on_map_result_top_right{};
+	flyff::match_result giant_on_map_result_bottom_left{};
+	flyff::match_result giant_on_map_result_bottom_right{};
+	flyff::match_result monster_target_result{};
 
 
-	flyff::match_result monitor_hp_result;
-	flyff::match_result monitor_mp_result;
-	flyff::match_result monitor_fp_result;
-	flyff::match_result monster_result2;
-	flyff::match_result aggro_monster_result2;
+	flyff::match_result monitor_hp_result{};
+	flyff::match_result monitor_mp_result{};
+	flyff::match_result monitor_fp_result{};
+	flyff::match_result monster_result2{};
+	flyff::match_result aggro_monster_result2{};
 
 
 	int bot_mode = 1;
@@ -374,7 +379,7 @@ int main()
 	//	"turn off pixel perfect in cases where the mobs are small" << std::endl;
 
 	//std::cout << "starting bot" << std::endl;
-	flyff::match_result heal_skill_result;
+	flyff::match_result heal_skill_result{};
 	double heal_skill_cutoffpoint = 0.009;
 	bool initial_find_heal_skill = true;
 	bool initial_functions_ran = false;
@@ -493,17 +498,17 @@ int main()
 	std::vector<flyff::monster> initial_monsters_on_field{};
 	initial_monsters_on_field.reserve(65);
 
-	char_position pos;
+	char_position pos{};
 
 	// int pet_id = 0;
 	std::vector<int> all_pet_id{};
 
 	//find the flyff pid
-	flyff::process flyff_proc;
+	flyff::process flyff_proc{};
 
 	bool initial_vars_setup = false;
 
-	std::vector<self_buff> char_self_buffs;
+	std::vector<self_buff> char_self_buffs{};
 	char_self_buffs.reserve(4);
 
 	int skill_interval = 300;
@@ -523,7 +528,7 @@ int main()
 	}
 	int num_of_self_buffs = char_self_buffs.size();
 
-	cv::Mat heal_skill_templ;
+	cv::Mat heal_skill_templ{};
 	bool initial_heal_skill_setup = false;
 	bool initial_prev_rebuff_q = true;
 
@@ -549,12 +554,12 @@ int main()
 		}
 	}
 
-	flyff::time rebuff_interval_time;
+	flyff::time rebuff_interval_time{};
 	rebuff_interval_time.set_interval(heal_rebuff_interval);
 
 	//don't declare vars from config below this line otherwise they get overwritten
 
-	std::vector<LPVOID> all_text_targets;
+	std::vector<LPVOID> all_text_targets{};
 	all_text_targets.reserve(10);
 	bool bad_mon_found = false;
 	bool baby_pet_found = false;
@@ -567,7 +572,7 @@ int main()
 	//if we find any, we'll monitor their POS and avoid it
 	std::vector<flyff::monster> bad_monsters_on_field{};
 
-	flyff::window gray_win;
+	flyff::window gray_win{};
 
 	while (!close_gui)
 	{ 
@@ -2052,7 +2057,7 @@ int main()
 		UINT backBufferIdx = g_pSwapChain->GetCurrentBackBufferIndex();
 		frameCtx->CommandAllocator->Reset();
 
-		D3D12_RESOURCE_BARRIER barrier = {};
+		D3D12_RESOURCE_BARRIER barrier{};
 		barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
 		barrier.Flags = D3D12_RESOURCE_BARRIER_FLAG_NONE;
 		barrier.Transition.pResource = g_mainRenderTargetResource[backBufferIdx];
@@ -2154,7 +2159,7 @@ bool CreateDeviceD3D(HWND hWnd)
 #endif
 
 	{
-		D3D12_DESCRIPTOR_HEAP_DESC desc = {};
+		D3D12_DESCRIPTOR_HEAP_DESC desc{};
 		desc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
 		desc.NumDescriptors = NUM_BACK_BUFFERS;
 		desc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
@@ -2172,7 +2177,7 @@ bool CreateDeviceD3D(HWND hWnd)
 	}
 
 	{
-		D3D12_DESCRIPTOR_HEAP_DESC desc = {};
+		D3D12_DESCRIPTOR_HEAP_DESC desc{};
 		desc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
 		desc.NumDescriptors = 1;
 		desc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
@@ -2181,7 +2186,7 @@ bool CreateDeviceD3D(HWND hWnd)
 	}
 
 	{
-		D3D12_COMMAND_QUEUE_DESC desc = {};
+		D3D12_COMMAND_QUEUE_DESC desc{};
 		desc.Type = D3D12_COMMAND_LIST_TYPE_DIRECT;
 		desc.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE;
 		desc.NodeMask = 1;

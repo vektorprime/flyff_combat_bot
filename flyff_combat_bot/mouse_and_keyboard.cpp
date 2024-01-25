@@ -20,7 +20,7 @@ void send_key_hold_down(char numpress, int time_in_millisec)
 	else
 	{
 		// Key is not down; send a key-down event
-		INPUT key_down = {};
+		INPUT key_down{};
 		key_down.type = INPUT_KEYBOARD;
 		key_down.ki.wVk = numpress;
 		SendInput(1, &key_down, sizeof(INPUT));
@@ -30,7 +30,7 @@ void send_key_hold_down(char numpress, int time_in_millisec)
 	std::this_thread::sleep_for(std::chrono::milliseconds(time_in_millisec));
 
 	// Send the key-up event
-	INPUT key_up = {};
+	INPUT key_up{};
 	key_up.type = INPUT_KEYBOARD;
 	key_up.ki.wVk = numpress;
 	key_up.ki.dwFlags = KEYEVENTF_KEYUP;
@@ -48,7 +48,7 @@ void send_key_down(char key)
 	else
 	{
 		// Key is not down; send a key-down event
-		INPUT key_down = {};
+		INPUT key_down{};
 		key_down.type = INPUT_KEYBOARD;
 		key_down.ki.wVk = key;
 		SendInput(1, &key_down, sizeof(INPUT));
@@ -57,7 +57,7 @@ void send_key_down(char key)
 
 void send_key_up(char key)
 {
-	INPUT key_up = {};
+	INPUT key_up{};
 	key_up.type = INPUT_KEYBOARD;
 	key_up.ki.wVk = key;
 	key_up.ki.dwFlags = KEYEVENTF_KEYUP;

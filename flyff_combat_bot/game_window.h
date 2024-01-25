@@ -16,11 +16,11 @@
 
 struct x_y_cords
 {
-	int windowxcord;
-	int windowycord;
-	int windowwidth;
-	int windowheight;
-	RECT supportwindowrect_size;
+	int windowxcord = 0;
+	int windowycord = 0;
+	int windowwidth = 0;
+	int windowheight = 0;
+	RECT supportwindowrect_size{};
 };
 
 x_y_cords check_x_y_cords(int windowxcord, int windowycord, int windowwidth, int windowheight, RECT supportwindowrect_size);
@@ -29,7 +29,7 @@ struct center_window_data
 {
 	int win_xcord = 0;
 	int win_ycord = 0;
-	cv::Mat img;
+	cv::Mat img{};
 };
 
 

@@ -12,15 +12,18 @@ namespace flyff
 {
 	match_result match_flyff_item(window &win, cv::Mat templ, cv::ColorConversionCodes color)
 	{
-		cv::Mat result;
-		double minVal = 0.0; double maxVal = 0.0; cv::Point minLoc; cv::Point maxLoc;
+		cv::Mat result{};
+		double minVal = 1.0; 
+		double maxVal = 0.0; 
+		cv::Point minLoc{};
+		cv::Point maxLoc{};
 		cv::Mat originalimage = win.get_and_convert_mat(color);
 		int result_cols = originalimage.cols - templ.cols + 1;
 		int result_rows = originalimage.rows - templ.rows + 1;
 		result.create(result_rows, result_cols, CV_8UC4);
 		matchTemplate(originalimage, templ, result, cv::TM_SQDIFF_NORMED);
 		minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc, cv::Mat());
-		match_result item;
+		match_result item{};
 		item.minVal = minVal;
 		item.minLoc = minLoc;
 		item.maxLoc = maxLoc;
@@ -35,7 +38,7 @@ namespace flyff
 	//at some point i'll change this to be an overloaded function instead of a switch statement embedded inside
 	match_result match_specific_flyff_item(window &win, cv::Mat templ, const type_of_match type_of_match)
 	{
-		RECT supportwindowrect_size;
+		RECT supportwindowrect_size{};
 		HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 		if (!supportwindow_size)
 		{
@@ -106,14 +109,17 @@ namespace flyff
 		cv::cvtColor(img2, img2, cv::COLOR_BGRA2BGR);
 		int result_cols = img2.cols - templ.cols + 1;
 		int result_rows = img2.rows - templ.rows + 1;
-		cv::Mat result;
+		cv::Mat result{};
 		result.create(result_rows, result_cols, CV_8UC4);
 		matchTemplate(img2, templ, result, cv::TM_SQDIFF_NORMED);
-		double minVal = 0.0; double maxVal = 0.0; cv::Point minLoc; cv::Point maxLoc;
-		cv::Point matchLoc;
+		double minVal = 1.0; 
+		double maxVal = 0.0; 
+		cv::Point minLoc{};
+		cv::Point maxLoc{};
+		cv::Point matchLoc{};
 		minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc, cv::Mat());
 		matchLoc = minLoc;
-		match_result item;
+		match_result item{};
 		item.minVal = minVal;
 		// this gives the real cord
 		item.minLoc = cv::Point(minLoc.x + windowxcord, minLoc.y + windowycord);
@@ -139,8 +145,10 @@ namespace flyff
 
 	match_result match_flyff_item_alert_text(window &win, cv::Mat templ)
 	{
-		cv::Mat img, img2, result;
-		RECT supportwindowrect_size;
+		cv::Mat img{};
+		cv::Mat img2{};
+		cv::Mat result{};
+		RECT supportwindowrect_size{};
 		HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 		if (!supportwindow_size)
 		{
@@ -159,11 +167,14 @@ namespace flyff
 		int result_rows = img2.rows - templ.rows + 1;
 		result.create(result_rows, result_cols, CV_8UC4);
 		matchTemplate(img, templ, result, cv::TM_SQDIFF_NORMED);
-		double minVal = 0.0; double maxVal = 0.0; cv::Point minLoc; cv::Point maxLoc;
-		cv::Point matchLoc;
+		double minVal = 1.0; 
+		double maxVal = 0.0; 
+		cv::Point minLoc{};
+		cv::Point maxLoc{};
+		cv::Point matchLoc{};
 		minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc, cv::Mat());
 		matchLoc = minLoc;
-		match_result item;
+		match_result item{};
 		item.minVal = minVal;
 		// this gives the real cord
 		item.minLoc = cv::Point(minLoc.x + windowxcord, minLoc.y + windowycord);
@@ -179,8 +190,13 @@ namespace flyff
 
 	match_result match_flyff_item_with_cursor(window &win, cv::Mat templ)
 	{
-		cv::Mat result, img;
-		double minVal = 0.0; double maxVal = 0.0; cv::Point minLoc; cv::Point maxLoc; cv::Point matchLoc;
+		cv::Mat result{};
+		cv::Mat img{};
+		double minVal = 0.0; 
+		double maxVal = 0.0; 
+		cv::Point minLoc{};
+		cv::Point maxLoc{};
+		cv::Point matchLoc{};
 		img = win.get_mat(true);
 		cv::cvtColor(img, img, cv::COLOR_BGRA2BGR);
 		int result_cols = img.cols - templ.cols + 1;
@@ -189,7 +205,7 @@ namespace flyff
 		matchTemplate(img, templ, result, cv::TM_SQDIFF_NORMED);
 		minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc, cv::Mat());
 		matchLoc = minLoc;
-		match_result item;
+		match_result item{};
 		item.minVal = minVal;
 		item.minLoc = minLoc;
 		item.maxLoc = maxLoc;
@@ -207,8 +223,10 @@ namespace flyff
 		//offset for top right of map is 30, 0
 		//offset for bottom left of map is 0, 30
 		//offset for bottom right of map is 30, 30
-		cv::Mat result, img, img2;
-		RECT supportwindowrect_size;
+		cv::Mat result{};
+		cv::Mat	img{};
+		cv::Mat	img2{};
+		RECT supportwindowrect_size{};
 		HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 		if (!supportwindow_size)
 		{
@@ -227,11 +245,14 @@ namespace flyff
 		int result_rows = img2.rows - templ.rows + 1;
 		result.create(result_rows, result_cols, CV_8UC4);
 		matchTemplate(img2, templ, result, cv::TM_SQDIFF_NORMED);
-		double minVal = 0.0; double maxVal = 0.0; cv::Point minLoc; cv::Point maxLoc;
-		cv::Point matchLoc;
+		double minVal = 1.0;
+		double maxVal = 0.0; 
+		cv::Point minLoc{};
+		cv::Point maxLoc{};
+		cv::Point matchLoc{};
 		minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc, cv::Mat());
 		matchLoc = minLoc;
-		match_result item;
+		match_result item{};
 		item.minVal = minVal;
 		item.minLoc = minLoc;
 		item.maxLoc = maxLoc;
@@ -245,8 +266,10 @@ namespace flyff
 
 	match_result match_flyff_item_combat_monster_focused(window &win, cv::Mat templ, int const last_xloc, const int last_yloc)
 	{
-		cv::Mat img, img2, result;
-		RECT supportwindowrect_size;
+		cv::Mat img{};
+		cv::Mat	img2{};
+		cv::Mat	result{};
+		RECT supportwindowrect_size{};
 		HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 		if (!supportwindow_size)
 		{
@@ -265,11 +288,14 @@ namespace flyff
 		int result_rows = img2.rows - templ.rows + 1;
 		result.create(result_rows, result_cols, CV_8UC4);
 		matchTemplate(img2, templ, result, cv::TM_SQDIFF_NORMED);
-		double minVal = 0.0; double maxVal = 0.0; cv::Point minLoc; cv::Point maxLoc;
-		cv::Point matchLoc;
+		double minVal = 1.0; 
+		double maxVal = 0.0; 
+		cv::Point minLoc{};
+		cv::Point maxLoc{};
+		cv::Point matchLoc{};
 		minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc, cv::Mat());
 		matchLoc = minLoc;
-		flyff::match_result item;
+		flyff::match_result item{};
 		item.minVal = minVal;
 		// this gives the real cord
 		item.minLoc = cv::Point(minLoc.x + windowxcord, minLoc.y + windowycord);
@@ -291,7 +317,7 @@ bool find_target_icons(flyff::window &win)
 	//This function is used by the healer loop to make sure that the 
 	//target (fighter) is always near, if it's not, other code will execute to find and follow
 
-	float target_cutoffpoint{ 0.001 };
+	float target_cutoffpoint =  0.001;
 
 	cv::Mat target_bl_templ = cv::imread("images\\target_bl.png");
 	cv::cvtColor(target_bl_templ, target_bl_templ, cv::COLOR_BGRA2BGR);
@@ -346,7 +372,7 @@ screen_cords get_target_to_click_cords(flyff::window &win)
 	cv::cvtColor(target_tr_templ, target_tr_templ, cv::COLOR_BGRA2GRAY);
 	flyff::match_result target_tr_result = flyff::match_flyff_item(win, target_tr_templ, cv::COLOR_BGRA2GRAY);
 	
-	float target_cutoffpoint{ 0.001 };
+	float target_cutoffpoint = 0.001;
 
 	//we need multiple fall backs to getting the target to click, we can still calculate the coords with missing missing targets
 	if (target_bl_result.minVal <= target_cutoffpoint &&
@@ -416,9 +442,12 @@ void exit_monster_target(flyff::window &win, cv::Mat monster_target_templ)
 
 int find_nav_angle(flyff::window &win)
 {
-	cv::Mat img, originalimage, originalimage2;
+
 	// Load the map area
-	RECT supportwindowrect_size;
+	cv::Mat img{};
+	cv::Mat originalimage{};
+	cv::Mat originalimage2{};
+	RECT supportwindowrect_size{};
 	HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 	if (!supportwindow_size)
 	{
@@ -434,12 +463,12 @@ int find_nav_angle(flyff::window &win)
 	originalimage2 = originalimage(cv::Rect(cords.windowxcord, cords.windowycord, cords.windowwidth, cords.windowheight));
 	cv::cvtColor(originalimage2, img, cv::COLOR_BGRA2BGR);
 
-	cv::Mat sourceImage;
+	cv::Mat sourceImage{};
 	cv::cvtColor(img, sourceImage, cv::COLOR_BGRA2BGR);
 
 	// Load the source image and the template image
 	cv::Mat templateImageunchanged = cv::imread("images\\compassfull.png", cv::IMREAD_COLOR);
-	cv::Mat templateImage;
+	cv::Mat templateImage{};
 	cv::cvtColor(templateImageunchanged, templateImage, cv::COLOR_BGRA2BGR);
 	// Determine the desired vertices of the triangle within the square image
 	cv::Point vertex1(8, 4);
@@ -460,7 +489,7 @@ int find_nav_angle(flyff::window &win)
 	int endAngle = 360;
 	int angleStep = 1;
 
-	cv::Point bestMatchLoc;
+	cv::Point bestMatchLoc{};
 	double bestMatchValue = 1;
 	double bestMatchAngle = 0;
 
@@ -468,16 +497,18 @@ int find_nav_angle(flyff::window &win)
 	for (int angle = startAngle; angle <= endAngle; angle += angleStep)
 	{
 		// Rotate the template image
-		cv::Mat rotatedTemplate;
+		cv::Mat rotatedTemplate{};
 		cv::Point2f center(static_cast<float>(croppedImage.cols / 2), static_cast<float>(croppedImage.rows / 2));
 		cv::Mat rotationMatrix = cv::getRotationMatrix2D(center, angle, 1.0);
 		cv::warpAffine(croppedImage, rotatedTemplate, rotationMatrix, croppedImage.size());
 		// Perform template matching
-		cv::Mat result;
+		cv::Mat result{};
 		cv::matchTemplate(sourceImage, rotatedTemplate, result, cv::TM_CCORR);
 		// Find the best match
-		double minVal, maxVal;
-		cv::Point minLoc, maxLoc;
+		double minVal = 1.0;
+		double maxVal = 0.0;
+		cv::Point minLoc{};
+		cv::Point maxLoc{};
 		cv::minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc);
 		// Update the best match
 		if (maxVal > bestMatchValue)

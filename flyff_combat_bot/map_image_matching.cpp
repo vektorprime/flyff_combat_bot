@@ -18,7 +18,8 @@ void flyff::image_match_map::scan_single_map_zone_(flyff::window &win, cv::Mat t
 	//offset for top right of map is 95, 165
 	//offset for bottom left of map is 130, 195
 	//offset for bottom right of map is 95, 195
-	int xoffset = 0, yoffset = 0;
+	int xoffset = 0;
+	int yoffset = 0;
 	switch (quadrant)
 	{
 	case map::top_left:

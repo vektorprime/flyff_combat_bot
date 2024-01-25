@@ -18,7 +18,7 @@ x_y_cords check_x_y_cords(int windowxcord, int windowycord, int windowwidth, int
 		windowwidth = supportwindowrect_size.right - windowxcord;
 	if (windowycord + windowheight > supportwindowrect_size.bottom)
 		windowheight = supportwindowrect_size.bottom - windowycord;
-	x_y_cords item;
+	x_y_cords item{};
 	item.windowxcord = windowxcord;
 	item.windowycord = windowycord;
 	item.windowwidth = windowwidth;
@@ -130,7 +130,7 @@ void flyff::window::free()
 
 Flyff_screen_cords get_flyff_char_screen_cords()
 {
-	RECT supportwindowrect_size;
+	RECT supportwindowrect_size{};
 	HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 	if (!supportwindow_size)
 	{
@@ -139,7 +139,7 @@ Flyff_screen_cords get_flyff_char_screen_cords()
 	GetWindowRect(supportwindow_size, &supportwindowrect_size);
 	int end_xcord = static_cast<int>(supportwindowrect_size.right * 0.2);
 	int end_ycord = static_cast<int>(supportwindowrect_size.bottom * 0.26);
-	Flyff_screen_cords cords;
+	Flyff_screen_cords cords{};
 	cords.start_x = 0;
 	cords.start_y = 0;
 	cords.end_x = end_xcord;
@@ -149,7 +149,7 @@ Flyff_screen_cords get_flyff_char_screen_cords()
 
 Flyff_screen_cords get_flyff_map_cords()
 {
-	RECT supportwindowrect_size;
+	RECT supportwindowrect_size{};
 	HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 	if (!supportwindow_size)
 	{
@@ -161,7 +161,7 @@ Flyff_screen_cords get_flyff_map_cords()
 	int end_xcord = supportwindowrect_size.right;
 	int end_ycord = static_cast<int>(supportwindowrect_size.bottom * 0.3);
 
-	Flyff_screen_cords cords;
+	Flyff_screen_cords cords{};
 	cords.start_x = start_xcord;
 	cords.start_y = 0;
 	cords.end_x = end_xcord;

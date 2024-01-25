@@ -64,8 +64,8 @@ std::ifstream flyff::config::get_config_file_handle_(const std::string &file)
 std::vector<int> flyff::config::get_all_config_values_as_vect_(const std::string &config_string)
 {
 	int config_string_length = config_string.length();
-	std::vector<int> vect;
-	std::vector<int> vect_pos;
+	std::vector<int> vect{};
+	std::vector<int> vect_pos{};
 
 
 	//get all of the comma locations

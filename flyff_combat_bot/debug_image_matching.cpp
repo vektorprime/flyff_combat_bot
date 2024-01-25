@@ -9,9 +9,9 @@
 
 cv::Mat debug_map(flyff::window &win, const int xoffset, const int yoffset)
 {
-	cv::Mat img;
-	cv::Mat img2;
-	RECT supportwindowrect_size;
+	cv::Mat img{};
+	cv::Mat img2{};
+	RECT supportwindowrect_size{};
 	HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 	if (!supportwindow_size)
 	{
@@ -31,8 +31,9 @@ cv::Mat debug_map(flyff::window &win, const int xoffset, const int yoffset)
 
 cv::Mat debug_window(flyff::window &win, const double xoffset, const double yoffset, int windowwidth, int windowheight)
 {
-	cv::Mat img, img2;
-	RECT supportwindowrect_size;
+	cv::Mat img{};
+	cv::Mat img2{};
+	RECT supportwindowrect_size{};
 	HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 	if (!supportwindow_size)
 	{
@@ -53,8 +54,9 @@ cv::Mat debug_window(flyff::window &win, const double xoffset, const double yoff
 
 cv::Mat debug_hp_mp_fp(flyff::window &win, const double x, const double y, const double width, const double height)
 {
-	cv::Mat img, img2;
-	RECT supportwindowrect_size;
+	cv::Mat img{};
+	cv::Mat img2{};
+	RECT supportwindowrect_size{};
 	HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 	if (!supportwindow_size)
 	{
@@ -96,8 +98,9 @@ cv::Mat debug_hp_mp_fp(flyff::window &win, const double x, const double y, const
 
 cv::Mat debug_alert_text(flyff::window &win, const double x, const double y, const double width, const double height)
 {
-	cv::Mat img, img2;
-	RECT supportwindowrect_size;
+	cv::Mat img{};
+	cv::Mat img2{};
+	RECT supportwindowrect_size{};
 	HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 	if (!supportwindow_size)
 	{
@@ -128,8 +131,9 @@ cv::Mat debug_alert_text(flyff::window &win, const double x, const double y, con
 
 cv::Mat debug_combat(flyff::window &win, const double x, const double y, const double width, const double height)
 {
-	cv::Mat img, img2;
-	RECT supportwindowrect_size;
+	cv::Mat img{};
+	cv::Mat img2{};
+	RECT supportwindowrect_size{};
 	HWND supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 	if (!supportwindow_size)
 	{

@@ -72,12 +72,10 @@ namespace flyff
 			void setup(LPVOID address, HANDLE proc_handle, size_t bytes_to_read);
 
 		private:
-
+			flyff::log *log_file_ = nullptr;
 			size_t bytes_to_read_ = 0;
 			LPVOID address_ = nullptr;
 			HANDLE proc_handle_ = nullptr;
-			
-			flyff::log *log_file_ = nullptr;
 			bool log_set_ = false;
 	};
 }

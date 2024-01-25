@@ -29,12 +29,12 @@ namespace flyff
 	struct match_result
 	{
 		double minVal = 1.0;
-		cv::Point minLoc;
-		cv::Point maxLoc;
-		cv::Point matchLoc;
+		cv::Point minLoc{};
+		cv::Point maxLoc{};
+		cv::Point matchLoc{};
 		int result_cols = 0;
 		int result_rows = 0;
-		cv::Mat templ;
+		cv::Mat templ{};
 
 		match_result() = default;
 
@@ -131,8 +131,8 @@ namespace flyff
 
 struct screen_cords
 {
-	int x{ 0 };
-	int y{ 0 };
+	int x = 0;
+	int y = 0;
 };
 
 bool find_target_icons(flyff::window &win);
@@ -145,18 +145,18 @@ screen_cords get_target_to_click_cords(flyff::window &win);
 
 struct Match_params
 {
-	cv::Mat img;
-	cv::Mat templ;
-	cv::Mat result;
+	cv::Mat img{};
+	cv::Mat templ{};
+	cv::Mat result{};
 	int match_method = 1;
 };
 
 struct Simple_match_result
 {
 	double minVal = 1.0;
-	cv::Point minLoc;
-	cv::Point maxLoc;
-	cv::Point matchLoc;
+	cv::Point minLoc{};
+	cv::Point maxLoc{};
+	cv::Point matchLoc{};
 	int result_cols = 0;
 	int result_rows = 0;
 };
@@ -200,18 +200,18 @@ namespace flyff
 			struct result
 			{
 				double minval = 1.0;
-				double maxval = 0;
-				cv::Point matchloc;
-				cv::Point minloc;
-				cv::Point maxloc;
+				double maxval = 0.0;
+				cv::Point matchloc{};
+				cv::Point minloc{};
+				cv::Point maxloc{};
 				bool match_found = false;
 			};
 		
 		private:
 
 			double minval_ = 1.0;
-			cv::Mat templ_;
-			cv::Point matchloc_;
+			cv::Mat templ_{};
+			cv::Point matchloc_{};
 
 
 	};

@@ -14,7 +14,7 @@ std::string match_flyff_text_ocr(cv::Mat oldim1, const int threshold_value)
 	const double Y_RATIO_ROI = 0.05;
 	const int thresh_max_val = 255;
 	const int thresh_type = 1;
-	cv::Mat roimat;
+	cv::Mat roimat{};
 
 	const int rx = static_cast<int>(oldim1.cols * X_RATIO);
 	const int ry = static_cast<int>(oldim1.rows * Y_RATIO);

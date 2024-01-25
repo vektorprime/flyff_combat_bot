@@ -54,7 +54,7 @@ void allocate_memory_buffer(size_t bytesToRead, LPVOID &queryBaseAddress, LPVOID
 int set_player_angle(direction direction, flyff::process process)
 {
 
-	std::array <unsigned char, 4> float_to_set = { 0, 0, 0, 0 };
+	std::array <unsigned char, 4> float_to_set{};
 
 	if (direction == direction::south)
 	{
@@ -125,7 +125,7 @@ flyff::process find_flyff_string_in_pid(DWORD single_pid)
 	//avoid creating these inside of the while loop
 	//This is the best string to search for because char status is usually up
 	std::array<unsigned char, 7> flyff_string = { ' ','-' ,' ','L','v',':',' ' };
-	std::array<unsigned char, 7> possible_match{ 0 };
+	std::array<unsigned char, 7> possible_match{};
 
 	while (true)
 	{
@@ -228,8 +228,8 @@ flyff::process find_flyff_string_in_pid(DWORD single_pid)
 
 std::vector<DWORD> find_all_flyff_pids()
 {
-	std::vector<DWORD> all_pids;
-	DWORD parentProcessId{};
+	std::vector<DWORD> all_pids{};
+	DWORD parentProcessId = 0;
 
 	HWND flyff_base_handle = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
 	if (!flyff_base_handle)
@@ -291,9 +291,9 @@ void flyff::player::setup_initial_pos(const flyff::process &process)
 	uint64_t x_pos_byte_loc = 0;
 	uint64_t z_pos_byte_loc = 0;
 	bool z_pos_found = false;
-	std::array<unsigned char, 4> x_bytes = { 0, 0, 0, 0 };
-	std::array<unsigned char, 4> z_bytes = { 0, 0, 0, 0 };
-	std::array<unsigned char, 4> angle_bytes = { 0, 0, 0, 0 };
+	std::array<unsigned char, 4> x_bytes{};
+	std::array<unsigned char, 4> z_bytes{};
+	std::array<unsigned char, 4> angle_bytes{};
 	uint64_t outside_byte = 0;
 	bool continue_early = false;
 	//pos_proc.pHandle = process.pHandle;
@@ -332,7 +332,7 @@ void flyff::player::setup_initial_pos(const flyff::process &process)
 		uint64_t bufferSize = bytesToRead;
 		//go through each byte in the buffer bufferRead by counting bytesToRead
 		//72 bytes is how big the match angle pattern is
-		std::array<unsigned char, 72 > check_bytes_after_angle{ 0 };
+		std::array<unsigned char, 72 > check_bytes_after_angle{};
 		//I start at 15 mil bytes because I never see the data before this value
 		//I check every 4 bytes to speed it up further
 		for (uint64_t byte = 2'000'000; byte < bufferSize; byte++)
@@ -465,7 +465,7 @@ void flyff::player::setup_initial_pos(const flyff::process &process)
 
 	//starting x pos finder
 	//std::cout << "starting x pos finder" << std::endl;
-	std::array<unsigned char, 4> y_bytes = { 0, 0, 0, 0 };
+	std::array<unsigned char, 4> y_bytes{};
 	y_bytes[0] = static_cast<unsigned char *>(mem.buffer)[x_pos_byte_loc - 12];
 	y_bytes[1] = static_cast<unsigned char *>(mem.buffer)[x_pos_byte_loc - 11];
 	y_bytes[2] = static_cast<unsigned char *>(mem.buffer)[x_pos_byte_loc - 10];
@@ -494,9 +494,9 @@ void flyff::player::setup_initial_pos(const flyff::process &process)
 void flyff::player::update_pos()
 {
 
-	std::array<unsigned char, 4> x_bytes{ 0 };
-	std::array<unsigned char, 4> z_bytes{ 0 };
-	std::array<unsigned char, 4> angle_bytes{ 0 };
+	std::array<unsigned char, 4> x_bytes{};
+	std::array<unsigned char, 4> z_bytes{};
+	std::array<unsigned char, 4> angle_bytes{};
 
 
 	HANDLE processHandle = nullptr;
@@ -522,7 +522,7 @@ void flyff::player::update_pos()
 	x_bytes[3] = static_cast<unsigned char *>(mem.buffer)[3];
 	memcpy(&pos.x, &x_bytes, sizeof(float));
 
-	std::array<unsigned char, 4> y_bytes = { 0, 0, 0, 0 };
+	std::array<unsigned char, 4> y_bytes{};
 	y_bytes[0] = static_cast<unsigned char *>(mem.buffer)[4];
 	y_bytes[1] = static_cast<unsigned char *>(mem.buffer)[5];
 	y_bytes[2] = static_cast<unsigned char *>(mem.buffer)[6];
@@ -769,17 +769,17 @@ void flyff::player::set_position(flyff::window &win)
 
 std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &process, const std::array<unsigned char, 104> byte_pattern_to_match_monster_id)
 {
-	std::vector<flyff::monster> found_monsters;
+	std::vector<flyff::monster> found_monsters{};
 	found_monsters.reserve(65);
 
 	//LPVOID bufferRead = nullptr;
 	bool monster_id_found = false;
 	bool break_loop_1 = false;
 	bool set_possible_match = false;
-	std::array<unsigned char, 4>  monster_id_bytes = { 0 };
+	std::array<unsigned char, 4>  monster_id_bytes{};
 	//monster_id_bytes.reserve(4);
 
-	std::array<unsigned char, 104> possible_monster_id_match = { 0 };
+	std::array<unsigned char, 104> possible_monster_id_match{};
 	//possible_monster_id_match.resize(byte_pattern_to_match_monster_id.size());
 
 	bool continue_early = false;
@@ -949,7 +949,7 @@ std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &
 
 			//////
 
-			std::array<unsigned char, 4> mon_z_bytes{ 0 };
+			std::array<unsigned char, 4> mon_z_bytes{};
 			mon_z_bytes[0] = static_cast<unsigned char *>(mem.buffer)[byte - 56];
 			mon_z_bytes[1] = static_cast<unsigned char *>(mem.buffer)[byte - 55];
 			mon_z_bytes[2] = static_cast<unsigned char *>(mem.buffer)[byte - 54];
@@ -959,7 +959,7 @@ std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &
 
 			//std::cout << "mon z coord is " << mon.z << std::endl;
 
-			std::array<unsigned char, 4> mon_x_bytes{ 0 };
+			std::array<unsigned char, 4> mon_x_bytes{};
 			mon_x_bytes[0] = static_cast<unsigned char *>(mem.buffer)[byte - 52];
 			mon_x_bytes[1] = static_cast<unsigned char *>(mem.buffer)[byte - 51];
 			mon_x_bytes[2] = static_cast<unsigned char *>(mem.buffer)[byte - 50];
@@ -972,7 +972,7 @@ std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &
 			//std::cout << "mon x coord is " << mon.x << std::endl;
 
 
-			std::array<unsigned char, 4> mon_y_bytes{ 0 };
+			std::array<unsigned char, 4> mon_y_bytes{};
 			mon_y_bytes[0] = static_cast<unsigned char *>(mem.buffer)[byte - 48];
 			mon_y_bytes[1] = static_cast<unsigned char *>(mem.buffer)[byte - 47];
 			mon_y_bytes[2] = static_cast<unsigned char *>(mem.buffer)[byte - 46];
@@ -1005,7 +1005,7 @@ void flyff::monster::update_target(const flyff::process &process)
 	bool monster_id_found = false;
 	bool break_loop_1 = false;
 	bool continue_outer_loop = false;
-	uint64_t mon_bytes_buffer_size{ 2048 };
+	uint64_t mon_bytes_buffer_size = 2048;
 	bool continue_early = false;
 
 	flyff::memory mem(address, process.pHandle, mon_bytes_buffer_size);
@@ -1017,7 +1017,7 @@ void flyff::monster::update_target(const flyff::process &process)
 		//std::cout << "starting monster finder " << std::endl;
 		//allocating and reading 2048 bytes (mon_bytes_to_read) because the monster target info should be around 1.5k after the mon ID address
 
-		std::array<unsigned char, 56> possible_monster_target_id_match = { 0 };
+		std::array<unsigned char, 56> possible_monster_target_id_match{};
 		//possible_monster_target_id_match.resize(monster_target_byte_pattern.size());
 		// the monsters never seem to be over half of the address space
 		for (uint64_t byte = 0; byte < mon_bytes_buffer_size; byte++)
@@ -1123,7 +1123,7 @@ void flyff::monster::update_target(const flyff::process &process)
 
 			//40-43 are the bytes of the monster's target, and they go away when the monster dies
 
-			std::array<unsigned char, 4> mon_target_bytes{ 0 };
+			std::array<unsigned char, 4> mon_target_bytes{};
 			mon_target_bytes[0] = static_cast<unsigned char *>(mem.buffer)[byte + 48];
 			mon_target_bytes[1] = static_cast<unsigned char *>(mem.buffer)[byte + 49];
 			mon_target_bytes[2] = static_cast<unsigned char *>(mem.buffer)[byte + 50];
@@ -1153,7 +1153,7 @@ bool flyff::monster::check_if_pet(const flyff::process &process)
 	}
 	bool break_loop_1 = false;
 	//bool continue_early = false;
-	uint64_t mon_bytes_buffer_size{ 2048 };
+	uint64_t mon_bytes_buffer_size = 2048;
 
 	//std::cout << "trying to update target id of mon " << id << " at add " << address << std::endl;
 
@@ -1161,7 +1161,7 @@ bool flyff::monster::check_if_pet(const flyff::process &process)
 	mem.read();
 
 	//this char size must match the pattern in the class private section
-	std::array<unsigned char, 8> possible_pet_match{ 0 };
+	std::array<unsigned char, 8> possible_pet_match{};
 	// the monsters never seem to be over half of the address space
 	for (uint64_t byte = 1024; byte < mon_bytes_buffer_size; byte++)
 	{
@@ -1237,7 +1237,7 @@ bool flyff::monster::check_if_pet(const flyff::process &process)
 void flyff::player::update_target()
 {
 	size_t bytesToRead = 128;
-	std::array<unsigned char, 4> player_target_bytes{ 0 };
+	std::array<unsigned char, 4> player_target_bytes{};
 	std::cout << "starting get precise player target" << std::endl;
 	flyff::memory mem(player_target_proc.player_target_address, player_target_proc.pHandle, bytesToRead);
 	mem.read();
@@ -1257,7 +1257,7 @@ void flyff::player::update_target()
 
 void flyff::player::update_combat_status()
 {
-	std::array<unsigned char, 4> player_target_bytes{ 0 };
+	std::array<unsigned char, 4> player_target_bytes{};
 
 	std::cout << "starting get_player_combat_status" << std::endl;
 
@@ -1270,7 +1270,7 @@ void flyff::player::update_combat_status()
 	player_target_bytes[3] = static_cast<unsigned char *>(mem.buffer)[11];
 
 
-	int combat_monster{};
+	int combat_monster = 0;
 	memcpy(&combat_monster, &player_target_bytes, sizeof(int));
 	if (combat_monster == 0)
 	{
@@ -1298,7 +1298,7 @@ void flyff::player::update_combat_status()
 
 void flyff::player::set_target(int target_id)
 {
-	unsigned char data[4] = { 0 };
+	unsigned char data[4]{};
 	flyff::utils::int_to_hex(target_id, data);
 
 	if (!WriteProcessMemory(player_target_proc.pHandle, player_target_proc.player_target_address, &data, sizeof(int), NULL))
@@ -1337,7 +1337,7 @@ void flyff::monster::update_pos(const flyff::process &process)
 	flyff::memory mem(zaddress, process.pHandle, 48);
 	mem.read();
 
-	std::array<unsigned char, 4> z_bytes{ 0 };
+	std::array<unsigned char, 4> z_bytes{};
 	z_bytes[0] = static_cast<unsigned char *>(mem.buffer)[0];
 	z_bytes[1] = static_cast<unsigned char *>(mem.buffer)[1];
 	z_bytes[2] = static_cast<unsigned char *>(mem.buffer)[2];
@@ -1345,7 +1345,7 @@ void flyff::monster::update_pos(const flyff::process &process)
 	memcpy(&z, &z_bytes, sizeof(int));
 	//std::cout << "monster Z pos is " << monster.z << std::endl;
 	////
-	std::array<unsigned char, 4> x_bytes{ 0 };
+	std::array<unsigned char, 4> x_bytes{};
 	x_bytes[0] = static_cast<unsigned char *>(mem.buffer)[4];
 	x_bytes[1] = static_cast<unsigned char *>(mem.buffer)[5];
 	x_bytes[2] = static_cast<unsigned char *>(mem.buffer)[6];
@@ -1353,7 +1353,7 @@ void flyff::monster::update_pos(const flyff::process &process)
 	memcpy(&x, &x_bytes, sizeof(int));
 	//std::cout << "monster X pos is " << monster.x << std::endl;
 
-	std::array<unsigned char, 4> y_bytes{ 0 };
+	std::array<unsigned char, 4> y_bytes{};
 	y_bytes[0] = static_cast<unsigned char *>(mem.buffer)[8];
 	y_bytes[1] = static_cast<unsigned char *>(mem.buffer)[9];
 	y_bytes[2] = static_cast<unsigned char *>(mem.buffer)[10];
@@ -1374,7 +1374,7 @@ bool flyff::monster::check_if_valid(const flyff::process &process)
 	flyff::memory mem(address, process.pHandle, 8);
 	mem.read();
 
-	std::array<unsigned char, 4> id_bytes{ 0 };
+	std::array<unsigned char, 4> id_bytes{};
 	id_bytes[0] = static_cast<unsigned char *>(mem.buffer)[0];
 	id_bytes[1] = static_cast<unsigned char *>(mem.buffer)[1];
 	id_bytes[2] = static_cast<unsigned char *>(mem.buffer)[2];
@@ -1400,18 +1400,18 @@ void flyff::player::setup_initial_target(const flyff::process &process)
 	LPVOID queryBaseAddress = process.queryFoundAddress;
 	size_t bytesToRead = process.bytesToRead;
 	bool player_target_found = false;
-	std::array<unsigned char, 4> player_target_bytes{ 0 };
+	std::array<unsigned char, 4> player_target_bytes{};
 	//this pHandle gets passed to the precise func later
 	player_target_proc.pHandle = process.pHandle;
 	bool break_loop_1 = false;
 	bool continue_outer_loop = false;
-	int player_name_chars_matched{};
+	int player_name_chars_matched = 0;
 	bool break_all_loops = false;
 	bool break_player_name_loop = false;
 	//resizing vectors should be outside of the while loop because the ops run new/delete quite a bit
-	std::array<unsigned char, 136> possible_player_target_match = { 0 };
+	std::array<unsigned char, 136> possible_player_target_match{};
 	bool found_player_name = false;
-	std::vector<char> possible_player_name;
+	std::vector<char> possible_player_name{};
 	//possible_player_name.reserve(name.size());
 	possible_player_name.resize(name.size());
 	bool continue_early = false;
@@ -1690,7 +1690,7 @@ void flyff::player::setup_initial_target(const flyff::process &process)
 			player_target_proc.bytesToRead = 1024;
 
 			//We need to do a similar search for our player ID, not sure how
-			std::array<unsigned char, 4> player_id_bytes{ 0 };
+			std::array<unsigned char, 4> player_id_bytes{};
 			player_id_bytes[0] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1504];
 			player_id_bytes[1] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1503];
 			player_id_bytes[2] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1502];
@@ -1756,13 +1756,13 @@ std::vector<LPVOID> flyff::player::find_all_text_targets(const flyff::process &p
 	bool player_target_found = false;
 	bool break_loop_1 = false;
 	bool continue_outer_loop = false;
-	int player_name_chars_matched{};
+	int player_name_chars_matched = 0;
 	bool break_all_loops = false;
 	bool break_player_name_loop = false;
 
 	player_name_addresses_.reserve(8);
 
-	uint64_t outside_byte_tracker{};
+	uint64_t outside_byte_tracker = 0;
 
 	std::vector<unsigned char> player_target_text{};
 	player_target_text.resize(name.size());

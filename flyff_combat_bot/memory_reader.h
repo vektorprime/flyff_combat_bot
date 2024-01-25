@@ -19,10 +19,10 @@ struct flyff_process
 {
 	HANDLE pHandle = NULL;
 	DWORD pid = 1;
-	size_t bytesToRead{};
-	size_t xbytesToRead{};
-	size_t zbytesToRead{};
-	size_t anglebytesToRead{};
+	size_t bytesToRead = 0;
+	size_t xbytesToRead = 0;
+	size_t zbytesToRead = 0;
+	size_t anglebytesToRead = 0;
 	LPVOID queryFoundAddress = nullptr;
 	LPVOID anglequeryFoundAddress = nullptr;
 	LPVOID xqueryFoundAddress = nullptr;
@@ -33,12 +33,12 @@ struct flyff_process
 	LPVOID player_target_pattern_address = nullptr;
 	LPVOID player_target_address = nullptr;
 	LPVOID player_id_address = nullptr;
-	int player_id{};
-	int monster_id{};
-	float x{};
-	float y{};
-	float z{};
-	float angle{};
+	int player_id = 0;
+	int monster_id = 0;
+	float x = 0.0;
+	float y = 0.0;
+	float z = 0.0;
+	float angle = 0.0;
 };
 
 
@@ -72,12 +72,12 @@ namespace flyff
 			LPVOID player_target_pattern_address = nullptr;
 			LPVOID player_target_address = nullptr;
 			LPVOID player_id_address = nullptr;
-			int player_id{};
-			int monster_id{};
-			float x{};
-			float y{};
-			float z{};
-			float angle{};
+			int player_id = 0;
+			int monster_id = 0;
+			float x = 0.0;
+			float y = 0.0;
+			float z = 0.0;
+			float angle = 0.0;
 
 		private:
 
@@ -100,8 +100,8 @@ namespace flyff
 	class player
 	{
 		public:
-			std::string name{};
-			int target{};
+			std::string name = "";
+			int target = 0;
 			LPVOID target_pattern_address = nullptr;
 			LPVOID target_address = nullptr;
 			//default player ID should be 1 in case there isn't a player we want to differentiate from 0
@@ -211,7 +211,7 @@ namespace flyff
 		private:
 			bool log_set_ = false;
 			flyff::log *log_file_ = nullptr;
-			std::vector<LPVOID> player_name_addresses_;
+			std::vector<LPVOID> player_name_addresses_{};
 			flyff::time set_position_time_;
 			flyff::process player_target_proc;
 			flyff::process pos_proc;
@@ -254,13 +254,13 @@ namespace flyff
 	class monster
 	{
 		public:
-			LPVOID address{ nullptr };
-			LPVOID xaddress{ nullptr };
-			LPVOID zaddress{ nullptr };
-			float x{ 0.0 };
-			float z{ 0.0 };
-			float y{ 0.0 };
-			float distance{ x + z };
+			LPVOID address = nullptr;
+			LPVOID xaddress = nullptr;
+			LPVOID zaddress = nullptr;
+			float x = 0.0;
+			float z = 0.0;
+			float y = 0.0;
+			float distance = x + z;
 			int id = 0;
 			int target = 0;
 			float order = 255;
