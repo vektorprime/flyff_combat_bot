@@ -92,7 +92,8 @@ Here's an image that explains which config file sections correlate to which GUI 
 
 **GUI Config Sections**
 
-![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/fde703b6-3e69-4533-bfa3-17892e6e26e2)
+![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/c622df99-cf7e-4ae5-bcdd-a7cdf442f9e5)
+
 
 
 **Logging**
