@@ -26,7 +26,7 @@ Features:
 * Tracks all monsters nearby and prioritizes the ones closest to the player
 * Fighter always prioritizes monsters attacking healer, then monsters attacking the fighter, then monsters that are not in combat
 * Doesn't trigger captcha
-* Restores operation if game disconects
+* Restores operation if game disconnects
 * Giant avoiding
 
 Restrictions:
