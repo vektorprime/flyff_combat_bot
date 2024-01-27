@@ -141,8 +141,6 @@ namespace flyff
 		return item;
 	}
 
-
-
 	match_result match_flyff_item_alert_text(window &win, cv::Mat templ)
 	{
 		cv::Mat img{};
@@ -246,7 +244,7 @@ namespace flyff
 		result.create(result_rows, result_cols, CV_8UC4);
 		matchTemplate(img2, templ, result, cv::TM_SQDIFF_NORMED);
 		double minVal = 1.0;
-		double maxVal = 0.0; 
+		double maxVal = 0.0;
 		cv::Point minLoc{};
 		cv::Point maxLoc{};
 		cv::Point matchLoc{};
@@ -262,7 +260,6 @@ namespace flyff
 		item.templ = templ;
 		return item;
 	}
-
 
 	match_result match_flyff_item_combat_monster_focused(window &win, cv::Mat templ, int const last_xloc, const int last_yloc)
 	{
@@ -354,7 +351,7 @@ screen_cords get_target_to_click_cords(flyff::window &win)
 	//We can't directly attack from memory, we need an emulated click first.
 	//need to match 4 of the target icons so that we can get the center position.
 
-	screen_cords target;
+	screen_cords target{};
 	
 	cv::Mat target_bl_templ = cv::imread("images\\target_bl.png");
 	cv::cvtColor(target_bl_templ, target_bl_templ, cv::COLOR_BGRA2GRAY);
@@ -427,7 +424,6 @@ screen_cords get_target_to_click_cords(flyff::window &win)
 }
 
 
-
 void exit_monster_target(flyff::window &win, cv::Mat monster_target_templ)
 {
 	flyff::match_result monster_target_result = flyff::match_specific_flyff_item(win, monster_target_templ, flyff::type_of_match::monster_target);
@@ -436,9 +432,6 @@ void exit_monster_target(flyff::window &win, cv::Mat monster_target_templ)
 		send_key_hold_down(VK_ESCAPE);
 	}
 }
-
-
-
 
 int find_nav_angle(flyff::window &win)
 {
@@ -481,7 +474,7 @@ int find_nav_angle(flyff::window &win)
 	// Draw a filled triangle on the mask image
 	cv::fillConvexPoly(mask, std::vector<cv::Point>{vertex1, vertex2, vertex3}, cv::Scalar(255));
 	// Apply the mask to the template image
-	cv::Mat croppedImage;
+	cv::Mat croppedImage{};
 	cv::bitwise_and(templateImage, templateImage, croppedImage, mask);
 
 	// Define the range of rotation angles (in degrees)
@@ -523,8 +516,6 @@ int find_nav_angle(flyff::window &win)
 
 	return bestMatchAngle;
 }
-
-
 
 //make sure disconnect_message is always by ref
 bool check_if_disconnected(flyff::window &win, const disconnect_message &message, flyff::time &disconnected_time, flyff::match_result &disconnected_result)

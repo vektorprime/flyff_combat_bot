@@ -177,8 +177,6 @@ flyff::process find_flyff_string_in_pid(DWORD single_pid)
 			continue;
 		}
 
-
-
 		//go through each byte in the buffer bufferRead by counting bytesToRead
 		for (uint64_t byte = 0; byte >= 0 && byte < bytesToRead; ++byte)
 		{
@@ -214,8 +212,7 @@ flyff::process find_flyff_string_in_pid(DWORD single_pid)
 		}
 
 		// std::cout << "finished in region " << bytesToRead << " moving on to next region \n" << std::endl;
-
-	  // Free the allocated memory
+		// Free the allocated memory
 		VirtualFree(bufferRead, 0, MEM_RELEASE);
 		// Increment the base
 		queryBaseAddress = (LPVOID)((uintptr_t)queryBaseAddress + bytesToRead);
@@ -271,8 +268,6 @@ std::vector<DWORD> find_all_flyff_pids()
 
 	return all_pids;
 }
-
-
 //////
 
 
@@ -355,9 +350,6 @@ void flyff::player::setup_initial_pos(const flyff::process &process)
 							break;
 						}
 					}
-
-
-
 				}
 				else
 				{
@@ -496,7 +488,6 @@ void flyff::player::update_pos()
 	std::array<unsigned char, 4> z_bytes{};
 	std::array<unsigned char, 4> angle_bytes{};
 
-
 	HANDLE processHandle = nullptr;
 
 	processHandle = pos_proc.pHandle;
@@ -508,7 +499,6 @@ void flyff::player::update_pos()
 	std::cout << "Starting precise pos finder" << std::endl;
 
 	//already have a process handle, no need to get another
-
 	flyff::memory mem(pos_proc.xqueryFoundAddress, pos_proc.pHandle, 49);
 	mem.read();
 
@@ -548,10 +538,8 @@ void flyff::player::update_pos()
 	{
 		log_write("Starting precise pos finder");
 		throw std::runtime_error("ERROR: player pos is 0, exiting");
-
 	}
 }
-
 
 
 void flyff::player::set_position(flyff::window &win)
@@ -897,30 +885,6 @@ std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &
 				break;
 			}
 
-			//if (byte_pattern_to_match_monster_id.size() == possible_monster_id_match.size())
-			//{
-			//	//std::cout << "vectors are same size, testing match" << std::endl;
-			//	for (int i = 0; i < byte_pattern_to_match_monster_id.size(); ++i)
-			//	{
-			//		if (byte_pattern_to_match_monster_id[i] != possible_monster_id_match[i])
-			//		{
-			//			//std::cout << "vectors are not a match" << std::endl;
-			//			continue_outer_loop = true;
-			//			break;
-
-			//		}
-			//	}
-			//}
-			//else
-			//{
-			//	std::cout << "the pattern and the possible match aren't the same size" << std::endl;
-			//	break;
-			//}
-
-			//if (continue_outer_loop)
-			//{
-			//	continue;
-			//}
 
 			if (byte_pattern_to_match_monster_id != possible_monster_id_match)
 			{
@@ -1088,31 +1052,6 @@ void flyff::monster::update_target(const flyff::process &process)
 			possible_monster_target_id_match[50] = 0x00;
 			possible_monster_target_id_match[51] = 0x00;
 
-
-			//if (monster_target_byte_pattern.size() == possible_monster_target_id_match.size())
-			//{
-			//	//std::cout << "vectors are same size, testing match" << std::endl;
-			//	for (int i = 0; i < monster_target_byte_pattern.size(); ++i)
-			//	{
-			//		if (monster_target_byte_pattern[i] != possible_monster_target_id_match[i])
-			//		{
-			//			//std::cout << "vectors are not a match" << std::endl;
-			//			continue_outer_loop = true;
-			//			break;
-
-			//		}
-			//	}
-			//}
-			//else
-			//{
-			//	std::cout << "the pattern and the possible match aren't the same size" << std::endl;
-			//	break;
-			//}
-
-			//if (continue_outer_loop)
-			//{
-			//	continue;
-			//}
 
 			if (monster_target_byte_pattern != possible_monster_target_id_match)
 			{

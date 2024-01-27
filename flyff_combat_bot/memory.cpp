@@ -14,7 +14,6 @@ namespace flyff
 		buffer = VirtualAlloc(NULL, bytes_to_read_, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
 		if (!buffer)
 		{
-			buffer = nullptr;
 			if (log_set_)
 			{
 				log_file_->write("ERROR: VirtualAlloc failed in memory::memory()");
@@ -45,7 +44,6 @@ namespace flyff
 		buffer = VirtualAlloc(NULL, bytes_to_read_, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
 		if (!buffer)
 		{
-			buffer = nullptr;
 			if (log_set_)
 			{
 				log_file_->write("ERROR: VirtualAlloc failed in memory::memory()");

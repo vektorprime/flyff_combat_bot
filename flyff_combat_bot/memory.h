@@ -67,8 +67,6 @@ namespace flyff
 
 			void set_log(flyff::log* log_file);
 
-			bool setup_done = false;
-
 			void setup(LPVOID address, HANDLE proc_handle, size_t bytes_to_read);
 
 		private:

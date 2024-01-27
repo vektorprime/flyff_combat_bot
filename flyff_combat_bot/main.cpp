@@ -164,8 +164,7 @@ int main()
 {
 
 
-	flyff::window win{};
-	win.get_mat();
+
 
 	cv::Mat dead_templ = cv::imread("images\\dead.png");
 	cv::cvtColor(dead_templ, dead_templ, cv::COLOR_BGRA2GRAY);
@@ -832,6 +831,9 @@ int main()
 		}
 		ImGui::End();
 		///GUI
+
+		flyff::window win{};
+		win.get_mat();
 
 		if (bot_running)
 		{
