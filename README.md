@@ -82,7 +82,7 @@ The GUI always loads from the config file. Changes in the GUI are currently not 
 
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/fcfc73b3-9d31-4bcb-83b7-b1cc710eb427)
 
-![Config file](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/2031fed0-da45-4320-bca9-8fa18ac7da03)
+
 
 
 
@@ -90,12 +90,10 @@ The GUI always loads from the config file. Changes in the GUI are currently not 
 Here's an image that explains which config file sections correlate to which GUI items.
 
 
-**Fighter GUI Config Sections**
-![FIGHTER-GUI-CONFIG-FILE-EXPLANATION](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/44f8e5c0-caca-42ae-b806-87c7dc332aaf)
+**GUI Config Sections**
 
+![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/fde703b6-3e69-4533-bfa3-17892e6e26e2)
 
-**Healer GUI Config Sections**
-![HEALER-GUI-CONFIG-FILE-EXPLANATION](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/2187ddb8-5042-43ec-8c4c-f16ae4f2d65d)
 
 **Logging**
 
