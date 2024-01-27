@@ -36,6 +36,21 @@ cv::Mat flyff::window::get_mat(bool cursor)
 	{
 		supportwindow = FindWindowW(NULL, L"Flyff Universe - Chromium");
 	}
+	if (!supportwindow)
+	{
+		std::cout << "Unable to find a Flyff Chrome Window \n"
+		<< "Log in and press enter in this window to try again \n";
+		std::cin.ignore();
+		supportwindow = FindWindowW(NULL, L"Flyff Universe - Google Chrome");
+		if (!supportwindow)
+		{
+			supportwindow = FindWindowW(NULL, L"Flyff Universe - Chromium");
+		}
+		if (supportwindow)
+		{
+			std::cout << "Found the window, switch to the GUI to continue. \n";
+		}
+	}
 	HDC hwindowDC, hwindowCompatibleDC;
 	HBITMAP hbwindow;
 	BITMAPINFOHEADER  bi;
