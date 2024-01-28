@@ -63,6 +63,8 @@ Running the bot takes over some mouse and keyboard actions, so you can't run mor
 
 12. Click start on the bot GUI.
 
+13. You may need to mess with the zoom of the character, I generally zoom out and a little high.
+
 If you ever need to close the bot, you can click stop in the GUI. You can also close the windows console window which runs the bot. I usually just alt F4 on that.
 
 **In-game requirements**
