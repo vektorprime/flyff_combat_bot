@@ -9,7 +9,7 @@ The bot has been tested on Windows 10 and 11 x64.
     - https://aka.ms/vs/17/release/vc_redist.x64.exe
 2. Download the bot
     - [https://github.com/vektorprime/flyff_combat_bot/releases](https://github.com/vektorprime/flyff_combat_bot/releases/download/v1.0.0/Flyff_Combat_1_0_0_WIN.zip)
-    - 
+      
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/593e0107-f18d-4cc9-82a8-6dc31f42acb6)
 
 
@@ -126,6 +126,17 @@ I had to use the above method because distinguishing giants from normal monsters
 **Pick-up pets**
 
 Pick-up pets should be out BEFORE you start the bot.
+
+**General tips**
+
+Try to fight monsters your level or 1 level below.
+I usually hide special effects and player names, but this isn't required.
+Zoom out a bit and face the camera a little higher, it helps when the bot auto-focuses.
+
+**Troubleshooting**
+If you get any strange behavior, please restart Chrome and the bot. Things like character position not returning, or character no longer fighting are cleared with this.
+The bot is set to crash/close if it cannot set itself up. I do this so that I can detect errors instead of just proceeding.
+If you want to send me logs, set the log to "verbose" in the GUI. Then, send me the flyffcombat.log file. 
 
 **EVERYTHING BELOW THIS LINE IS TECHNICAL DETAILS FOR ANYONE INTERESTED IN THE SOURCE CODE AND COMPILING**
 
