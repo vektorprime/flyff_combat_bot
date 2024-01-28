@@ -28,6 +28,7 @@ Features:
 * Doesn't trigger captcha
 * Restores operation if game disconnects
 * Giant avoiding
+* Player returns to original position after fighting for a while
 
 Restrictions:
 Running the bot takes over some mouse and keyboard actions, so you can't run more than one instance per PC.
