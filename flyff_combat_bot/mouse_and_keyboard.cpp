@@ -95,7 +95,6 @@ int send_jump_and_run()
 		key_down_w.ki.wVk = 0x57; // "W" key
 		key_down_w.ki.dwFlags = 0;
 		myinputs.push_back(key_down_w);
-		//myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {0x57, 0, 0, 0, NULL} } );
 
 		// Key down event for space bar
 		INPUT key_down_space;
@@ -103,7 +102,6 @@ int send_jump_and_run()
 		key_down_space.ki.wVk = VK_SPACE; // Space bar
 		key_down_space.ki.dwFlags = 0;
 		myinputs.push_back(key_down_space);
-		//myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, 0, 0, NULL} });
 
 		// Send both key-down events
 		SendInput(static_cast<UINT>(myinputs.size()), myinputs.data(), sizeof(INPUT));
@@ -122,16 +120,12 @@ int send_jump_and_run()
 	key_up_w.ki.dwFlags = KEYEVENTF_KEYUP;
 	myupinputs.push_back(key_up_w);
 
-	//myupinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {0x57, 0, 0, 0, NULL} });
-
 	// Key up event for space bar
 	INPUT key_up_space;
 	key_up_space.type = INPUT_KEYBOARD;
 	key_up_space.ki.wVk = VK_SPACE; // Space bar
 	key_up_space.ki.dwFlags = KEYEVENTF_KEYUP;
 	myupinputs.push_back(key_up_space);
-
-	//myupinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, 0, 0, NULL} });
 
 	// Send both key-up events
 	SendInput(static_cast<UINT>(myupinputs.size()), myupinputs.data(), sizeof(INPUT));
@@ -159,8 +153,6 @@ int send_jump()
 		key_down_space.ki.dwFlags = 0;
 		myinputs.push_back(key_down_space);
 
-		//myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, 0, 0, NULL} });
-
 		// Send both key-down events
 		SendInput(static_cast<UINT>(myinputs.size()), myinputs.data(), sizeof(INPUT));
 	}
@@ -177,8 +169,6 @@ int send_jump()
 	key_up_space.ki.wVk = VK_SPACE; // Space bar
 	key_up_space.ki.dwFlags = KEYEVENTF_KEYUP;
 	myupinputs.push_back(key_up_space);
-
-	//myupinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, KEYEVENTF_KEYUP, 0, NULL} });
 
 	// Send both key-up events
 	SendInput(static_cast<UINT>(myupinputs.size()), myupinputs.data(), sizeof(INPUT));
@@ -199,7 +189,6 @@ int send_rightarrow_down()
 	rightarrow_down.ki.wVk = VK_RIGHT;
 	rightarrow_down.ki.dwFlags = 0;
 	myinputs.push_back(rightarrow_down);
-	//myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_RIGHT, 0, 0, 0, NULL} });
 
 	// send the key presses
 	// first parameter needs the number of structs in array, second param is an array of INPUT, third param is the size of an INPUT struct.
@@ -219,8 +208,6 @@ int send_rightarrow_up()
 	rightarrow_up.ki.wVk = VK_RIGHT;
 	rightarrow_up.ki.dwFlags = KEYEVENTF_KEYUP;
 	myinputs.push_back(rightarrow_up);
-
-	//myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_RIGHT, 0, KEYEVENTF_KEYUP, 0, NULL} });
 	// send the key presses
 	// first parameter needs the number of structs in array, second param is an array of INPUT, third param is the size of an INPUT struct.
 	SendInput(static_cast<UINT>(myinputs.size()), myinputs.data(), sizeof(INPUT));
@@ -491,12 +478,12 @@ bool check_for_valid_click(int y_click)
 		supportwindow_size = FindWindowW(NULL, L"Flyff Universe - Chromium");
 	}
 	GetWindowRect(supportwindow_size, &supportwindowrect_size);
-	
+
 	int address_bar_y = static_cast<int>(supportwindowrect_size.bottom * 0.1);
 	if (y_click <= address_bar_y)
 	{
 		std::cout << "avoiding click of address bar" << std::endl;
-			return false;
+		return false;
 	}
 
 	int skill_bar_y = static_cast<int>(supportwindowrect_size.bottom * 0.9);
