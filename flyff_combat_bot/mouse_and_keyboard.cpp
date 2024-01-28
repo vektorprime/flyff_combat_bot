@@ -94,6 +94,7 @@ int send_jump_and_run()
 		key_down_w.type = INPUT_KEYBOARD;
 		key_down_w.ki.wVk = 0x57; // "W" key
 		key_down_w.ki.dwFlags = 0;
+		myinputs.push_back(key_down_w);
 		//myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {0x57, 0, 0, 0, NULL} } );
 
 		// Key down event for space bar
@@ -101,7 +102,7 @@ int send_jump_and_run()
 		key_down_space.type = INPUT_KEYBOARD;
 		key_down_space.ki.wVk = VK_SPACE; // Space bar
 		key_down_space.ki.dwFlags = 0;
-		myinputs.push_back(std::move(key_down_space));
+		myinputs.push_back(key_down_space);
 		//myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, 0, 0, NULL} });
 
 		// Send both key-down events
@@ -119,7 +120,7 @@ int send_jump_and_run()
 	key_up_w.type = INPUT_KEYBOARD;
 	key_up_w.ki.wVk = 0x57; // "W" key
 	key_up_w.ki.dwFlags = KEYEVENTF_KEYUP;
-	myupinputs.push_back(std::move(key_up_w));
+	myupinputs.push_back(key_up_w);
 
 	//myupinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {0x57, 0, 0, 0, NULL} });
 
@@ -128,7 +129,7 @@ int send_jump_and_run()
 	key_up_space.type = INPUT_KEYBOARD;
 	key_up_space.ki.wVk = VK_SPACE; // Space bar
 	key_up_space.ki.dwFlags = KEYEVENTF_KEYUP;
-	myupinputs.push_back(std::move(key_up_space));
+	myupinputs.push_back(key_up_space);
 
 	//myupinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, 0, 0, NULL} });
 
@@ -156,7 +157,7 @@ int send_jump()
 		key_down_space.type = INPUT_KEYBOARD;
 		key_down_space.ki.wVk = VK_SPACE; // Space bar
 		key_down_space.ki.dwFlags = 0;
-		myinputs.push_back(std::move(key_down_space));
+		myinputs.push_back(key_down_space);
 
 		//myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, 0, 0, NULL} });
 
@@ -175,7 +176,7 @@ int send_jump()
 	key_up_space.type = INPUT_KEYBOARD;
 	key_up_space.ki.wVk = VK_SPACE; // Space bar
 	key_up_space.ki.dwFlags = KEYEVENTF_KEYUP;
-	myupinputs.push_back(std::move(key_up_space));
+	myupinputs.push_back(key_up_space);
 
 	//myupinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, KEYEVENTF_KEYUP, 0, NULL} });
 
@@ -197,7 +198,7 @@ int send_rightarrow_down()
 	rightarrow_down.type = INPUT_KEYBOARD;
 	rightarrow_down.ki.wVk = VK_RIGHT;
 	rightarrow_down.ki.dwFlags = 0;
-	myinputs.push_back(std::move(rightarrow_down));
+	myinputs.push_back(rightarrow_down);
 	//myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_RIGHT, 0, 0, 0, NULL} });
 
 	// send the key presses
@@ -217,7 +218,7 @@ int send_rightarrow_up()
 	rightarrow_up.type = INPUT_KEYBOARD;
 	rightarrow_up.ki.wVk = VK_RIGHT;
 	rightarrow_up.ki.dwFlags = KEYEVENTF_KEYUP;
-	myinputs.push_back(std::move(rightarrow_up));
+	myinputs.push_back(rightarrow_up);
 
 	//myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_RIGHT, 0, KEYEVENTF_KEYUP, 0, NULL} });
 	// send the key presses
@@ -245,21 +246,21 @@ int send_left_click(const int mousexloc, const int mouseyloc)
 	move_mouse.mi.dx = 65536 / screenwidth * mousexloc;
 	move_mouse.mi.dy = 65536 / screenheight * mouseyloc;
 	move_mouse.mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE;
-	myinputs.push_back(std::move(move_mouse));
+	myinputs.push_back(move_mouse);
 
 	// press down on left click
 	INPUT click_down;
 	ZeroMemory(&click_down, sizeof(click_down));
 	click_down.type = INPUT_MOUSE;
 	click_down.mi.dwFlags = MOUSEEVENTF_LEFTDOWN;
-	myinputs.push_back(std::move(click_down));
+	myinputs.push_back(click_down);
 
 	// release the left click
 	INPUT click_up;
 	ZeroMemory(&click_up, sizeof(click_up));
 	click_up.type = INPUT_MOUSE;
 	click_up.mi.dwFlags = MOUSEEVENTF_LEFTUP;
-	myinputs.push_back(std::move(click_up));
+	myinputs.push_back(click_up);
 
 	// send the key presses
 	// first parameter needs the number of structs in array, second param is an array of INPUT, third param is the size of an INPUT struct.
@@ -312,7 +313,7 @@ int move_mouse(const int mousexloc, const int mouseyloc)
 	move_mouse.mi.dx = 65536 / screenwidth * mousexloc;
 	move_mouse.mi.dy = 65536 / screenheight * mouseyloc;
 	move_mouse.mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE;
-	myinputs.push_back(std::move(move_mouse));
+	myinputs.push_back(move_mouse);
 	SendInput(static_cast<UINT>(myinputs.size()), myinputs.data(), sizeof(INPUT));
 	return 0;
 }
