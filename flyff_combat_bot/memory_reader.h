@@ -437,7 +437,7 @@ flyff::process find_flyff_string_in_pid(DWORD single_pid);
 
 std::vector<DWORD> find_all_flyff_pids();
 
-std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &process, const std::array<unsigned char, 104> byte_pattern_to_match_monster_id);
+std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &process, const std::array<unsigned char, 104> &byte_pattern_to_match_monster_id);
 
 void sort_and_filter_monsters_by_distance(const char_position &pos, std::vector<flyff::monster> &initial_monsters_on_field);
 

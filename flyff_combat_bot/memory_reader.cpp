@@ -753,7 +753,7 @@ void flyff::player::set_position(flyff::window &win)
 
 
 
-std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &process, const std::array<unsigned char, 104> byte_pattern_to_match_monster_id)
+std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &process, const std::array<unsigned char, 104> &byte_pattern_to_match_monster_id)
 {
 	std::vector<flyff::monster> found_monsters{};
 	found_monsters.reserve(65);
@@ -942,6 +942,7 @@ std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &
 			memcpy(&mon.y, &mon_y_bytes, sizeof(int));
 
 			//std::cout << "found monster at base add " << process.queryFoundAddress << " and byte " << byte << std::endl;
+			//can std move here because monsters has a move ctor
 			found_monsters.push_back(std::move(mon));
 		}
 
