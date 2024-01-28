@@ -56,7 +56,9 @@ Running the bot takes over some mouse and keyboard actions, so you can't run mor
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/df466c0c-e85d-47bc-bd18-d595f4ccbc71)
 
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/bb1a375e-3201-4fab-9b45-9201b1c0ca74)
+
 11. Make sure your chrome window is Top left of the monitor window if it's not full screen.
+
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/78042bcd-bcdf-41bf-9c4e-d2386bea3376)
 
 12. Click start on the bot GUI.
