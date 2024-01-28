@@ -134,6 +134,7 @@ I usually hide special effects and player names, but this isn't required.
 Zoom out a bit and face the camera a little higher, it helps when the bot auto-focuses.
 
 **Troubleshooting**
+
 If you get any strange behavior, please restart Chrome and the bot. Things like character position not returning, or character no longer fighting are cleared with this.
 The bot is set to crash/close if it cannot set itself up. I do this so that I can detect errors instead of just proceeding.
 If you want to send me logs, set the log to "verbose" in the GUI. Then, send me the flyffcombat.log file. 
