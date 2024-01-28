@@ -103,16 +103,6 @@ Here's an image that explains which config file sections correlate to which GUI 
 
 
 
-**Logging**
-
-A log file called flyffcombat.log is created automatically on startup. The log is appended to on every run.
-2 new lines are added to differentiate the runs
-_"Log file started 
-config loaded"_
-The default logging level is "Error." Error means the bot will stop and crash. Verbose is for troubleshooting certain actions.
-
-![GUI-LOGGING](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/57b045b3-5e43-4a5b-ab4d-e0f67b429097)
-
 
 
 **Giant Avoiding**
@@ -132,6 +122,19 @@ Pick-up pets should be out BEFORE you start the bot.
 Try to fight monsters your level or 1 level below.
 I usually hide special effects and player names, but this isn't required.
 Zoom out a bit and face the camera a little higher, it helps when the bot auto-focuses.
+
+
+**Logging**
+
+A log file called flyffcombat.log is created automatically on startup. The log is appended to on every run.
+2 new lines are added to differentiate the runs
+_"Log file started 
+config loaded"_
+The default logging level is "Error." Error means the bot will stop and crash. Verbose is for troubleshooting certain actions.
+
+![GUI-LOGGING](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/57b045b3-5e43-4a5b-ab4d-e0f67b429097)
+
+
 
 **Troubleshooting**
 
