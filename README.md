@@ -28,6 +28,7 @@ Features:
 * Doesn't trigger captcha
 * Restores operation if game disconnects
 * Giant avoiding
+* Player returns to original position after fighting for a while
 
 Restrictions:
 Running the bot takes over some mouse and keyboard actions, so you can't run more than one instance per PC.
@@ -62,6 +63,8 @@ Running the bot takes over some mouse and keyboard actions, so you can't run mor
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/78042bcd-bcdf-41bf-9c4e-d2386bea3376)
 
 12. Click start on the bot GUI.
+
+13. You may need to mess with the zoom of the character, I generally zoom out and a little high.
 
 If you ever need to close the bot, you can click stop in the GUI. You can also close the windows console window which runs the bot. I usually just alt F4 on that.
 
