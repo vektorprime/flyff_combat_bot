@@ -9,7 +9,7 @@ The bot has been tested on Windows 10 and 11 x64.
     - https://aka.ms/vs/17/release/vc_redist.x64.exe
 2. Download the bot
     - [https://github.com/vektorprime/flyff_combat_bot/releases](https://github.com/vektorprime/flyff_combat_bot/releases/download/v1.0.0/Flyff_Combat_1_0_0_WIN.zip)
-    - 
+      
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/593e0107-f18d-4cc9-82a8-6dc31f42acb6)
 
 
@@ -70,8 +70,8 @@ If you ever need to close the bot, you can click stop in the GUI. You can also c
 
 **In-game requirements**
 
-The Chrome window should be at the top left of your screen. Or optionally, you can have chrome taking up the full window (maximize). 
-The character preview screen that
+As noted previously, the Chrome window should be at the top left of your screen. Or optionally, you can have chrome taking up the full window (maximize). 
+The skill bar should be at the bottom of the screen.
 #1 in the screenshot -  The character screen, which shows your character's image, Lvl, HP, etc, should be on the top left.
 #2 in the screenshot - The map should be at the top right.
 Use the following in game options
@@ -103,16 +103,6 @@ Here's an image that explains which config file sections correlate to which GUI 
 
 
 
-**Logging**
-
-A log file called flyffcombat.log is created automatically on startup. The log is appended to on every run.
-2 new lines are added to differentiate the runs
-_"Log file started 
-config loaded"_
-The default logging level is "Error." Error means the bot will stop and crash. Verbose is for troubleshooting certain actions.
-
-![GUI-LOGGING](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/57b045b3-5e43-4a5b-ab4d-e0f67b429097)
-
 
 
 **Giant Avoiding**
@@ -126,6 +116,31 @@ I had to use the above method because distinguishing giants from normal monsters
 **Pick-up pets**
 
 Pick-up pets should be out BEFORE you start the bot.
+
+**General tips**
+
+Try to fight monsters your level or 1 level below.
+I usually hide special effects and player names, but this isn't required.
+Zoom out a bit and face the camera a little higher, it helps when the bot auto-focuses.
+
+
+**Logging**
+
+A log file called flyffcombat.log is created automatically on startup. The log is appended to on every run.
+2 new lines are added to differentiate the runs
+_"Log file started 
+config loaded"_
+The default logging level is "Error." Error means the bot will stop and crash. Verbose is for troubleshooting certain actions.
+
+![GUI-LOGGING](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/57b045b3-5e43-4a5b-ab4d-e0f67b429097)
+
+
+
+**Troubleshooting**
+
+If you get any strange behavior, please restart Chrome and the bot. Things like character position not returning, or character no longer fighting are cleared with this.
+The bot is set to crash/close if it cannot set itself up. I do this so that I can detect errors instead of just proceeding.
+If you want to send me logs, set the log to "verbose" in the GUI. Then, send me the flyffcombat.log file. 
 
 **EVERYTHING BELOW THIS LINE IS TECHNICAL DETAILS FOR ANYONE INTERESTED IN THE SOURCE CODE AND COMPILING**
 
