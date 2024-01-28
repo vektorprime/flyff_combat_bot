@@ -70,8 +70,8 @@ If you ever need to close the bot, you can click stop in the GUI. You can also c
 
 **In-game requirements**
 
-The Chrome window should be at the top left of your screen. Or optionally, you can have chrome taking up the full window (maximize). 
-The character preview screen that
+As noted previously, the Chrome window should be at the top left of your screen. Or optionally, you can have chrome taking up the full window (maximize). 
+The skill bar should be at the bottom of the screen.
 #1 in the screenshot -  The character screen, which shows your character's image, Lvl, HP, etc, should be on the top left.
 #2 in the screenshot - The map should be at the top right.
 Use the following in game options
