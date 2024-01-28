@@ -90,19 +90,19 @@ int send_jump_and_run()
 		std::vector<INPUT> myinputs;
 
 		// Key down event for "W" key
-		//INPUT key_down_w;
-		//key_down_w.type = INPUT_KEYBOARD;
-		//key_down_w.ki.wVk = 0x57; // "W" key
-		//key_down_w.ki.dwFlags = 0;
-		myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {0x57, 0, 0, 0, NULL} } );
+		INPUT key_down_w;
+		key_down_w.type = INPUT_KEYBOARD;
+		key_down_w.ki.wVk = 0x57; // "W" key
+		key_down_w.ki.dwFlags = 0;
+		//myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {0x57, 0, 0, 0, NULL} } );
 
 		// Key down event for space bar
-		//INPUT key_down_space;
-		//key_down_space.type = INPUT_KEYBOARD;
-		//key_down_space.ki.wVk = VK_SPACE; // Space bar
-		//key_down_space.ki.dwFlags = 0;
-		//myinputs.push_back(std::move(key_down_space));
-		myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, 0, 0, NULL} });
+		INPUT key_down_space;
+		key_down_space.type = INPUT_KEYBOARD;
+		key_down_space.ki.wVk = VK_SPACE; // Space bar
+		key_down_space.ki.dwFlags = 0;
+		myinputs.push_back(std::move(key_down_space));
+		//myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, 0, 0, NULL} });
 
 		// Send both key-down events
 		SendInput(static_cast<UINT>(myinputs.size()), myinputs.data(), sizeof(INPUT));
@@ -115,22 +115,22 @@ int send_jump_and_run()
 	std::vector<INPUT> myupinputs;
 
 	// Key up event for "W" key
-	//INPUT key_up_w;
-	//key_up_w.type = INPUT_KEYBOARD;
-	//key_up_w.ki.wVk = 0x57; // "W" key
-	//key_up_w.ki.dwFlags = KEYEVENTF_KEYUP;
-	//myupinputs.push_back(std::move(key_up_w));
+	INPUT key_up_w;
+	key_up_w.type = INPUT_KEYBOARD;
+	key_up_w.ki.wVk = 0x57; // "W" key
+	key_up_w.ki.dwFlags = KEYEVENTF_KEYUP;
+	myupinputs.push_back(std::move(key_up_w));
 
-	myupinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {0x57, 0, 0, 0, NULL} });
+	//myupinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {0x57, 0, 0, 0, NULL} });
 
 	// Key up event for space bar
-	//INPUT key_up_space;
-	//key_up_space.type = INPUT_KEYBOARD;
-	//key_up_space.ki.wVk = VK_SPACE; // Space bar
-	//key_up_space.ki.dwFlags = KEYEVENTF_KEYUP;
-	//myupinputs.push_back(std::move(key_up_space));
+	INPUT key_up_space;
+	key_up_space.type = INPUT_KEYBOARD;
+	key_up_space.ki.wVk = VK_SPACE; // Space bar
+	key_up_space.ki.dwFlags = KEYEVENTF_KEYUP;
+	myupinputs.push_back(std::move(key_up_space));
 
-	myupinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, 0, 0, NULL} });
+	//myupinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, 0, 0, NULL} });
 
 	// Send both key-up events
 	SendInput(static_cast<UINT>(myupinputs.size()), myupinputs.data(), sizeof(INPUT));
@@ -152,13 +152,13 @@ int send_jump()
 
 
 		// Key down event for space bar
-		//INPUT key_down_space;
-		//key_down_space.type = INPUT_KEYBOARD;
-		//key_down_space.ki.wVk = VK_SPACE; // Space bar
-		//key_down_space.ki.dwFlags = 0;
-		//myinputs.push_back(std::move(key_down_space));
+		INPUT key_down_space;
+		key_down_space.type = INPUT_KEYBOARD;
+		key_down_space.ki.wVk = VK_SPACE; // Space bar
+		key_down_space.ki.dwFlags = 0;
+		myinputs.push_back(std::move(key_down_space));
 
-		myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, 0, 0, NULL} });
+		//myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, 0, 0, NULL} });
 
 		// Send both key-down events
 		SendInput(static_cast<UINT>(myinputs.size()), myinputs.data(), sizeof(INPUT));
@@ -171,13 +171,13 @@ int send_jump()
 	std::vector<INPUT> myupinputs;
 
 	// Key up event for space bar
-	//INPUT key_up_space;
-	//key_up_space.type = INPUT_KEYBOARD;
-	//key_up_space.ki.wVk = VK_SPACE; // Space bar
-	//key_up_space.ki.dwFlags = KEYEVENTF_KEYUP;
-	//myupinputs.push_back(std::move(key_up_space));
+	INPUT key_up_space;
+	key_up_space.type = INPUT_KEYBOARD;
+	key_up_space.ki.wVk = VK_SPACE; // Space bar
+	key_up_space.ki.dwFlags = KEYEVENTF_KEYUP;
+	myupinputs.push_back(std::move(key_up_space));
 
-	myupinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, KEYEVENTF_KEYUP, 0, NULL} });
+	//myupinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_SPACE,0, KEYEVENTF_KEYUP, 0, NULL} });
 
 	// Send both key-up events
 	SendInput(static_cast<UINT>(myupinputs.size()), myupinputs.data(), sizeof(INPUT));
@@ -193,12 +193,12 @@ int send_rightarrow_down()
 	// create a vector/array of key strokes to press
 	std::vector<INPUT> myinputs;
 	// press down right arrow and add to array
-	//INPUT rightarrow_down;
-	//rightarrow_down.type = INPUT_KEYBOARD;
-	//rightarrow_down.ki.wVk = VK_RIGHT;
-	//rightarrow_down.ki.dwFlags = 0;
-	//myinputs.push_back(std::move(rightarrow_down));
-	myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_RIGHT, 0, 0, 0, NULL} });
+	INPUT rightarrow_down;
+	rightarrow_down.type = INPUT_KEYBOARD;
+	rightarrow_down.ki.wVk = VK_RIGHT;
+	rightarrow_down.ki.dwFlags = 0;
+	myinputs.push_back(std::move(rightarrow_down));
+	//myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_RIGHT, 0, 0, 0, NULL} });
 
 	// send the key presses
 	// first parameter needs the number of structs in array, second param is an array of INPUT, third param is the size of an INPUT struct.
@@ -213,13 +213,13 @@ int send_rightarrow_up()
 	std::vector<INPUT> myinputs;
 
 	// release up arrow and add to array
-	//INPUT rightarrow_up;
-	//rightarrow_up.type = INPUT_KEYBOARD;
-	//rightarrow_up.ki.wVk = VK_RIGHT;
-	//rightarrow_up.ki.dwFlags = KEYEVENTF_KEYUP;
-	//myinputs.push_back(std::move(rightarrow_up));
+	INPUT rightarrow_up;
+	rightarrow_up.type = INPUT_KEYBOARD;
+	rightarrow_up.ki.wVk = VK_RIGHT;
+	rightarrow_up.ki.dwFlags = KEYEVENTF_KEYUP;
+	myinputs.push_back(std::move(rightarrow_up));
 
-	myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_RIGHT, 0, KEYEVENTF_KEYUP, 0, NULL} });
+	//myinputs.emplace_back(INPUT{ INPUT_KEYBOARD, {VK_RIGHT, 0, KEYEVENTF_KEYUP, 0, NULL} });
 	// send the key presses
 	// first parameter needs the number of structs in array, second param is an array of INPUT, third param is the size of an INPUT struct.
 	SendInput(static_cast<UINT>(myinputs.size()), myinputs.data(), sizeof(INPUT));
