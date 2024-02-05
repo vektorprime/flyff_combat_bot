@@ -142,6 +142,14 @@ If you get any strange behavior, please restart Chrome and the bot. Things like 
 The bot is set to crash/close if it cannot set itself up. I do this so that I can detect errors instead of just proceeding.
 If you want to send me logs, set the log to "verbose" in the GUI. Then, send me the flyffcombat.log file. 
 
+If you get an error that the player ID is not found check this:
+
+* inputted the wrong name
+* the character is not logged in when you started the bot
+* the character screen where the HP/MP/FP bar resides is not open (press T to toggle)
+*  your character has some very strange name
+
+
 **EVERYTHING BELOW THIS LINE IS TECHNICAL DETAILS FOR ANYONE INTERESTED IN THE SOURCE CODE AND COMPILING**
 
 
