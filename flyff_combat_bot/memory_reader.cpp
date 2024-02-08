@@ -792,7 +792,7 @@ std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &
 		//std::cout << "possible_monster_id_match size is " << byte_pattern_to_match_monster_id.size() << std::endl;
 		// the monsters never seem to be over half of the address space
 		// moving every 8 bytes to speed it up
-		for (uint64_t byte = 0; byte < bufferSize /2; byte += 8)
+		for (uint64_t byte = 0; byte < bufferSize / 2; byte += 8)
 		{
 			if (break_loop_1)
 			{
@@ -804,7 +804,7 @@ std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &
 			{
 				// std::wcout << "byte in the nested foor loop is " << byte << std::endl;
 				// std::wcout << "assigning b position of possible_monster_id_match at " << b << std::endl;
-				if (byte + b >= 0 && byte + b < bufferSize / 2)
+				if (byte + b >= 0 && byte + b < bufferSize /2)
 				{
 					//std::cout << "adding bytes in possible_monster_id_match" << std::endl;
 					possible_monster_id_match[b] = static_cast<unsigned char *>(mem.buffer)[byte + b];
@@ -838,13 +838,11 @@ std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &
 			if (byte_pattern_to_match_monster_id.size() == 104)
 			{
 
+				//this is v5
 				possible_monster_id_match[4] = 0x00;
 				possible_monster_id_match[5] = 0x00;
 				possible_monster_id_match[6] = 0x00;
 				possible_monster_id_match[7] = 0x00;
-
-				//possible_monster_id_match[13) = 0x00;
-				//possible_monster_id_match[15) = 0x00;
 
 				possible_monster_id_match[20] = 0x00;
 				possible_monster_id_match[21] = 0x00;
@@ -857,9 +855,21 @@ std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &
 				possible_monster_id_match[26] = 0x00;
 				possible_monster_id_match[27] = 0x00;
 
+				possible_monster_id_match[40] = 0x00;
+				possible_monster_id_match[41] = 0x00;
+				possible_monster_id_match[42] = 0x00;
+				possible_monster_id_match[43] = 0x00;
+
 				possible_monster_id_match[45] = 0x00;
 				possible_monster_id_match[46] = 0x00;
 				possible_monster_id_match[47] = 0x00;
+
+				possible_monster_id_match[48] = 0x00;
+				possible_monster_id_match[49] = 0x00;
+				possible_monster_id_match[50] = 0x00;
+				possible_monster_id_match[51] = 0x00;
+
+				possible_monster_id_match[55] = 0x00;
 
 				possible_monster_id_match[58] = 0x00;
 				possible_monster_id_match[59] = 0x00;
@@ -868,6 +878,9 @@ std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &
 				possible_monster_id_match[62] = 0x00;
 				possible_monster_id_match[63] = 0x00;
 
+				possible_monster_id_match[66] = 0x00;
+				possible_monster_id_match[67] = 0x00;
+
 				possible_monster_id_match[77] = 0x00;
 				possible_monster_id_match[78] = 0x00;
 				possible_monster_id_match[79] = 0x00;
@@ -875,6 +888,43 @@ std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &
 				possible_monster_id_match[93] = 0x00;
 				possible_monster_id_match[94] = 0x00;
 				possible_monster_id_match[95] = 0x00;
+
+
+				//commented out v4
+				//possible_monster_id_match[4] = 0x00;
+				//possible_monster_id_match[5] = 0x00;
+				//possible_monster_id_match[6] = 0x00;
+				//possible_monster_id_match[7] = 0x00;
+
+				//possible_monster_id_match[20] = 0x00;
+				//possible_monster_id_match[21] = 0x00;
+				//possible_monster_id_match[22] = 0x00;
+				//possible_monster_id_match[23] = 0x00;
+
+				////24-27 are the monster id
+				//possible_monster_id_match[24] = 0x00;
+				//possible_monster_id_match[25] = 0x00;
+				//possible_monster_id_match[26] = 0x00;
+				//possible_monster_id_match[27] = 0x00;
+
+				//possible_monster_id_match[45] = 0x00;
+				//possible_monster_id_match[46] = 0x00;
+				//possible_monster_id_match[47] = 0x00;
+
+				//possible_monster_id_match[58] = 0x00;
+				//possible_monster_id_match[59] = 0x00;
+
+				//possible_monster_id_match[61] = 0x00;
+				//possible_monster_id_match[62] = 0x00;
+				//possible_monster_id_match[63] = 0x00;
+
+				//possible_monster_id_match[77] = 0x00;
+				//possible_monster_id_match[78] = 0x00;
+				//possible_monster_id_match[79] = 0x00;
+
+				//possible_monster_id_match[93] = 0x00;
+				//possible_monster_id_match[94] = 0x00;
+				//possible_monster_id_match[95] = 0x00;
 
 				set_possible_match = true;
 			}
@@ -1629,10 +1679,14 @@ void flyff::player::setup_initial_target(const flyff::process &process)
 
 			//We need to do a similar search for our player ID, not sure how
 			std::array<unsigned char, 4> player_id_bytes{};
-			player_id_bytes[0] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1504];
-			player_id_bytes[1] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1503];
-			player_id_bytes[2] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1502];
-			player_id_bytes[3] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1501];
+			//player_id_bytes[0] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1504];
+			//player_id_bytes[1] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1503];
+			//player_id_bytes[2] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1502];
+			//player_id_bytes[3] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1501];
+			player_id_bytes[0] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1616];
+			player_id_bytes[1] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1615];
+			player_id_bytes[2] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1614];
+			player_id_bytes[3] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1613];
 			memcpy(&id, &player_id_bytes, sizeof(int));
 
 			std::cout << "player ID is " << id << std::endl;
