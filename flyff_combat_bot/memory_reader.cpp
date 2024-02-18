@@ -1050,15 +1050,15 @@ void flyff::monster::update_target(const flyff::process &process)
 				{
 					//std::cout << "adding bytes in possible_monster_id_match" << std::endl;
 					possible_monster_target_id_match[b] = static_cast<unsigned char *>(mem.buffer)[byte + b];
-					if (b == 0)
-					{
-						//exit early if byte 0 doesn't match because it's unique
-						if (possible_monster_target_id_match[0] != monster_target_byte_pattern[0])
-						{
-							continue_early = true;
-							break;
-						}
-					}
+					//if (b == 0)
+					//{
+					//	//exit early if byte 0 doesn't match because it's unique
+					//	if (possible_monster_target_id_match[0] != monster_target_byte_pattern[0])
+					//	{
+					//		continue_early = true;
+					//		break;
+					//	}
+					//}
 	
 				}
 				else
@@ -1683,15 +1683,25 @@ void flyff::player::setup_initial_target(const flyff::process &process)
 			//player_id_bytes[1] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1503];
 			//player_id_bytes[2] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1502];
 			//player_id_bytes[3] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1501];
-			player_id_bytes[0] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1616];
-			player_id_bytes[1] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1615];
-			player_id_bytes[2] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1614];
-			player_id_bytes[3] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1613];
+			// 
+			//player_id_bytes[0] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1616];
+			//player_id_bytes[1] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1615];
+			//player_id_bytes[2] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1614];
+			//player_id_bytes[3] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1613];
+
+			player_id_bytes[0] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1608];
+			player_id_bytes[1] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1607];
+			player_id_bytes[2] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1606];
+			player_id_bytes[3] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1605];
+
 			memcpy(&id, &player_id_bytes, sizeof(int));
 
 			std::cout << "player ID is " << id << std::endl;
 			//we don't really use the ID yet, but maybe later we will
-			player_target_proc.player_id_address = (LPVOID)((uintptr_t)queryBaseAddress + (uint64_t)byte + 56 - 1504);
+			//player_target_proc.player_id_address = (LPVOID)((uintptr_t)queryBaseAddress + (uint64_t)byte + 56 - 1504);
+			//player_target_proc.player_id_address = (LPVOID)((uintptr_t)queryBaseAddress + (uint64_t)byte + 56 - 1616);
+			player_target_proc.player_id_address = (LPVOID)((uintptr_t)queryBaseAddress + (uint64_t)byte + 56 - 1608);
+
 
 
 			player_target_found = true;
