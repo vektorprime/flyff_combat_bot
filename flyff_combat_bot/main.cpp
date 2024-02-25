@@ -27,7 +27,6 @@
 #include <vector>
 #include <string> 
 #include <fstream>
-#include <string>
 #include <thread>
 #include <future>
 
@@ -39,7 +38,6 @@
 //used for reading mem
 #include <tlhelp32.h>
 #include <iomanip>
-
 #include <array>
 #include <cmath>
 
@@ -56,7 +54,6 @@
 #include "config_reader.h"
 #include "ocr_matching.h"
 #include "map_image_matching.h"
-#include "debug_image_matching.h"
 #include "log.h"
 
 
@@ -599,6 +596,8 @@ int main()
 	std::vector<flyff::monster> bad_monsters_on_field{};
 
 	flyff::window gray_win{};
+
+	std::thread bot_thread{};
 
 	while (!close_gui)
 	{ 
@@ -2133,6 +2132,9 @@ int main()
 	::DestroyWindow(hwnd);
 	::UnregisterClassW(wc.lpszClassName, wc.hInstance);
 	///gui
+
+	//clean up bot
+	bot_thread.join();
 
 	return 0;
 }
