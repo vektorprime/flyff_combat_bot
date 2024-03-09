@@ -31,9 +31,9 @@
 #include <future>
 
 
-////used for OCR
-#include <leptonica/allheaders.h>
-#include <tesseract/baseapi.h>
+//////used for OCR
+//#include <leptonica/allheaders.h>
+//#include <tesseract/baseapi.h>
 
 //used for reading mem
 #include <tlhelp32.h>
@@ -1957,10 +1957,10 @@ int main()
 						std::string flyff_white_alert_text = match_flyff_text_ocr(flyff_win_gray, 170);*/
 
 
-						std::string flyff_red_alert_text = match_flyff_text_ocr(flyff_win_gray, 60);
+						//std::string flyff_red_alert_text = match_flyff_text_ocr(flyff_win_gray, 60);
 						//std::string flyff_white_alert_text = flyff_white_alert_text_future.get();
 						//std::cout << "flyff_white_alert_text is " << flyff_white_alert_text << std::endl;
-						std::cout << "flyff_red_alert_text is " << flyff_red_alert_text << std::endl;
+						//std::cout << "flyff_red_alert_text is " << flyff_red_alert_text << std::endl;
 
 						player.avoid_giant_on_map(win);
 
@@ -2041,31 +2041,31 @@ int main()
 						}
 
 
-						if (action_blocked_time.check_if_time_elapsed())
-						{
-							sent_action_blocked_move = false;
-						}
+						//if (action_blocked_time.check_if_time_elapsed())
+						//{
+						//	sent_action_blocked_move = false;
+						//}
 
-						if (!sent_action_blocked_move)
-						{
+						//if (!sent_action_blocked_move)
+						//{
 
-							if (flyff_red_alert_text.std::string::find("been blocked") != std::string::npos)
-							{
-								if (log_file.log_level_is_verbose())
-								{
-									log_file.write("Found action blocked. Moving away and clearing initial_monsters_on_field.");
-								}
-								std::cout << "Found action blocked. Moving away and clearing initial_monsters_on_field." << std::endl;
-								if (!debug_bot)
-								{
-									player.avoid_giant_on_map(win);
-									turn_run_and_jump(1250);
-									sent_action_blocked_move = true;
-									action_blocked_time.set_start_time();
-									initial_monsters_on_field.clear();
-								}
-							}
-						}
+						//	if (flyff_red_alert_text.std::string::find("been blocked") != std::string::npos)
+						//	{
+						//		if (log_file.log_level_is_verbose())
+						//		{
+						//			log_file.write("Found action blocked. Moving away and clearing initial_monsters_on_field.");
+						//		}
+						//		std::cout << "Found action blocked. Moving away and clearing initial_monsters_on_field." << std::endl;
+						//		if (!debug_bot)
+						//		{
+						//			player.avoid_giant_on_map(win);
+						//			turn_run_and_jump(1250);
+						//			sent_action_blocked_move = true;
+						//			action_blocked_time.set_start_time();
+						//			initial_monsters_on_field.clear();
+						//		}
+						//	}
+						//}
 
 						if (player.combat)
 						{
