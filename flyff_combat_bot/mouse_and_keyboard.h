@@ -14,6 +14,7 @@
 
 using namespace std::chrono_literals;
 
+#pragma optimize("", off)
 
 void send_key_hold_down(char numpress, int time_in_millisec = 250);
 
@@ -56,3 +57,5 @@ void turn_run_and_jump(const int time_in_millisec);
 void reset_screen_position();
 
 void send_2_keys_and_hold_first(char key1, int time_in_millisec, char key2);
+
+#pragma optimize("", on)

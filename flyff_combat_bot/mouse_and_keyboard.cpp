@@ -9,7 +9,7 @@
 #include <string> 
 
 // Originally I was only using send_key_hold_down, but I started to experience strange, undefined behavior with C++ optimizations on. I need tom come back and troubleshoot it. For now I will use some separate functions.
-
+#pragma optimize("", off)
 void send_key_hold_down(char numpress, int time_in_millisec)
 {
 	// Check if the key is already pressed
@@ -409,14 +409,14 @@ void correct_screen_position_for_monster_target(flyff::monster &mon_to_attack, c
 {
 	if ((mon_to_attack.y < pos.y - 5) && mon_to_attack.order < 10)
 	{
-		std::cout << "mon y is " << mon_to_attack.y << " player y is " << pos.y << " sending up arrow" << std::endl;
+		std::cout << "mon y is " << mon_to_attack.y << " player y is " << pos.y << " sending up arrow\n";
 		send_key_hold_down(VK_UP, 200);
 		sent_up = true;
 		return;
 	}
 	if (mon_to_attack.y < pos.y - 5)
 	{
-		std::cout << "mon y is " << mon_to_attack.y << " player y is " << pos.y << " sending up arrow" << std::endl;
+		std::cout << "mon y is " << mon_to_attack.y << " player y is " << pos.y << " sending up arrow\n";
 		send_key_hold_down(VK_UP, 150);
 		sent_up_2 = true;
 		return;
@@ -424,14 +424,14 @@ void correct_screen_position_for_monster_target(flyff::monster &mon_to_attack, c
 
 	if ((mon_to_attack.y > pos.y + 5) && mon_to_attack.order < 10)
 	{
-		std::cout << "mon y is " << mon_to_attack.y << " player y is " << pos.y << " sending down arrow" << std::endl;
+		std::cout << "mon y is " << mon_to_attack.y << " player y is " << pos.y << " sending down arrow\n";
 		send_key_hold_down(VK_DOWN, 200);
 		sent_down = true;
 		return;
 	}
 	if (mon_to_attack.y > pos.y + 5)
 	{
-		std::cout << "mon y is " << mon_to_attack.y << " player y is " << pos.y << " sending down arrow" << std::endl;
+		std::cout << "mon y is " << mon_to_attack.y << " player y is " << pos.y << " sending down arrow\n";
 		send_key_hold_down(VK_DOWN, 150);
 		sent_down_2 = true;
 		return;
@@ -442,25 +442,25 @@ void return_screen_position_for_monster_target(bool sent_down, bool sent_up, boo
 {
 	if (sent_up)
 	{
-		std::cout << "sent_up is true, sending down arrow" << std::endl;
+		std::cout << "sent_up is true, sending down arrow\n";
 		send_key_hold_down(VK_DOWN, 200);
 		return;
 	}
 	if (sent_down)
 	{
-		std::cout << "sent_down is true, sending up" << std::endl;
+		std::cout << "sent_down is true, sending up\n";
 		send_key_hold_down(VK_UP, 200);
 		return;
 	}
 	if (sent_up_2)
 	{
-		std::cout << "sent_up_2 is true, sending down arrow" << std::endl;
+		std::cout << "sent_up_2 is true, sending down arrow\n";
 		send_key_hold_down(VK_DOWN, 150);
 		return;
 	}
 	if (sent_down_2)
 	{
-		std::cout << "sent_down_2 is true, sending up" << std::endl;
+		std::cout << "sent_down_2 is true, sending up\n";
 		send_key_hold_down(VK_UP, 150);
 		return;
 	}
@@ -482,14 +482,14 @@ bool check_for_valid_click(int y_click)
 	int address_bar_y = static_cast<int>(supportwindowrect_size.bottom * 0.1);
 	if (y_click <= address_bar_y)
 	{
-		std::cout << "avoiding click of address bar" << std::endl;
+		std::cout << "avoiding click of address bar\n";
 		return false;
 	}
 
 	int skill_bar_y = static_cast<int>(supportwindowrect_size.bottom * 0.9);
 	if (y_click >= skill_bar_y)
 	{
-		std::cout << "avoiding click of skill bar" << std::endl;
+		std::cout << "avoiding click of skill bar\n";
 		return false;
 	}
 
@@ -502,3 +502,5 @@ void reset_screen_position()
 	send_key_hold_down(VK_UP, 1000);
 	send_key_hold_down(VK_DOWN, 400);
 }
+
+#pragma optimize("", on)

@@ -56,27 +56,27 @@ int set_player_angle(direction direction, flyff::process process)
 
 	if (direction == direction::south)
 	{
-		std::cout << "setting angle to 0 (south)" << std::endl;
+		std::cout << "setting angle to 0 (south)\n";
 		float_to_set = { 0x00, 0x00, 0x00, 0x00 };
 	}
 	if (direction == direction::north)
 	{
-		std::cout << "setting angle to 180 (north)" << std::endl;
+		std::cout << "setting angle to 180 (north)\n";
 		float_to_set = { 0x00, 0x00, 0x34, 0x43 };
 	}
 	if (direction == direction::west)
 	{
-		std::cout << "setting angle to 270 (west)" << std::endl;
+		std::cout << "setting angle to 270 (west)\n";
 		float_to_set = { 0x00, 0x00, 0x87, 0x43 };
 	}
 	if (direction == direction::east)
 	{
-		std::cout << "setting angle to 90 (east)" << std::endl;
+		std::cout << "setting angle to 90 (east)\n";
 		float_to_set = { 0x00, 0x00, 0xB4, 0x42 };
 	}
 	if (!WriteProcessMemory(process.pHandle, process.anglequeryFoundAddress, &float_to_set, sizeof(float), NULL))
 	{
-		std::cout << "Unable to write process mem" << std::endl;
+		std::cout << "Unable to write process mem\n";
 	}
 	std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	return 0;
@@ -91,7 +91,7 @@ void set_precise_player_angle(float angle, const flyff::process &process)
 
 	if (!WriteProcessMemory(process.pHandle, process.anglequeryFoundAddress, &f2, sizeof(float), NULL))
 	{
-		std::cout << "Unable to write process mem" << std::endl;
+		std::cout << "Unable to write process mem\n";
 	}
 }
 
@@ -102,7 +102,7 @@ void flyff::player::set_angle(float angle)
 
 	if (!WriteProcessMemory(pos_proc.pHandle, pos_proc.anglequeryFoundAddress, &f2, sizeof(float), NULL))
 	{
-		std::cout << "Unable to write process mem in set_angle" << std::endl;
+		std::cout << "Unable to write process mem in set_angle\n";
 	}
 }
 
@@ -131,7 +131,7 @@ flyff::process find_flyff_string_in_pid(DWORD single_pid)
 
 		if (!VirtualQueryEx(item.pHandle, queryBaseAddress, &queryBuffer, sizeof(queryBuffer)))
 		{
-			//std::cout << "VirtualQueryEx failed returning blank item" << std::endl;
+			//std::cout << "VirtualQueryEx failed returning blank item\n";
 			{
 				return item;
 			}
@@ -186,7 +186,7 @@ flyff::process find_flyff_string_in_pid(DWORD single_pid)
 			{
 				if (byte + 7 < bytesToRead)
 				{
-					//std::wcout << "Found O, checking the rest" << std::endl;
+					//std::wcout << "Found O, checking the rest\n";
 					possible_match[0] = static_cast<unsigned char *>(bufferRead)[byte];
 					possible_match[1] = static_cast<unsigned char *>(bufferRead)[(byte + 1)];
 					possible_match[2] = static_cast<unsigned char *>(bufferRead)[(byte + 2)];
@@ -198,7 +198,7 @@ flyff::process find_flyff_string_in_pid(DWORD single_pid)
 
 				if (flyff_string == possible_match)
 				{
-					std::cout << "Found the string '- Lv:' at address " << queryBaseAddress << " and the offset is " << byte << " bytes" << std::endl;
+					std::cout << "Found the string '- Lv:' at address " << queryBaseAddress << " and the offset is " << byte << " bytes\n";
 					std::cout << "Final address is " << (LPVOID)((uintptr_t)queryBaseAddress + byte) << std::endl;
 					byte = bytesToRead;
 					item.pid = single_pid;
@@ -211,7 +211,7 @@ flyff::process find_flyff_string_in_pid(DWORD single_pid)
 			}
 		}
 
-		// std::cout << "finished in region " << bytesToRead << " moving on to next region \n" << std::endl;
+		// std::cout << "finished in region " << bytesToRead << " moving on to next region \n\n";
 		// Free the allocated memory
 		VirtualFree(bufferRead, 0, MEM_RELEASE);
 		// Increment the base
@@ -238,7 +238,7 @@ std::vector<DWORD> find_all_flyff_pids()
 	HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 	if (hSnapshot == INVALID_HANDLE_VALUE)
 	{
-		std::cerr << "Failed to create a process snapshot." << std::endl;
+		std::cerr << "Failed to create a process snapshot.\n";
 	}
 
 	// Initialize the process entry structure
@@ -260,7 +260,7 @@ std::vector<DWORD> find_all_flyff_pids()
 	}
 	else
 	{
-		std::cerr << "Failed to enumerate processes." << std::endl;
+		std::cerr << "Failed to enumerate processes.\n";
 	}
 
 	// Close the process snapshot handle
@@ -292,7 +292,7 @@ void flyff::player::setup_initial_pos(const flyff::process &process)
 	//pos_proc.pHandle = process.pHandle;
 	pos_proc.pHandle = get_process_handle(process.pid);
 
-	std::cout << "Starting initial pos finder" << std::endl;
+	std::cout << "Starting initial pos finder\n";
 	if (log_file_->log_level_is_verbose())
 	{
 		log_write("Starting initial pos finder");
@@ -304,9 +304,9 @@ void flyff::player::setup_initial_pos(const flyff::process &process)
 	{
 		//angle finder
 
-		//std::cout << "Read the process memory and moved it to the buffer" << std::endl;
+		//std::cout << "Read the process memory and moved it to the buffer\n";
 
-		//std::cout << "checking for value in the buffer" << std::endl;
+		//std::cout << "checking for value in the buffer\n";
 		//54 byte array for match, z coord is 4 bytes starting at 4 bytes into the array below, I marked it 0x00 because I won't compare those values
 		std::array<unsigned char, 72> bytes_to_match_angle =
 		{
@@ -355,7 +355,7 @@ void flyff::player::setup_initial_pos(const flyff::process &process)
 				{
 					log_write("ERROR: Unable to assign check_bytes_after_angle in initial check");
 					//the initial function should continue instead of freeing virtual aloc
-					std::cout << "ERROR: Unable to assign check_bytes_after_angle in initial check" << std::endl;
+					std::cout << "ERROR: Unable to assign check_bytes_after_angle in initial check\n";
 					throw std::runtime_error("ERROR: Unable to assign check_bytes_after_angle in initial check");
 					//continue;
 				}
@@ -418,7 +418,7 @@ void flyff::player::setup_initial_pos(const flyff::process &process)
 				pos_proc.anglequeryFoundAddress = (LPVOID)((uintptr_t)queryBaseAddress + byte);
 				pos_proc.anglebytesToRead = byte;
 				pos_proc.bytesToRead = bytesToRead;
-				std::cout << "Found the angle_val at address " << queryBaseAddress << " and the offset is " << byte << " bytes" << std::endl;
+				std::cout << "Found the angle_val at address " << queryBaseAddress << " and the offset is " << byte << " bytes\n";
 				pos_proc.queryFoundAddress = (LPVOID)((uintptr_t)queryBaseAddress + byte);
 				std::cout << "The address is " << pos_proc.queryFoundAddress << std::endl;
 			}
@@ -429,14 +429,14 @@ void flyff::player::setup_initial_pos(const flyff::process &process)
 			}
 
 			outside_byte = byte;
-			//std::cout << "compared check_bytes_after and bytes_to_match_angle" << std::endl;
+			//std::cout << "compared check_bytes_after and bytes_to_match_angle\n";
 		}
 		queryBaseAddress = (LPVOID)((uintptr_t)queryBaseAddress + (uint64_t)outside_byte);
 		//std::cout << " the current address is  " << queryBaseAddress << std::endl;
 	}
 
 	//starting x pos finder
-	//std::cout << "starting x pos finder" << std::endl;
+	//std::cout << "starting x pos finder\n";
 	while (!x_pos_found)
 	{
 		x_bytes[0] = static_cast<unsigned char *>(mem.buffer)[x_pos_byte_loc - 16];
@@ -454,7 +454,7 @@ void flyff::player::setup_initial_pos(const flyff::process &process)
 	}
 
 	//starting x pos finder
-	//std::cout << "starting x pos finder" << std::endl;
+	//std::cout << "starting x pos finder\n";
 	std::array<unsigned char, 4> y_bytes{};
 	y_bytes[0] = static_cast<unsigned char *>(mem.buffer)[x_pos_byte_loc - 12];
 	y_bytes[1] = static_cast<unsigned char *>(mem.buffer)[x_pos_byte_loc - 11];
@@ -463,7 +463,7 @@ void flyff::player::setup_initial_pos(const flyff::process &process)
 	memcpy(&target_pos.y, &y_bytes, sizeof(float));
 
 	//starting z pos finder
-	//std::cout << "starting Z pos finder" << std::endl;
+	//std::cout << "starting Z pos finder\n";
 	while (!z_pos_found)
 	{
 		z_bytes[0] = static_cast<unsigned char *>(mem.buffer)[z_pos_byte_loc - 8];
@@ -496,7 +496,7 @@ void flyff::player::update_pos()
 	{
 		log_write("Starting precise pos finder");
 	}
-	std::cout << "Starting precise pos finder" << std::endl;
+	std::cout << "Starting precise pos finder\n";
 
 	//already have a process handle, no need to get another
 	flyff::memory mem(pos_proc.xqueryFoundAddress, pos_proc.pHandle, 49);
@@ -534,7 +534,7 @@ void flyff::player::update_pos()
 	memcpy(&pos.angle, &angle_bytes, sizeof(float));
 	std::cout << "Player POS: X " << pos.x << " Y " << pos.y << " Z " << pos.z << " angle " << pos.angle << std::endl;
 	//if we reach the end that means we found the angle, x, and z. We should free resources and return the complete object.
-	if (pos.x == 0 || pos.y == 0 | pos.z == 0 || pos.angle == 0)
+	if (pos.x == 0 || pos.y == 0 || pos.z == 0 || pos.angle == 0)
 	{
 		log_write("Starting precise pos finder");
 		throw std::runtime_error("ERROR: player pos is 0, exiting");
@@ -574,10 +574,10 @@ void flyff::player::set_position(flyff::window &win)
 	{
 		if (set_position_time_.check_if_time_elapsed())
 		{
-			std::cout << "setting position for too long, exiting set set_position" << std::endl;
+			std::cout << "setting position for too long, exiting set set_position\n";
 			return;
 		}
-		std::cout << "Current X is greater than target X" << std::endl;
+		std::cout << "Current X is greater than target X\n";
 		float x_diff = target_x - current_x;
 		float z_diff = target_z - current_z;
 		float target_angle = atan2(z_diff, x_diff) * 180 / 3.14159265f;
@@ -619,10 +619,10 @@ void flyff::player::set_position(flyff::window &win)
 	{
 		if (set_position_time_.check_if_time_elapsed())
 		{
-			std::cout << "setting position for too long, exiting set set_position" << std::endl;
+			std::cout << "setting position for too long, exiting set set_position\n";
 			return;
 		}
-		std::cout << "Current Z is greater than target Z" << std::endl;
+		std::cout << "Current Z is greater than target Z\n";
 		float x_diff = target_x - current_x;
 		float z_diff = target_z - current_z;
 		float target_angle = atan2(z_diff, x_diff) * 180 / 3.14159265f;
@@ -665,10 +665,10 @@ void flyff::player::set_position(flyff::window &win)
 	{
 		if (set_position_time_.check_if_time_elapsed())
 		{
-			std::cout << "setting position for too long, exiting set set_position" << std::endl;
+			std::cout << "setting position for too long, exiting set set_position\n";
 			return;
 		}
-		std::cout << "Current X is less than target X" << std::endl;
+		std::cout << "Current X is less than target X\n";
 		float x_diff = target_x - current_x;
 		float z_diff = target_z - current_z;
 		float target_angle = atan2(z_diff, x_diff) * 180 / 3.14159265f;
@@ -709,10 +709,10 @@ void flyff::player::set_position(flyff::window &win)
 	{
 		if (set_position_time_.check_if_time_elapsed())
 		{
-			std::cout << "setting position for too long, exiting set set_position" << std::endl;
+			std::cout << "setting position for too long, exiting set set_position\n";
 			return;
 		}
-		std::cout << "Current Z is less than target Z" << std::endl;
+		std::cout << "Current Z is less than target Z\n";
 		float x_diff = target_x - current_x;
 		float z_diff = target_z - current_z;
 		float target_angle = atan2(z_diff, x_diff) * 180 / 3.14159265f;
@@ -748,7 +748,7 @@ void flyff::player::set_position(flyff::window &win)
 			break;
 		}
 	}
-	std::cout << "finished setting char position" << std::endl;
+	std::cout << "finished setting char position\n";
 }
 
 
@@ -770,10 +770,10 @@ std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &
 
 	bool continue_early = false;
 
-	std::cout << "starting initial monster search" << std::endl;
+	std::cout << "starting initial monster search\n";
 
 	//monster_id finder
-	//std::cout << "starting monster finder " << std::endl;
+	//std::cout << "starting monster finder \n";
 
 	flyff::memory mem(process.queryFoundAddress, process.pHandle, process.bytesToRead);
 	mem.read();
@@ -781,9 +781,9 @@ std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &
 	while (!monster_id_found)
 	{
 
-		//std::cout << "Read the process memory and moved it to the buffer" << std::endl;
+		//std::cout << "Read the process memory and moved it to the buffer\n";
 
-		//std::cout << "checking for value in the buffer" << std::endl;
+		//std::cout << "checking for value in the buffer\n";
 		//59 bytes for the pattern that we'll compare to the memory we scan, and I marked some as 0x00 because I won't compare those
 
 		uint64_t bufferSize = static_cast<int>(process.bytesToRead);
@@ -806,7 +806,7 @@ std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &
 				// std::wcout << "assigning b position of possible_monster_id_match at " << b << std::endl;
 				if (byte + b >= 0 && byte + b < bufferSize /2)
 				{
-					//std::cout << "adding bytes in possible_monster_id_match" << std::endl;
+					//std::cout << "adding bytes in possible_monster_id_match\n";
 					possible_monster_id_match[b] = static_cast<unsigned char *>(mem.buffer)[byte + b];
 
 
@@ -931,7 +931,7 @@ std::vector<flyff::monster> get_initial_monsters_on_field(const flyff::process &
 
 			if (!set_possible_match)
 			{
-				std::cout << "The possible_monster_id_match size may be incorrect because we didn't set any" << std::endl;
+				std::cout << "The possible_monster_id_match size may be incorrect because we didn't set any\n";
 				break;
 			}
 
@@ -1010,7 +1010,7 @@ void flyff::monster::update_target(const flyff::process &process)
 {
 	if (address == nullptr)
 	{
-		std::cout << "monster address is nullptr" << std::endl;
+		std::cout << "monster address is nullptr\n";
 		return;
 	}
 
@@ -1027,7 +1027,7 @@ void flyff::monster::update_target(const flyff::process &process)
 
 	while (!monster_id_found)
 	{
-		//std::cout << "starting monster finder " << std::endl;
+		//std::cout << "starting monster finder \n";
 		//allocating and reading 2048 bytes (mon_bytes_to_read) because the monster target info should be around 1.5k after the mon ID address
 
 		std::array<unsigned char, 56> possible_monster_target_id_match{};
@@ -1048,7 +1048,7 @@ void flyff::monster::update_target(const flyff::process &process)
 				// std::wcout << "assigning b position of possible_monster_id_match at " << b << std::endl;
 				if (byte + b >= 0 && byte + b < mon_bytes_buffer_size)
 				{
-					//std::cout << "adding bytes in possible_monster_id_match" << std::endl;
+					//std::cout << "adding bytes in possible_monster_id_match\n";
 					possible_monster_target_id_match[b] = static_cast<unsigned char *>(mem.buffer)[byte + b];
 					//if (b == 0)
 					//{
@@ -1136,7 +1136,7 @@ bool flyff::monster::check_if_pet(const flyff::process &process)
 {
 	if (address == nullptr)
 	{
-		std::cout << "monster address is nullptr" << std::endl;
+		std::cout << "monster address is nullptr\n";
 		return false;
 	}
 	bool break_loop_1 = false;
@@ -1165,7 +1165,7 @@ bool flyff::monster::check_if_pet(const flyff::process &process)
 			// std::wcout << "assigning b position of possible_monster_id_match at " << b << std::endl;
 			if (byte + b >= 0 && byte + b < mon_bytes_buffer_size)
 			{
-				//std::cout << "adding bytes in possible_monster_id_match" << std::endl;
+				//std::cout << "adding bytes in possible_monster_id_match\n";
 				possible_pet_match[b] = static_cast<unsigned char *>(mem.buffer)[byte + b];
 				////since the first byte is unique, we can check if it exists before getting the rest
 				////exit early if the first byte doesn't match
@@ -1214,7 +1214,7 @@ bool flyff::monster::check_if_pet(const flyff::process &process)
 		}
 		else
 		{
-			std::cout << "the pattern and the possible match aren't the same size" << std::endl;
+			std::cout << "the pattern and the possible match aren't the same size\n";
 			break;
 		}
 	}
@@ -1226,7 +1226,7 @@ void flyff::player::update_target()
 {
 	size_t bytesToRead = 128;
 	std::array<unsigned char, 4> player_target_bytes{};
-	std::cout << "starting get precise player target" << std::endl;
+	std::cout << "starting get precise player target\n";
 	flyff::memory mem(player_target_proc.player_target_address, player_target_proc.pHandle, bytesToRead);
 	mem.read();
 	player_target_bytes[0] = static_cast<unsigned char *>(mem.buffer)[0];
@@ -1247,7 +1247,7 @@ void flyff::player::update_combat_status()
 {
 	std::array<unsigned char, 4> player_target_bytes{};
 
-	std::cout << "starting get_player_combat_status" << std::endl;
+	std::cout << "starting get_player_combat_status\n";
 
 	flyff::memory mem(player_target_proc.player_target_address, player_target_proc.pHandle, 128);
 	mem.read();
@@ -1265,7 +1265,7 @@ void flyff::player::update_combat_status()
 		combat = false;
 		if (log_file_->log_level_is_verbose())
 		{
-			std::cout << "player is NOT in combat" << std::endl;
+			std::cout << "player is NOT in combat\n";
 			if (log_file_->log_level_is_verbose())
 			{
 				log_write("player is NOT in combat");
@@ -1275,7 +1275,7 @@ void flyff::player::update_combat_status()
 	else
 	{
 		combat = true;
-		std::cout << "player is in combat" << std::endl;
+		std::cout << "player is in combat\n";
 		if (log_file_->log_level_is_verbose())
 		{
 			log_write("player is in combat");
@@ -1291,7 +1291,7 @@ void flyff::player::set_target(int target_id)
 
 	if (!WriteProcessMemory(player_target_proc.pHandle, player_target_proc.player_target_address, &data, sizeof(int), NULL))
 	{
-		std::cout << "ERROR: Unable to write process mem for set_target" << std::endl;
+		std::cout << "ERROR: Unable to write process mem for set_target\n";
 		log_write("ERROR: Unable to write process mem for set_target");
 		throw std::runtime_error("ERROR: Unable to write process mem for set_target");
 		
@@ -1411,11 +1411,11 @@ void flyff::player::setup_initial_target(const flyff::process &process)
 	{
 		if (break_all_loops) { break; }
 
-		std::cout << "starting initial player target finder " << std::endl;
+		std::cout << "starting initial player target finder \n";
 
-		//std::cout << "Read the process memory and moved it to the buffer" << std::endl;
+		//std::cout << "Read the process memory and moved it to the buffer\n";
 
-		//std::cout << "checking for value in the buffer" << std::endl;
+		//std::cout << "checking for value in the buffer\n";
 		//59 bytes for the pattern that we'll compare to the memory we scan, and I marked some as 0x00 because I won't compare those
 
 		uint64_t bufferSize = static_cast<int>(bytesToRead);
@@ -1430,7 +1430,7 @@ void flyff::player::setup_initial_target(const flyff::process &process)
 			//outside_byte_tracker = byte;
 			//if (((uintptr_t)queryBaseAddress + (uint64_t)byte) == 0x2ED80B73787)
 			//{
-			//	std::cout << "close to the add" << std::endl;
+			//	std::cout << "close to the add\n";
 			//}
 
 			if (break_loop_1)
@@ -1446,7 +1446,7 @@ void flyff::player::setup_initial_target(const flyff::process &process)
 				// std::wcout << "assigning b position of possible_player_target_match at " << b << std::endl;
 				if (byte + b < bufferSize)
 				{
-					//std::cout << "adding bytes in possible_player_target_match" << std::endl;
+					//std::cout << "adding bytes in possible_player_target_match\n";
 					possible_player_target_match[b] = static_cast<unsigned char *>(mem.buffer)[byte + b];
 					if (b == 13)
 					{
@@ -1577,12 +1577,12 @@ void flyff::player::setup_initial_target(const flyff::process &process)
 
 			//if (player_target_byte_pattern.size() == possible_player_target_match.size())
 			//{
-			//	//std::cout << "vectors are same size, testing match" << std::endl;
+			//	//std::cout << "vectors are same size, testing match\n";
 			//	for (int i = 0; i < player_target_byte_pattern.size(); ++i)
 			//	{
 			//		if (player_target_byte_pattern[i] != possible_player_target_match[i])
 			//		{
-			//			//std::cout << "vectors are not a match" << std::endl;
+			//			//std::cout << "vectors are not a match\n";
 			//			continue_outer_loop = true;
 			//			break;
 			//		}
@@ -1590,7 +1590,7 @@ void flyff::player::setup_initial_target(const flyff::process &process)
 			//}
 			//else
 			//{
-			//	std::cout << "the pattern and the possible match aren't the same size" << std::endl;
+			//	std::cout << "the pattern and the possible match aren't the same size\n";
 			//	break;
 			//}
 			
@@ -1599,7 +1599,7 @@ void flyff::player::setup_initial_target(const flyff::process &process)
 				continue;
 			}
 
-			//std::cout << "found the player target match pattern, checking for player name" << std::endl;
+			//std::cout << "found the player target match pattern, checking for player name\n";
 
 			//std::cout << "at add " << std::hex << (uintptr_t)queryBaseAddress + (uint64_t)byte  << std::endl;
 
@@ -1626,7 +1626,7 @@ void flyff::player::setup_initial_target(const flyff::process &process)
 
 					if (name[i] != possible_player_name[i])
 					{
-						//std::cout << "player name not in pattern" << std::endl;
+						//std::cout << "player name not in pattern\n";
 						break_player_name_loop = false;
 						break;
 					}
@@ -1662,7 +1662,7 @@ void flyff::player::setup_initial_target(const flyff::process &process)
 				continue;
 			}
 
-			std::cout << "found the player name " << name << " in the target" << std::endl;
+			std::cout << "found the player name " << name << " in the target\n";
 
 			//If we made it to this point, it means we found a match and we should grab the bytes and convert it into an int
 			player_target_bytes[0] = static_cast<unsigned char *>(mem.buffer)[byte + 56];
@@ -1782,7 +1782,7 @@ std::vector<LPVOID> flyff::player::find_all_text_targets(const flyff::process &p
 	bool continue_early = false;
 
 
-	//std::cout << "starting setup_initial_text_target " << std::endl;
+	//std::cout << "starting setup_initial_text_target \n";
 	if (log_file_->log_level_is_verbose())
 	{
 		log_write("starting setup_initial_text_target");
@@ -1835,7 +1835,7 @@ std::vector<LPVOID> flyff::player::find_all_text_targets(const flyff::process &p
 
 			if (player_target_text.size() == possible_player_target_text.size())
 			{
-				//std::cout << "vectors are same size, testing match" << std::endl;
+				//std::cout << "vectors are same size, testing match\n";
 				for (int i = 0; i < player_target_text.size(); ++i)
 				{
 					if (player_target_text[i] == possible_player_target_text[i])
@@ -1847,7 +1847,7 @@ std::vector<LPVOID> flyff::player::find_all_text_targets(const flyff::process &p
 					}
 					else
 					{
-						//std::cout << "vectors are not a match" << std::endl;
+						//std::cout << "vectors are not a match\n";
 						continue_outer_loop = true;
 						break;
 					}
@@ -1856,7 +1856,7 @@ std::vector<LPVOID> flyff::player::find_all_text_targets(const flyff::process &p
 			else
 			{
 				log_write("ERROR: The pattern and the possible match aren't the same size in the setup_initial_text_target");
-				std::cout << "the pattern and the possible match aren't the same size in the setup_initial_text_target" << std::endl;
+				std::cout << "the pattern and the possible match aren't the same size in the setup_initial_text_target\n";
 				throw std::runtime_error("ERROR: The pattern and the possible match aren't the same size in the setup_initial_text_target");
 			}
 			if (continue_outer_loop)
@@ -1895,7 +1895,7 @@ bool flyff::player::check_if_text_target_is_bad_mon(std::vector<LPVOID> &all_tex
 
 		std::array<unsigned char, 4> possible_bad_mon_target_text{};
 
-		//std::cout << "starting check_if_text_target_is_bad_mon " << std::endl;
+		//std::cout << "starting check_if_text_target_is_bad_mon \n";
 
 		flyff::memory mem(add_to_check, player_target_proc.pHandle, bytesToRead);
 		mem.read();
@@ -1913,7 +1913,7 @@ bool flyff::player::check_if_text_target_is_bad_mon(std::vector<LPVOID> &all_tex
 			possible_bad_mon_target_text == guru_target_text ||
 			possible_bad_mon_target_text == mine_target_text)
 		{
-			std::cout << "Found bad mon target text" << std::endl;
+			std::cout << "Found bad mon target text\n";
 			if (log_file_->log_level_is_verbose())
 			{
 				log_write("Found bad mon target text");
@@ -1922,7 +1922,7 @@ bool flyff::player::check_if_text_target_is_bad_mon(std::vector<LPVOID> &all_tex
 		}
 		else
 		{
-			std::cout << "Did not find giant or violet text for this monster" << std::endl;
+			std::cout << "Did not find giant or violet text for this monster\n";
 			if (log_file_->log_level_is_verbose())
 			{
 				log_write("Did not find giant or violet text for this monster");
@@ -1953,7 +1953,7 @@ LPVOID flyff::player::check_text_targets(const flyff::process &process, LPVOID a
 
 	bool found_player_name = false;
 
-	std::cout << "starting setup_initial_text_target " << std::endl;
+	std::cout << "starting setup_initial_text_target \n";
 
 
 	flyff::memory mem(add_to_check, player_target_proc.pHandle, bytesToRead);
@@ -1966,7 +1966,7 @@ LPVOID flyff::player::check_text_targets(const flyff::process &process, LPVOID a
 
 		if (player_target_text.size() == possible_player_target_text.size())
 		{
-			//std::cout << "vectors are same size, testing match" << std::endl;
+			//std::cout << "vectors are same size, testing match\n";
 			for (int i = 0; i < player_target_text.size(); ++i)
 			{
 				if (player_target_text[i] == possible_player_target_text[i])
@@ -1978,14 +1978,14 @@ LPVOID flyff::player::check_text_targets(const flyff::process &process, LPVOID a
 				}
 				else
 				{
-					//std::cout << "vectors are not a match" << std::endl;
+					//std::cout << "vectors are not a match\n";
 					break;
 				}
 			}
 		}
 		if (found_player_name)
 		{
-			std::cout << "found the player name, can't be the address" << std::endl;
+			std::cout << "found the player name, can't be the address\n";
 			return nullptr;
 		}
 		else
@@ -2028,4 +2028,88 @@ void delete_monster_from_field(std::vector<flyff::monster> &initial_monsters_on_
 			initial_monsters_on_field.pop_back();
 		}
 	}
+}
+
+
+void flyff::player::setup_initial_target_hp(const flyff::process &process)
+{
+	uint64_t hp_offset = 128;
+	bool break_loop_1 = false;
+	uint64_t hp_bytes_buffer_size = process.bytesToRead;
+
+
+	flyff::memory mem(process.queryFoundAddress, process.pHandle, hp_bytes_buffer_size);
+	mem.read();
+
+	//this char size must match the pattern in the class private section
+	std::array<unsigned char, 322> possible_hp_match{};
+	for (uint64_t byte = 0; byte < hp_bytes_buffer_size; byte++)
+	{
+		if (break_loop_1)
+		{
+			break;
+		}
+
+		//since the first 2 bytes must be 0x01, we can skip this match
+		if (static_cast<unsigned char *>(mem.buffer)[byte] != 0x01 &&
+			static_cast<unsigned char *>(mem.buffer)[byte + 1] != 0x01)
+		{
+			continue;
+		}
+		//get all of the bytes of this region's section 
+		for (uint64_t b = 0; b < hp_byte_pattern.size(); b++)
+		{
+			if (byte + b >= 0 && byte + b < hp_bytes_buffer_size)
+			{
+				possible_hp_match[b] = static_cast<unsigned char *>(mem.buffer)[byte + b];
+
+
+			}
+			else
+			{
+
+				break_loop_1 = true;
+				break;
+			}
+		}
+
+		if (hp_byte_pattern.size() == possible_hp_match.size())
+		{
+
+			if (hp_byte_pattern[0] == possible_hp_match[0] &&
+				hp_byte_pattern[1] == possible_hp_match[1] &&
+				hp_byte_pattern[320] == possible_hp_match[320] &&
+				hp_byte_pattern[321] == possible_hp_match[321]
+				)
+			{
+				std::cout << "found initial hp\n";
+				target_hp_address = (LPVOID)((uintptr_t)process.queryFoundAddress + byte + hp_offset);
+				return;
+			}
+			else
+			{
+				continue;
+			}
+		}
+		else
+		{
+			std::cout << "the pattern and the possible match aren't the same size\n";
+			break;
+		}
+	}
+}
+
+
+void flyff::player::update_target_hp()
+{
+	size_t bytesToRead = 1;
+	std::array<unsigned char, 1> player_target_hp_bytes{};
+	std::cout << "starting get precise player target hp\n";
+	flyff::memory mem(target_hp_address, player_target_proc.pHandle, bytesToRead);
+	mem.read();
+	player_target_hp_bytes[0] = static_cast<unsigned char *>(mem.buffer)[0];
+	int target_hp_as_int = 0;
+	memcpy(&target_hp_as_int, &player_target_hp_bytes, sizeof(int));
+	target_hp = static_cast<float>(target_hp_as_int) / 176.0f * 100.0f;
+
 }

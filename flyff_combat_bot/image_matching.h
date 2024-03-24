@@ -47,7 +47,7 @@ namespace flyff
 			result_rows(other.result_rows),
 			templ(other.templ.clone())
 		{
-			std::cout << "match_result copy constructor invoked" << std::endl;
+			//std::cout << "match_result copy constructor invoked\n";
 		}
 
 		match_result &operator=(const match_result &other)
@@ -62,7 +62,7 @@ namespace flyff
 				result_rows = other.result_rows;
 				templ = other.templ.clone();  // Assuming cv::Mat.clone() for deep copy
 				// Add a print statement for testing
-				std::cout << "match_result copy assignment operator invoked" << std::endl;
+			//	std::cout << "match_result copy assignment operator invoked\n";
 			}
 			return *this;
 		}
@@ -76,7 +76,7 @@ namespace flyff
 			result_rows(std::move(other.result_rows)),
 			templ(std::move(other.templ))
 		{
-			std::cout << "match_result move constructor invoked" << std::endl;
+			//std::cout << "match_result move constructor invoked\n";
 		}
 
 		match_result &operator=(match_result &&other) noexcept
@@ -90,7 +90,7 @@ namespace flyff
 				result_cols = std::move(other.result_cols);
 				result_rows = std::move(other.result_rows);
 				templ = std::move(other.templ);
-				std::cout << "match_result move assignment operator invoked" << std::endl;
+				//std::cout << "match_result move assignment operator invoked\n";
 			}
 			return *this;
 		}

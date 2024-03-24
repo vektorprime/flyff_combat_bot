@@ -522,10 +522,10 @@ bool check_if_disconnected(flyff::window &win, const disconnect_message &message
 {
 	double disconnected_cutoffpoint = 0.0003;
 
-	//std::cout << " Assuming refreshbutton.png is in the current folder. \n" << std::endl;
+	//std::cout << " Assuming refreshbutton.png is in the current folder. \n\n";
 	cv::Mat refresh_button_templ = cv::imread("images\\refreshbutton.png");
 	cv::cvtColor(refresh_button_templ, refresh_button_templ, cv::COLOR_BGRA2BGR);
-	//std::cout << " Assuming disconnected.png is in the current folder. \n" << std::endl;
+	//std::cout << " Assuming disconnected.png is in the current folder. \n\n";
 	std::string template_image;
 	switch (message)
 	{
@@ -553,9 +553,9 @@ bool check_if_disconnected(flyff::window &win, const disconnect_message &message
 		std::cout << "checking disconnected_result, the minVal is " << disconnected_result.minVal << std::endl;
 		if (disconnected_result.minVal < disconnected_cutoffpoint)
 		{
-			std::cout << "found disconnected message, sleeping for 30 sec" << std::endl;
+			std::cout << "found disconnected message, sleeping for 30 sec\n";
 			std::this_thread::sleep_for(std::chrono::seconds(30));
-			std::cout << "Looking for refresh button on browser and clicking it" << std::endl;
+			std::cout << "Looking for refresh button on browser and clicking it\n";
 
 			flyff::match_result refresh_button_result = match_flyff_item(win, refresh_button_templ);
 
@@ -592,7 +592,7 @@ void check_if_char_screen_icon_missing(flyff::window &win, flyff::time &char_scr
 			{
 				log_file.write("Unable to find char screen, sending T key");
 			}
-			std::cout << "Unable to find char screen icon, sending T key" << std::endl;
+			std::cout << "Unable to find char screen icon, sending T key\n";
 			send_key_hold_down(0x54);
 		}
 		char_scree_icon_time.set_start_time();

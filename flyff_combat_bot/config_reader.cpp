@@ -55,7 +55,7 @@ std::ifstream flyff::config::get_config_file_handle_(const std::string &file)
 	if (!open_file.is_open())
 	{
 		log_file_.write("ERROR: unable to open config file " + file);
-		std::cerr << "Failed to open the file." << std::endl;
+		std::cerr << "Failed to open the file.\n";
 	}
 	return open_file;
 }

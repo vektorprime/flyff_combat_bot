@@ -137,7 +137,7 @@ bool flyff::image_match_map::match_found_in_bottom_right()
 
 void avoid_giant_on_map(flyff::window &win, const flyff::process &target_char_position)
 {
-	//std::cout << "checking for giant" << std::endl;
+	//std::cout << "checking for giant\n";
 
 	cv::Mat monster_target_templ = cv::imread("images\\monstertarget.png");
 	cv::cvtColor(monster_target_templ, monster_target_templ, cv::COLOR_BGRA2BGR);
@@ -150,7 +150,7 @@ void avoid_giant_on_map(flyff::window &win, const flyff::process &target_char_po
 
 	if (giant_on_map_result.match_found_in_top_left())
 	{
-		std::cout << "found giant or violet on top left of map" << std::endl;
+		std::cout << "found giant or violet on top left of map\n";
 			set_precise_player_angle(45.0f, target_char_position);
 			send_key_hold_down(0x57, 2000);
 			exit_monster_target(win, monster_target_templ);
@@ -158,7 +158,7 @@ void avoid_giant_on_map(flyff::window &win, const flyff::process &target_char_po
 
 	if (giant_on_map_result.match_found_in_top_right())
 	{
-		std::cout << "found giant or violet on top right of map" << std::endl;
+		std::cout << "found giant or violet on top right of map\n";
 
 			set_precise_player_angle(315.0f, target_char_position);
 			send_key_hold_down(0x57, 2000);
@@ -167,7 +167,7 @@ void avoid_giant_on_map(flyff::window &win, const flyff::process &target_char_po
 
 	if (giant_on_map_result.match_found_in_bottom_left())
 	{
-		std::cout << "found giant or violet on bottom left of map" << std::endl;
+		std::cout << "found giant or violet on bottom left of map\n";
 
 			set_precise_player_angle(135.0f, target_char_position);
 			send_key_hold_down(0x57, 2000);
@@ -176,7 +176,7 @@ void avoid_giant_on_map(flyff::window &win, const flyff::process &target_char_po
 
 	if (giant_on_map_result.match_found_in_bottom_right())
 	{
-		std::cout << "found giant or violet on bottom right of map" << std::endl;
+		std::cout << "found giant or violet on bottom right of map\n";
 	
 			set_precise_player_angle(225.0f, target_char_position);
 			send_key_hold_down(0x57, 2000);
@@ -191,7 +191,7 @@ void flyff::player::avoid_giant_on_map(flyff::window &win)
 	{
 		log_file_->write("Starting avoid_giant_on_map");
 	}
-	//std::cout << "checking for giant" << std::endl;
+	//std::cout << "checking for giant\n";
 
 	cv::Mat monster_target_templ = cv::imread("images\\monstertarget.png");
 	cv::cvtColor(monster_target_templ, monster_target_templ, cv::COLOR_BGRA2BGR);
@@ -208,7 +208,7 @@ void flyff::player::avoid_giant_on_map(flyff::window &win)
 		{
 			log_file_->write("Found giant or violet on top left of map");
 		}
-		std::cout << "found giant or violet on top left of map" << std::endl;
+		std::cout << "found giant or violet on top left of map\n";
 		set_angle(45.0f);
 		//send_key_hold_down(0x57, 2000);
 		send_2_keys_and_hold_first(0x57, 2000, VK_SPACE);
@@ -222,7 +222,7 @@ void flyff::player::avoid_giant_on_map(flyff::window &win)
 		{
 			log_file_->write("Found giant or violet on top right of map");
 		}
-		std::cout << "Found giant or violet on top right of map" << std::endl;
+		std::cout << "Found giant or violet on top right of map\n";
 
 		set_angle(315.0f);
 		send_2_keys_and_hold_first(0x57, 2000, VK_SPACE);
@@ -236,7 +236,7 @@ void flyff::player::avoid_giant_on_map(flyff::window &win)
 		{
 			log_file_->write("Found giant or violet on bottom left of map");
 		}
-		std::cout << "Found giant or violet on bottom left of map" << std::endl;
+		std::cout << "Found giant or violet on bottom left of map\n";
 		set_angle(135.0f);
 		send_2_keys_and_hold_first(0x57, 2000, VK_SPACE);
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -249,7 +249,7 @@ void flyff::player::avoid_giant_on_map(flyff::window &win)
 		{
 			log_file_->write("Found giant or violet on bottom right of map");
 		}
-		std::cout << "Found giant or violet on bottom right of map" << std::endl;
+		std::cout << "Found giant or violet on bottom right of map\n";
 		set_angle(225.0f);
 		send_2_keys_and_hold_first(0x57, 2000, VK_SPACE);
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -277,7 +277,7 @@ void check_if_navigator_icon_missing(flyff::window &win, flyff::time &navigator_
 			{
 				log_file.write("Unable to find navigator icon, sending N key");
 			}
-			std::cout << "Unable to find navigator icon, sending N key" << std::endl;
+			std::cout << "Unable to find navigator icon, sending N key\n";
 			send_key_hold_down(0x4E);
 		}
 		navigator_icon_time.set_start_time();

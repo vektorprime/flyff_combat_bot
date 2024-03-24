@@ -396,9 +396,9 @@ int main()
 	//	"have party on bottom left with healer as leader if using heal_party_member \n"
 	//	"turn off special effects and hide all players on the fighter \n"
 	//	"turn off select pets after target exclusion prompt \n"
-	//	"turn off pixel perfect in cases where the mobs are small" << std::endl;
+	//	"turn off pixel perfect in cases where the mobs are small\n";
 
-	//std::cout << "starting bot" << std::endl;
+	//std::cout << "starting bot\n";
 	flyff::match_result heal_skill_result{};
 	double heal_skill_cutoffpoint = 0.009;
 	bool initial_find_heal_skill = true;
@@ -876,7 +876,7 @@ int main()
 			{
 				if (dead_result.minVal <= 0.03)
 				{
-					std::cout << "Found dead player, stopping bot." << std::endl;
+					std::cout << "Found dead player, stopping bot.\n";
 					log_file.write("Found dead player, stopping bot.");
 					// don't throw here, just stop the bot.
 					//throw std::runtime_error("ERROR: Found dead player, stopping bot.");
@@ -909,14 +909,14 @@ int main()
 					{
 						initial_functions_ran = true;
 
-						std::cout << "Setting up memory reading functions" << std::endl;
+						std::cout << "Setting up memory reading functions\n";
 
 						std::vector<DWORD> all_pids = find_all_flyff_pids();
 						for (int i = 0; i < all_pids.size(); i++)
 						{
 
 							flyff_proc = find_flyff_string_in_pid(all_pids[i]);
-							std::cout << "checking if pid " << all_pids[i] << " is the flyff window" << std::endl;
+							std::cout << "checking if pid " << all_pids[i] << " is the flyff window\n";
 							//if anything other than 1 is returned, we got the right PID
 							if (flyff_proc.pid != 1)
 							{
@@ -926,7 +926,7 @@ int main()
 
 						if (flyff_proc.pid == 1)
 						{
-							std::cout << "flyff pid is 1, error " << std::endl;
+							std::cout << "flyff pid is 1, error \n";
 							cleanup_gui(hwnd, wc.lpszClassName, wc.hInstance);
 							return 1;
 						}
@@ -934,6 +934,7 @@ int main()
 						//if the player target setup ran when finding the pet id to ignore, don't run it again
 						healer_player.setup_initial_target(flyff_proc);
 						player.setup_initial_target(flyff_proc);
+						//healer_player.setup_initial_target_hp(flyff_proc);
 						if (healer_player.id == 1 || player.id == 1)
 						{
 							std::cout << "The player ID for the fighter or healer was 1, cannot proceed.";
@@ -989,7 +990,7 @@ int main()
 					send_key_hold_down(0x5A, 500);
 					if (heal_start_with_buffs)
 					{
-						std::cout << "sending buffs" << std::endl;
+						std::cout << "sending buffs\n";
 						send_buffs();
 					}
 					initial_buff_ran = true;
@@ -1036,7 +1037,7 @@ int main()
 
 					if (captcha_result.minVal < captcha_cutoffpoint)
 					{
-						std::cout << "found captcha, pausing to solve" << std::endl;
+						std::cout << "found captcha, pausing to solve\n";
 						send_left_click_delay(heal_xloc, heal_yloc);
 						std::this_thread::sleep_for(std::chrono::seconds(30));
 						send_left_click_delay(50, 100);
@@ -1078,15 +1079,15 @@ int main()
 						send_key_hold_down(0x5A, 50);
 						send_key_hold_down(0x53, 50);
 						std::this_thread::sleep_for(std::chrono::milliseconds(250));
-						std::cout << "Getting target coords" << std::endl;
+						std::cout << "Getting target coords\n";
 						target_to_click = get_target_to_click_cords(win);
 						if (target_to_click.x != 0 && target_to_click.y != 0)
 						{
-							std::cout << "Sending escape" << std::endl;
+							std::cout << "Sending escape\n";
 							send_key_hold_down(VK_ESCAPE, 50);
 							std::this_thread::sleep_for(std::chrono::milliseconds(50));
 							std::cout << "target to click x is " << target_to_click.x << " y is " << target_to_click.y << std::endl;
-							std::cout << "Sending left click" << std::endl;
+							std::cout << "Sending left click\n";
 							bool valid_click = check_for_valid_click(target_to_click.y - 5);
 
 							if (valid_click)
@@ -1103,7 +1104,7 @@ int main()
 							}
 							else
 							{
-								std::cout << "invalid click location, exiting fight sequence" << std::endl;
+								std::cout << "invalid click location, exiting fight sequence\n";
 							}
 						}
 					}
@@ -1114,27 +1115,27 @@ int main()
 				{
 					if (heal_target_result.minVal < monster_target_cutoffpoint)
 					{
-						std::cout << "found player target" << std::endl;
+						std::cout << "found player target\n";
 						//player is targetted, check if the player should be healed
 						flyff::match_result heal_target_health_result = flyff::match_specific_flyff_item(win, heal_target_health_templ, flyff::type_of_match::monster_target);
 						if (heal_target_health_result.minVal > monster_target_cutoffpoint)
 						{
-							std::cout << "player is hurt, healing" << std::endl;
+							std::cout << "player is hurt, healing\n";
 							//find the heal skill and click it
 							std::cout << "heal skill minval is " << heal_skill_result.minVal << std::endl;
 							if (heal_skill_result.minVal <= heal_skill_cutoffpoint)
 							{
 								send_key_hold_down(0x5A, 250);
-								std::cout << "sending heal skill via click" << std::endl;
+								std::cout << "sending heal skill via click\n";
 								send_left_click_delay(heal_skill_result.minLoc.x, heal_skill_result.minLoc.y + 5);
 								//send_left_click(heal_skill_result.matchLoc.x, heal_skill_result.matchLoc.y);
 							}
 						}
 						else
 						{
-							std::cout << "player is not hurt, skipping" << std::endl;
+							std::cout << "player is not hurt, skipping\n";
 							send_key_hold_down(0x5A, 250);
-							std::cout << "checking if target is in range" << std::endl;
+							std::cout << "checking if target is in range\n";
 							//heal_target_in_range_result = flyff::match_flyff_item(win, heal_target_in_range, cv::COLOR_BGRA2BGR);
 							bool heal_target_near = find_target_icons(win);
 
@@ -1143,7 +1144,7 @@ int main()
 
 							if (!heal_target_near)
 							{
-								std::cout << "target not in range, pressing space bar in case we are stuck" << std::endl;
+								std::cout << "target not in range, pressing space bar in case we are stuck\n";
 								send_jump();
 							}
 						}
@@ -1151,23 +1152,23 @@ int main()
 					else
 					{
 						//if we aren't targetting a player, find the party member and click their name via the party window on bottom left of screen
-						std::cout << "did not find player target" << std::endl;
+						std::cout << "did not find player target\n";
 						if (heal_party_member)
 						{
-							std::cout << "heal party member check will run" << std::endl;
+							std::cout << "heal party member check will run\n";
 							//The healer should be party leader because the second member health bar will be the match at bottom left of screen
 							//Thus, the mini-party window should be just above the "menu" button of screen
 							flyff::match_result party_member_result = flyff::match_specific_flyff_item(win, fighter_templ, flyff::type_of_match::party_window);
 							if (party_member_result.minVal < 0.008)
 							{
-								std::cout << "found fighter in party window, sending click" << std::endl;
+								std::cout << "found fighter in party window, sending click\n";
 								send_left_click_delay(party_member_result.minLoc.x + 3, party_member_result.minLoc.y + 5);
 								send_key_hold_down(0x5A, 250);
 							}
 						}
 						else if (find_fighter_manually)
 						{
-							std::cout << "not configured to find the fighter, please target the player manually" << std::endl;
+							std::cout << "not configured to find the fighter, please target the player manually\n";
 						}
 					
 					}
@@ -1177,13 +1178,13 @@ int main()
 						flyff::match_result monitor_hp_result = flyff::match_specific_flyff_item(win, hp_templ, flyff::type_of_match::char_screen);
 						if (monitor_hp_result.minVal > monitor_hp_mp_fp_cutoffpoint)
 						{
-							std::cout << "We are hurt, healing" << std::endl;
+							std::cout << "We are hurt, healing\n";
 							//find the heal skill and click it
 							std::cout << "heal skill minval is " << heal_skill_result.minVal << std::endl;
 
 							if (heal_skill_result.minVal <= heal_skill_cutoffpoint)
 							{
-								std::cout << "sending heal skill via click" << std::endl;
+								std::cout << "sending heal skill via click\n";
 								send_left_click_delay(heal_skill_result.minLoc.x, heal_skill_result.minLoc.y + 5);
 								//send_left_click(heal_skill_result.matchLoc.x, heal_skill_result.matchLoc.y);
 
@@ -1198,7 +1199,7 @@ int main()
 					if (heal_skill_result.minVal <= heal_skill_cutoffpoint)
 					{
 						send_key_hold_down(0x5A, 250);
-						std::cout << "sending heal skill via click" << std::endl;
+						std::cout << "sending heal skill via click\n";
 						send_left_click_delay(heal_skill_result.minLoc.x, heal_skill_result.minLoc.y + 5);
 						//send_left_click(heal_skill_result.matchLoc.x, heal_skill_result.matchLoc.y);
 
@@ -1208,7 +1209,7 @@ int main()
 				if (rebuff_interval_time.check_if_time_elapsed())
 				{
 					SetForegroundWindow(healfshwnd);
-					std::cout << "we have reached the buff interval of " << heal_rebuff_interval << " seconds, sending buffs" << std::endl;
+					std::cout << "we have reached the buff interval of " << heal_rebuff_interval << " seconds, sending buffs\n";
 					send_buffs();
 					//rebuff_start_time = std::chrono::steady_clock::now();
 					rebuff_interval_time.set_start_time();
@@ -1223,14 +1224,14 @@ int main()
 				// if we were disconnected and set to heal the party member, find their name and click it
 				if (heal_dc || heal_dc2 || heal_dc3 || heal_dc4)
 				{
-					std::cout << " heal_dc or dc2 was triggered" << std::endl;
+					std::cout << " heal_dc or dc2 was triggered\n";
 					if (heal_party_member)
 					{
-						std::cout << "heal party member check will run" << std::endl;
+						std::cout << "heal party member check will run\n";
 						flyff::match_result party_member_result = flyff::match_specific_flyff_item(win, fighter_templ, flyff::type_of_match::char_screen);
 						if (party_member_result.minVal < 0.008)
 						{
-							std::cout << "found fighter in party window, sending click" << std::endl;
+							std::cout << "found fighter in party window, sending click\n";
 							send_left_click_delay(party_member_result.minLoc.x + 3, party_member_result.minLoc.y + 5);
 							send_key_hold_down(0x5A, 250);
 						}
@@ -1307,7 +1308,7 @@ int main()
 									log_file.write("running intial fighter self buffs");
 								}
 								SetForegroundWindow(supportwindowcheck);
-								std::cout << "sending intial self buff" << std::endl;
+								std::cout << "sending intial self buff\n";
 								send_key_hold_down(VK_F2);
 								std::this_thread::sleep_for(std::chrono::milliseconds(100));
 								for (auto it = char_self_buffs.begin(); it != char_self_buffs.end(); ++it)
@@ -1320,7 +1321,7 @@ int main()
 								send_key_hold_down(VK_F1);
 								// don't run initial self buff again
 								initial_self_buff = false;
-								//std::cout << "pausing for 5 sec after initial self buffs" << std::endl;
+								//std::cout << "pausing for 5 sec after initial self buffs\n";
 								//std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 							}
 
@@ -1340,7 +1341,7 @@ int main()
 								monitor_hp_result = flyff::match_specific_flyff_item(win, hp_templ, flyff::type_of_match::char_screen);
 								if (monitor_hp_result.minVal > monitor_hp_mp_fp_cutoffpoint)
 								{
-									std::cout << "did not find full hp bar, healing with 1" << std::endl;
+									std::cout << "did not find full hp bar, healing with 1\n";
 									send_key_hold_down('1', 250);
 								}
 							}
@@ -1349,7 +1350,7 @@ int main()
 								monitor_mp_result = flyff::match_specific_flyff_item(win, mp_templ, flyff::type_of_match::char_screen);
 								if (monitor_mp_result.minVal > monitor_hp_mp_fp_cutoffpoint)
 								{
-									std::cout << "found low mp, restoring with 2" << std::endl;
+									std::cout << "found low mp, restoring with 2\n";
 									send_key_hold_down('2', 250);
 								}
 							}
@@ -1358,7 +1359,7 @@ int main()
 								monitor_fp_result = flyff::match_specific_flyff_item(win, fp_templ, flyff::type_of_match::char_screen);
 								if (monitor_fp_result.minVal > monitor_hp_mp_fp_cutoffpoint)
 								{
-									std::cout << "found low fp, restoring with 2" << std::endl;
+									std::cout << "found low fp, restoring with 2\n";
 									send_key_hold_down('2', 250);
 								}
 							}
@@ -1391,7 +1392,7 @@ int main()
 								}
 								else
 								{
-									std::cout << "Mon ID " << mon.id << " is invalid, setting to 0" << std::endl;
+									std::cout << "Mon ID " << mon.id << " is invalid, setting to 0\n";
 									if (log_file.log_level_is_verbose())
 									{
 										log_file.write("Mon ID " + std::to_string(mon.id) + " is invalid, setting to 0");
@@ -1401,7 +1402,7 @@ int main()
 							}
 
 							remove_monster_from_field(0, initial_monsters_on_field);
-							std::cout << "Starting sort_and_filter_monsters_by_distance" << std::endl;
+							std::cout << "Starting sort_and_filter_monsters_by_distance\n";
 							if (log_file.log_level_is_verbose())
 							{
 								log_file.write("Starting sort_and_filter_monsters_by_distance");
@@ -1423,7 +1424,7 @@ int main()
 							{
 								log_file.write("Setting up memory reading functions");
 							}
-							std::cout << "Setting up memory reading functions" << std::endl;
+							std::cout << "Setting up memory reading functions\n";
 
 							std::vector<DWORD> all_pids = find_all_flyff_pids();
 							for (int i = 0; i < all_pids.size(); i++)
@@ -1431,7 +1432,7 @@ int main()
 
 								flyff_proc = find_flyff_string_in_pid(all_pids[i]);
 
-								std::cout << "checking if pid " << all_pids[i] << " is the flyff window" << std::endl;
+								std::cout << "checking if pid " << all_pids[i] << " is the flyff window\n";
 								//if anything other than 1 is returned, we got the right PID
 								if (flyff_proc.pid != 1)
 								{
@@ -1442,7 +1443,7 @@ int main()
 							if (flyff_proc.pid == 1)
 							{
 								log_file.write("ERROR: flyff pid is 1");
-								std::cout << "flyff pid is 1, error " << std::endl;
+								std::cout << "flyff pid is 1, error \n";
 								cleanup_gui(hwnd, wc.lpszClassName, wc.hInstance);
 								throw std::runtime_error("ERROR: flyff pid is 1");
 							}
@@ -1451,6 +1452,7 @@ int main()
 
 							player.setup_initial_pos(flyff_proc);
 							player.setup_initial_target(flyff_proc);
+							//player.setup_initial_target_hp(flyff_proc);
 							if (player.id == 0 || player.id == 1)
 							{
 								log_file.write("ERROR: player ID is invalid");
@@ -1510,7 +1512,7 @@ int main()
 										{
 											log_file.write("Mon ID " + std::to_string(mon.id) + " is pet, adding to all_pet_id");
 										}
-										std::cout << "Mon ID " + std::to_string(mon.id) + " is pet, adding to all_pet_id" << std::endl;
+										std::cout << "Mon ID " + std::to_string(mon.id) + " is pet, adding to all_pet_id\n";
 
 										//std::cout << "found pet pattern for mon " << mon.id << std::endl;
 										all_pet_id.push_back(mon.id);
@@ -1531,7 +1533,7 @@ int main()
 
 						if (clear_monsters_killed_time.check_if_time_elapsed())
 						{
-							std::cout << "Clearing monsters_killed" << std::endl;
+							std::cout << "Clearing monsters_killed\n";
 							log_file.write("Clearing monsters_killed");
 							monsters_killed.clear();
 							clear_monsters_killed_time.set_start_time();
@@ -1543,7 +1545,7 @@ int main()
 							{
 								log_file.write("Monster search time elapsed or filtered monsters empty, running search");
 							}
-							std::cout << "Monster search time elapsed or filtered monsters empty, running search" << std::endl;
+							std::cout << "Monster search time elapsed or filtered monsters empty, running search\n";
 							initial_monsters_on_field = get_initial_monsters_on_field(flyff_proc, monster_on_map_byte_pattern_5);
 							if (log_file.log_level_is_verbose())
 							{
@@ -1563,7 +1565,7 @@ int main()
 								{
 									log_file.write("all_pet_id is not empty, removing those IDs from initial_monsters_on_field");
 								}
-								std::cout << "all_pet_id is not empty, removing those IDs from initial_monsters_on_field" << std::endl;
+								std::cout << "all_pet_id is not empty, removing those IDs from initial_monsters_on_field\n";
 								for (int pet_id : all_pet_id)
 								{
 									remove_monster_from_field(pet_id, initial_monsters_on_field);
@@ -1576,7 +1578,7 @@ int main()
 								{
 									log_file.write("bad_monsters_on_field is not empty, removing those IDs from initial_monsters_on_field");
 								}
-								std::cout << "bad_monsters_on_field is not empty, removing those IDs from initial_monsters_on_field" << std::endl;
+								std::cout << "bad_monsters_on_field is not empty, removing those IDs from initial_monsters_on_field\n";
 								for (flyff::monster &giant : bad_monsters_on_field)
 								{
 									remove_monster_from_field(giant.id, initial_monsters_on_field);
@@ -1601,7 +1603,7 @@ int main()
 								{
 									log_file.write("Found monster with ID 0, removing");
 								}
-								std::cout << "Found monster with ID 0, removing" << std::endl;
+								std::cout << "Found monster with ID 0, removing\n";
 								remove_monster_from_field(0, initial_monsters_on_field);
 							}
 							// bad target
@@ -1612,7 +1614,7 @@ int main()
 								{
 									log_file.write("Mon ID " + std::to_string(mon.id) + " target is " + std::to_string(mon.target) + " and it's NOT valid. Removing.");
 								}
-								std::cout << "Mon ID " + std::to_string(mon.id) + " target is " + std::to_string(mon.target) + " and it's NOT valid. Removing." << std::endl;
+								std::cout << "Mon ID " + std::to_string(mon.id) + " target is " + std::to_string(mon.target) + " and it's NOT valid. Removing.\n";
 								remove_monster_from_field(mon.id, initial_monsters_on_field);
 							}
 						}
@@ -1639,7 +1641,7 @@ int main()
 							{
 								log_file.write("Not in combat, searching for monster to attack");
 							}
-							std::cout << "Not in combat, searching for monster to attack" << std::endl;
+							std::cout << "Not in combat, searching for monster to attack\n";
 							//attack a monster and remove it from the vector
 							if (!initial_monsters_on_field.empty())
 							{
@@ -1728,7 +1730,7 @@ int main()
 											{
 												log_file.write("Setting target as " + std::to_string(mon_to_attack.id) + " in normal fighting");
 											}
-											std::cout << "Setting target as " << mon_to_attack.id << " in normal fighting" << std::endl;
+											std::cout << "Setting target as " << mon_to_attack.id << " in normal fighting\n";
 											player.set_target(mon_to_attack.id);
 											send_key_hold_down(0x5A, 50);
 											send_key_hold_down(0x53, 50);
@@ -1741,7 +1743,7 @@ int main()
 												{
 													log_file.write("Getting target coords");
 												}
-												std::cout << "Getting target coords" << std::endl;
+												std::cout << "Getting target coords\n";
 												target_to_click = get_target_to_click_cords(win);
 
 												if (target_to_click.x != 0 && target_to_click.y != 0)
@@ -1750,7 +1752,7 @@ int main()
 													{
 														log_file.write("Sending escape");
 													}
-													std::cout << "Sending escape" << std::endl;
+													std::cout << "Sending escape\n";
 													send_key_hold_down(VK_ESCAPE, 50);
 													std::this_thread::sleep_for(std::chrono::milliseconds(50));
 													if (log_file.log_level_is_verbose())
@@ -1765,7 +1767,7 @@ int main()
 														{
 															log_file.write("Sending left click");
 														}
-														std::cout << "Sending left click" << std::endl;
+														std::cout << "Sending left click\n";
 														//I subtract 5 because the target matches aren't exactly centered, and we need to move the target cursor up
 														send_left_click(target_to_click.x + 5, target_to_click.y - 5);
 														//the target in mem isn't set right away, so we need to pause
@@ -1778,7 +1780,7 @@ int main()
 															{
 																log_file.write("Sending 6 key");
 															}
-															std::cout << "Sending 6" << std::endl;
+															std::cout << "Sending 6\n";
 															send_key_hold_down(0x36, 50);
 															if (enable_attack_skill)
 															{
@@ -1792,7 +1794,7 @@ int main()
 															{
 																if (player.target == mon.id)
 																{
-																	std::cout << "player target is " + std::to_string(player.target) + " adding it to monsters_killed" << std::endl;
+																	std::cout << "player target is " + std::to_string(player.target) + " adding it to monsters_killed\n";
 																	if (log_file.log_level_is_verbose())
 																	{
 																		log_file.write("player target is " + std::to_string(player.target) + " adding it to monsters_killed");
@@ -1805,7 +1807,7 @@ int main()
 															{
 																log_file.write("Sending 6 key");
 															}
-															std::cout << "Sending 6 key" << std::endl;
+															std::cout << "Sending 6 key\n";
 															send_key_hold_down(0x36, 50);
 															if (enable_attack_skill)
 															{
@@ -1818,7 +1820,7 @@ int main()
 															{
 																log_file.write("Didn't find monster target match");
 															}
-															std::cout << "Didn't find monster target match" << std::endl;
+															std::cout << "Didn't find monster target match\n";
 															send_key_hold_down(0x53, 50);
 														}
 													}
@@ -1828,7 +1830,7 @@ int main()
 														{
 															log_file.write("Invalid click location, exiting fight sequence");
 														}
-														std::cout << "Invalid click location, exiting fight sequence" << std::endl;
+														std::cout << "Invalid click location, exiting fight sequence\n";
 													}
 												}
 												else
@@ -1837,7 +1839,7 @@ int main()
 													{
 														log_file.write("Trying to target monster, but can't get coords");
 													}
-													std::cout << "Trying to target monster, but can't get coords" << std::endl;
+													std::cout << "Trying to target monster, but can't get coords\n";
 												}
 											}
 											else
@@ -1847,7 +1849,7 @@ int main()
 													log_file.write("Found giant or violet text in target, skipping monster");
 
 												}
-												std::cout << "Found giant or violet text in target, skipping monster" << std::endl;
+												std::cout << "Found giant or violet text in target, skipping monster\n";
 												bad_monsters_on_field.push_back(mon_to_attack);
 												delete_monster_from_field(initial_monsters_on_field, mon_to_attack, mon_set);
 											}
@@ -1859,7 +1861,7 @@ int main()
 											//{
 												//log_file.write("Mon ID  " + std::to_string(mon_to_attack.id) + " already killed, skipping");
 											//}
-											//std::cout << "Mon ID  " + std::to_string(mon_to_attack.id) + " already killed, skipping" << std::endl;
+											//std::cout << "Mon ID  " + std::to_string(mon_to_attack.id) + " already killed, skipping\n";
 											//delete_monster_from_field(initial_monsters_on_field, mon_to_attack, mon_set);
 										//}
 									}
@@ -1869,7 +1871,7 @@ int main()
 										{
 											log_file.write("Mon target " + std::to_string(mon_to_attack.id) + " is not valid");
 										}
-										std::cout << "Mon target " + std::to_string(mon_to_attack.id) + " is not valid" << std::endl;
+										std::cout << "Mon target " + std::to_string(mon_to_attack.id) + " is not valid\n";
 										remove_monster_from_field(mon_to_attack.id, initial_monsters_on_field);
 										//delete_monster_from_field(initial_monsters_on_field, mon_to_attack, mon_set);
 									}
@@ -1881,7 +1883,7 @@ int main()
 									{
 										log_file.write("Mon to attack ID is 0, skipping");
 									}
-									std::cout << "Mon to attack ID is 0, skipping" << std::endl;
+									std::cout << "Mon to attack ID is 0, skipping\n";
 									delete_monster_from_field(initial_monsters_on_field, mon_to_attack, mon_set);
 								}
 							}
@@ -1891,7 +1893,7 @@ int main()
 								{
 									log_file.write("No initial_monsters_on_field to attack");
 								}
-								std::cout << "No initial_monsters_on_field to attack" << std::endl;
+								std::cout << "No initial_monsters_on_field to attack\n";
 							}
 						}
 
@@ -1913,7 +1915,7 @@ int main()
 								{
 									log_file.write("Incombat for too long, sending escape");
 								}
-								std::cout << "Incombat for too long, sending escape" << std::endl;
+								std::cout << "Incombat for too long, sending escape\n";
 								flyff::match_result target_result = flyff::match_specific_flyff_item(win, monster_target_templ, flyff::type_of_match::monster_target);
 								if (target_result.minVal < 0.01)
 								{
@@ -1939,7 +1941,7 @@ int main()
 								{
 									log_file.write("Position interval has passed, checking position");
 								}
-								std::cout << "Position interval has passed, checking position" << std::endl;
+								std::cout << "Position interval has passed, checking position\n";
 								player.set_position(win);
 								exit_monster_target(win, monster_target_templ);
 								position_time.set_start_time();
@@ -1980,7 +1982,7 @@ int main()
 							{
 								log_file.write("Found a disconnected message present, setting the memory initial functions to run again");
 							}
-							std::cout << "Found a disconnected message present, setting the memory initial functions to run again" << std::endl;
+							std::cout << "Found a disconnected message present, setting the memory initial functions to run again\n";
 							initial_functions_ran = false;
 						}
 
@@ -2052,7 +2054,7 @@ int main()
 						//		{
 						//			log_file.write("Found action blocked. Moving away and clearing initial_monsters_on_field.");
 						//		}
-						//		std::cout << "Found action blocked. Moving away and clearing initial_monsters_on_field." << std::endl;
+						//		std::cout << "Found action blocked. Moving away and clearing initial_monsters_on_field.\n";
 						//		if (!debug_bot)
 						//		{
 						//			player.avoid_giant_on_map(win);

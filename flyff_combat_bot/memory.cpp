@@ -18,7 +18,7 @@ namespace flyff
 			{
 				log_file_->write("ERROR: VirtualAlloc failed in memory::memory()");
 			}
-			std::cout << "ERROR: VirtualAlloc failed in memory::memory()" << std::endl;
+			std::cout << "ERROR: VirtualAlloc failed in memory::memory()\n";
 			throw std::runtime_error("ERROR: VirtualAlloc failed in memory::memory()");
 		}
 	}
@@ -31,7 +31,7 @@ namespace flyff
 			{
 				log_file_->write("ERROR: Unable to read proc mem in memory::read()");
 			}
-			std::cout << "ERROR: Unable to read proc mem in memory::read()" << std::endl;
+			std::cout << "ERROR: Unable to read proc mem in memory::read()\n";
 			throw std::runtime_error("ERROR: Unable to read proc mem in memory::read()");
 		}
 	}
@@ -48,7 +48,7 @@ namespace flyff
 			{
 				log_file_->write("ERROR: VirtualAlloc failed in memory::memory()");
 			}
-			std::cout << "ERROR: VirtualAlloc failed in memory::memory()" << std::endl;
+			std::cout << "ERROR: VirtualAlloc failed in memory::memory()\n";
 			throw std::runtime_error("ERROR: VirtualAlloc failed in memory::memory()");
 		}
 	}

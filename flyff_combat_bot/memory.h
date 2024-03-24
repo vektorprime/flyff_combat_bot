@@ -59,7 +59,7 @@ namespace flyff
 
 			~memory()
 			{
-				//std::cout << "memory destructor invoked" << std::endl;
+				//std::cout << "memory destructor invoked\n";
 				VirtualFree(buffer, 0, MEM_RELEASE);
 			}
 
