@@ -187,9 +187,6 @@ LONG heal_yloc = 0;
 int main()
 {
 
-
-
-
 	cv::Mat dead_templ = cv::imread("images\\dead.png");
 	cv::cvtColor(dead_templ, dead_templ, cv::COLOR_BGRA2GRAY);
 
@@ -1957,10 +1954,10 @@ int main()
 						std::string flyff_white_alert_text = match_flyff_text_ocr(flyff_win_gray, 170);*/
 
 
-						//std::string flyff_red_alert_text = match_flyff_text_ocr(flyff_win_gray, 60);
+						std::string flyff_red_alert_text = match_flyff_text_ocr(flyff_win_gray, 60);
 						//std::string flyff_white_alert_text = flyff_white_alert_text_future.get();
 						//std::cout << "flyff_white_alert_text is " << flyff_white_alert_text << std::endl;
-						//std::cout << "flyff_red_alert_text is " << flyff_red_alert_text << std::endl;
+						std::cout << "flyff_red_alert_text is " << flyff_red_alert_text << std::endl;
 
 						player.avoid_giant_on_map(win);
 

@@ -1514,6 +1514,7 @@ void flyff::player::setup_initial_target(const flyff::process &process)
 			possible_player_target_match[43] = 0x00;
 
 			//48-51 random data
+			//3-23-24 moved player target to 48-51
 			possible_player_target_match[48] = 0x00;
 			possible_player_target_match[49] = 0x00;
 			possible_player_target_match[50] = 0x00;
@@ -1689,10 +1690,10 @@ void flyff::player::setup_initial_target(const flyff::process &process)
 			//player_id_bytes[2] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1614];
 			//player_id_bytes[3] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1613];
 
-			player_id_bytes[0] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1608];
-			player_id_bytes[1] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1607];
-			player_id_bytes[2] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1606];
-			player_id_bytes[3] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1605];
+			player_id_bytes[0] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1608 - 48];
+			player_id_bytes[1] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1607 - 48];
+			player_id_bytes[2] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1606 - 48];
+			player_id_bytes[3] = static_cast<unsigned char *>(mem.buffer)[byte + 56 - 1605 - 48];
 
 			memcpy(&id, &player_id_bytes, sizeof(int));
 
@@ -1700,7 +1701,7 @@ void flyff::player::setup_initial_target(const flyff::process &process)
 			//we don't really use the ID yet, but maybe later we will
 			//player_target_proc.player_id_address = (LPVOID)((uintptr_t)queryBaseAddress + (uint64_t)byte + 56 - 1504);
 			//player_target_proc.player_id_address = (LPVOID)((uintptr_t)queryBaseAddress + (uint64_t)byte + 56 - 1616);
-			player_target_proc.player_id_address = (LPVOID)((uintptr_t)queryBaseAddress + (uint64_t)byte + 56 - 1608);
+			player_target_proc.player_id_address = (LPVOID)((uintptr_t)queryBaseAddress + (uint64_t)byte + 56 - 1608 - 48);
 
 
 
