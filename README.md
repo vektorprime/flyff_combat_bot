@@ -56,7 +56,7 @@ Running the bot takes over some mouse and keyboard actions, so you can't run mor
 11. Set windows res scaling
     - ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/91e643d4-1f11-4878-9a93-49b2c253715b)
 12. The bot was tested on resoltuion 1920 x 1080
-    - ms-settings:display?activationSource=SMC-IA-4026956
+    - https://support.microsoft.com/en-us/windows/change-your-screen-resolution-in-windows-5effefe3-2eac-e306-0b5d-2073b765876b
 
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/df466c0c-e85d-47bc-bd18-d595f4ccbc71)
 
