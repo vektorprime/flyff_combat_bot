@@ -53,6 +53,10 @@ Running the bot takes over some mouse and keyboard actions, so you can't run mor
 9. The Self Buffs section assumes all they are in the F2 skill bar (second skill bar)
 10. You MUST have the "Attack selected target" action set as the #6 skill in the F1 (first) skillbar like below.
     - If you don't know where that is, press "o" on your keyboard to open the Motion menu and find it here.
+11. Set windows res scaling
+    - ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/91e643d4-1f11-4878-9a93-49b2c253715b)
+12. The bot was tested on resoltuion 1920 x 1080
+    - https://support.microsoft.com/en-us/windows/change-your-screen-resolution-in-windows-5effefe3-2eac-e306-0b5d-2073b765876b
 
 ![image](https://github.com/vektorprime/flyff_combat_bot/assets/9269666/df466c0c-e85d-47bc-bd18-d595f4ccbc71)
 
