@@ -1066,6 +1066,7 @@ void flyff::monster::update_target(const flyff::process &process)
 					//need to break out of the inner and outer for because there are no valid monsters after
 					//std::cout << "Unable to assign possible_monster_target_id_match at byte " << byte << std::endl;
 					break_loop_1 = true;
+					target = 1;
 					break;
 				}
 			}
@@ -2049,13 +2050,17 @@ void flyff::player::setup_initial_target_hp(const flyff::process &process)
 		{
 			break;
 		}
-
-		//since the first 2 bytes must be 0x01, we can skip this match
-		if (static_cast<unsigned char *>(mem.buffer)[byte] != 0x01 &&
-			static_cast<unsigned char *>(mem.buffer)[byte + 1] != 0x01)
+		// reading the last byte errors out becasue we are doing + 1 in the next check
+		if (byte < hp_bytes_buffer_size - 1)
 		{
-			continue;
+			//since the first 2 bytes must be 0x01, we can skip this match
+			if (static_cast<unsigned char *>(mem.buffer)[byte] != 0x01 &&
+				static_cast<unsigned char *>(mem.buffer)[byte + 1] != 0x01)
+			{
+				continue;
+			}
 		}
+
 		//get all of the bytes of this region's section 
 		for (uint64_t b = 0; b < hp_byte_pattern.size(); b++)
 		{
@@ -2102,14 +2107,22 @@ void flyff::player::setup_initial_target_hp(const flyff::process &process)
 
 void flyff::player::update_target_hp()
 {
-	size_t bytesToRead = 1;
-	std::array<unsigned char, 1> player_target_hp_bytes{};
-	std::cout << "starting get precise player target hp\n";
-	flyff::memory mem(target_hp_address, player_target_proc.pHandle, bytesToRead);
-	mem.read();
-	player_target_hp_bytes[0] = static_cast<unsigned char *>(mem.buffer)[0];
-	int target_hp_as_int = 0;
-	memcpy(&target_hp_as_int, &player_target_hp_bytes, sizeof(int));
-	target_hp = static_cast<float>(target_hp_as_int) / 176.0f * 100.0f;
+	if (target_hp_address != nullptr)
+	{
+		size_t bytesToRead = 1;
+		std::array<unsigned char, 1> player_target_hp_bytes{};
+		std::cout << "starting get precise player target hp\n";
+		flyff::memory mem(target_hp_address, player_target_proc.pHandle, bytesToRead);
+		mem.read();
+		player_target_hp_bytes[0] = static_cast<unsigned char *>(mem.buffer)[0];
+		int target_hp_as_int = 0;
+		memcpy(&target_hp_as_int, &player_target_hp_bytes, sizeof(int));
+		target_hp = static_cast<float>(target_hp_as_int) / 176.0f * 100.0f;
+		return;
+	}
+	else
+	{
+		return;
+	}
 
 }

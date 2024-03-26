@@ -145,7 +145,6 @@ const std::array<unsigned char, 104> monster_on_map_byte_pattern_5 =
 {
 	//4-7 random
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, //7
-
 	0x00,0x00,0x00,0x00,0x00,0x01,0x00,0x01, //15
 	//20-23 random
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, //23
@@ -594,7 +593,7 @@ int main()
 
 	flyff::window gray_win{};
 
-	std::thread bot_thread{};
+//	std::thread bot_thread{};
 
 	while (!close_gui)
 	{ 
@@ -1452,7 +1451,9 @@ int main()
 
 							player.setup_initial_pos(flyff_proc);
 							player.setup_initial_target(flyff_proc);
+							//temp disabled
 							//player.setup_initial_target_hp(flyff_proc);
+							//player.update_target_hp();
 							if (player.id == 0 || player.id == 1)
 							{
 								log_file.write("ERROR: player ID is invalid");
@@ -1619,9 +1620,9 @@ int main()
 							}
 						}
 
-
-						check_if_navigator_icon_missing(win, navigator_icon_time, log_file);
-						check_if_char_screen_icon_missing(win, char_screen_icon_time, log_file);
+						//temp disabled 
+						//check_if_navigator_icon_missing(win, navigator_icon_time, log_file);
+						//check_if_char_screen_icon_missing(win, char_screen_icon_time, log_file);
 
 						///
 						///
@@ -2133,7 +2134,7 @@ int main()
 	///gui
 
 	//clean up bot
-	bot_thread.join();
+	//bot_thread.join();
 
 	return 0;
 }

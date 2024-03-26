@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "flyff_combat_bot", "flyff_combat_bot\flyff_combat_bot.vcxproj", "{83084454-21A0-44A4-A13E-23089B25621E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DebugFlyffMonsters", "DebugFlyffMonsters\DebugFlyffMonsters.vcxproj", "{7C86312C-3A1D-4D90-A936-A181C33583AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{83084454-21A0-44A4-A13E-23089B25621E}.Release|x64.Build.0 = Release|x64
 		{83084454-21A0-44A4-A13E-23089B25621E}.Release|x86.ActiveCfg = Release|Win32
 		{83084454-21A0-44A4-A13E-23089B25621E}.Release|x86.Build.0 = Release|Win32
+		{7C86312C-3A1D-4D90-A936-A181C33583AD}.Debug|x64.ActiveCfg = Debug|x64
+		{7C86312C-3A1D-4D90-A936-A181C33583AD}.Debug|x64.Build.0 = Debug|x64
+		{7C86312C-3A1D-4D90-A936-A181C33583AD}.Debug|x86.ActiveCfg = Debug|Win32
+		{7C86312C-3A1D-4D90-A936-A181C33583AD}.Debug|x86.Build.0 = Debug|Win32
+		{7C86312C-3A1D-4D90-A936-A181C33583AD}.Release|x64.ActiveCfg = Release|x64
+		{7C86312C-3A1D-4D90-A936-A181C33583AD}.Release|x64.Build.0 = Release|x64
+		{7C86312C-3A1D-4D90-A936-A181C33583AD}.Release|x86.ActiveCfg = Release|Win32
+		{7C86312C-3A1D-4D90-A936-A181C33583AD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
