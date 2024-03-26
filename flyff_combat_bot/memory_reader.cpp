@@ -1066,7 +1066,7 @@ void flyff::monster::update_target(const flyff::process &process)
 					//need to break out of the inner and outer for because there are no valid monsters after
 					//std::cout << "Unable to assign possible_monster_target_id_match at byte " << byte << std::endl;
 					break_loop_1 = true;
-					target = 1;
+					id = 0;
 					break;
 				}
 			}
