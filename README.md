@@ -4,6 +4,7 @@ Flyff Combat Bot is a free, advanced, and fully automatic bot for Flyff Universe
 
 As of 6/2024, **I am no longer working on this project** and somethings may be broken due to memory patterns changing. Fixing the memory patterns will likely fix your issues with the bot. I may come back to this project. Feel free to use this as a reference on the best way to tackle this issue for this or other games.
 
+Again, THIS PROJECT IS NO LONGER MAINTAINED!
 ----
 
 The bot has been tested on Windows 10 and 11 x64.
